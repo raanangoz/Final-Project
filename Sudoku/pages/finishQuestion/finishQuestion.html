@@ -1,0 +1,34 @@
+<link rel="stylesheet" type="text/css" href="pages/finishQuestion/finishQuestion.css" />
+
+<div ng-controller="finishQuestionController as quesCtrl">
+<!DOCTYPE html>
+
+<head>
+    <div class= "question">
+        <form name="questionsForm" ng-submit="submit()" novalidate>
+            <h1 class="title">Finish Questionnarie</h1>
+            <br>
+
+            <div class="form-group">
+                <h2><B> Estimate your Sudoku skills</B></h2>
+                <select type="rank" id= "rank" name="rank" ng-model="rank" required ng-minlength="5" >
+                    <option value="Never Tried">Never Tried</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Average">Average</option>
+                    <option value="Expert">Expert</option>
+                </select>
+            </div>
+
+
+        </form>
+        <br/>
+        <input  class="btn btn-primary" ng-disabled="loginForm.$invalid" type="submit" id="submit" value="Submit" >
+        </form>
+        <div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+        </div>
+    </div>
+</head>
+<body>
+
+</body>
