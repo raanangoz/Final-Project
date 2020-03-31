@@ -53,10 +53,12 @@ body
 
 .active {
     /*background-color: #4CAF50;*/
-    background-color: #ff232b;
+    /*background-color: #ff232b;*/
+    background-color: #8db7a9;
 }
 
 li{
 
     font-size: large;
 }
+

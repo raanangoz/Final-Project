@@ -120,3 +120,61 @@ body{
     width: 20px;
     size: B4;
 }
+
+.redDec{
+    background-color: red;
+    color: red;
+
+}
+
+#declaration {
+
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+    /*font-size: 35px;*/
+}
+
+.dec{
+
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    /*background-color: red;*/
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#type{
+
+    background-color: #f4f1d2;
+    padding: 5px 15px;
+    height: 40px;
+    width: 150px;
+    font-size: 140%;
+    font-weight: bold;
+    align: center;
+}
+
+#finish{
+
+    background-color: #f4f1d2;
+    padding: 5px 15px;
+    height: 40px;
+    width: 150px;
+    font-size: 140%;
+    font-weight: bold;
+    /*font-size: 30px;*/
+}
+
+#status{
+
+    color: white;
+    font-size: 400%;
+
+}
+
+

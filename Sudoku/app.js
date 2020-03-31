@@ -24,6 +24,12 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/question/question.html',
             controller : 'questionController as questionCtrl'
         })
+
+        .when('/finishQuestion', {
+            // this is a template
+            templateUrl: 'pages/finishQuestion/finishQuestion.html',
+            controller : 'finishQuestionController as finishQuestionCtrl'
+        })
         // // about
         // .when('/about', {
         //     // this is a template url
