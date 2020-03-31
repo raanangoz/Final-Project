@@ -1,4 +1,3 @@
-//git
 var express = require('express');
 var app = express();
 var DButilsAzure = require('./DButils');
@@ -52,7 +51,7 @@ app.get('/getBoard/:dif', function (req, res) {
 
 app.post('/createNewGame', function (req, res) {
 
-    console.log("why 2 times ");
+    console.log("why 2 times 22222222 ");
     var userID = req.body.userID;
     var puzzleID = req.body.puzzleID;
     var type = req.body.type;
@@ -67,7 +66,7 @@ app.post('/createNewGame', function (req, res) {
 
         })
         .catch(function (err) {
-            console.log(err)
+            console.log("here errorrrrr")
             res.send(err)
         })
 
@@ -78,7 +77,8 @@ app.post('/createNewGame', function (req, res) {
 
 app.get('/getGameID', function (req, res) {
 
-    var query = "select * from SudokuToUser";
+    // var query = "select * from SudokuToUser";
+    var query = "SELECT MAX(GameID) FROM SudokuToUser";
     DButilsAzure.execQuery(query)
     // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
 
@@ -101,6 +101,7 @@ app.get('/getGameID', function (req, res) {
 app.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
 
     var GameID = req.body.GameID;
+    console.log(GameID);
     var stepValueAndCords = req.body.stepValueAndCords;//rowcolval
     var query = "select *  from runningSudoku where gameID='"+GameID+"'";
     var stepID;
