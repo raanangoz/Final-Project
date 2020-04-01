@@ -34,7 +34,7 @@ angular.module("sudokuApp")
                         } else {
                             $http ({
                                 method: 'POST',
-                                url:'http://localhost:3000/submitQuestinary', // submitQuestinary - name if the function in the server
+                                url:'http://localhost:3000/Sudoku/submitQuestinary', // submitQuestinary - name if the function in the server
                                 data: {
                                     "firstName": firstName,
                                     "lastName":lastName,
@@ -51,7 +51,7 @@ angular.module("sudokuApp")
 
                                     $http({
                                         method:"get",
-                                        url:'http://localhost:3000/getUserID'
+                                        url:'http://localhost:3000/Sudoku/getUserID'
 
 
                                     }).then(function(response){

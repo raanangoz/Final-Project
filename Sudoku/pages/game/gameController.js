@@ -45,7 +45,7 @@ angular.module("sudokuApp")
                         $http({
 
                             method: 'POST',
-                            url: 'http://localhost:3000/insertMove',
+                            url: 'http://localhost:3000/Sudoku/insertMove',
                             data: {
                                 "GameID": "" + GameID,
                                 "stepValueAndCords": "" + row + "" + "" + col + "" + "" + val + "",
@@ -174,7 +174,7 @@ angular.module("sudokuApp")
             $http ({
 
                 method: 'GET',
-                url:'http://localhost:3000/getBoard/1'})
+                url:'http://localhost:3000/Sudoku/getBoard/1'})
                 .then(function(response) {
 
                     PuzzleID = response.data[0].PuzzleID;
@@ -213,7 +213,7 @@ angular.module("sudokuApp")
 
 
                         method: 'POST',
-                        url:'http://localhost:3000/createNewGame',
+                        url:'http://localhost:3000/Sudoku/createNewGame',
                         data: {
                             "userID":""+$rootScope.userID,
                             "puzzleID":'2',
@@ -223,7 +223,7 @@ angular.module("sudokuApp")
 
                             $http ({
                                 method: 'GET',
-                                url:'http://localhost:3000/getGameID'
+                                url:'http://localhost:3000/Sudoku/getGameID'
                             })
                                 .then(function(response) {
                                     // GameID = response.data.length;
@@ -304,7 +304,7 @@ angular.module("sudokuApp")
             $http ({
 
                 method: 'GET',
-                url:'http://localhost:3000/getBoard/1'}).then(function(response) {
+                url:'http://localhost:3000/Sudoku/getBoard/1'}).then(function(response) {
                 const boardString = response.data[0].board;
                 // console.log("boardString = "+boardString);
                 const numbersArray = boardString.split(',');
@@ -370,7 +370,7 @@ angular.module("sudokuApp")
 
 
                     method: 'POST',
-                    url:'http://localhost:3000/createNewGame',
+                    url:'http://localhost:3000/Sudoku/createNewGame',
                     data: {
                         "userID":""+$rootScope.userID,
                         "puzzleID":'2',
@@ -380,7 +380,7 @@ angular.module("sudokuApp")
 
                         $http ({
                             method: 'GET',
-                            url:'http://localhost:3000/getGameID'
+                            url:'http://localhost:3000/Sudoku/getGameID'
                         })
                             .then(function(response) {
                                 GameID = response.data.length;
