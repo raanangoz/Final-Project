@@ -1,7 +1,7 @@
 
 
 angular.module("sudokuApp")
-    .controller("gameController", function ($scope, $http, $location,$rootScope) {
+    .controller("sudokuGameController", function ($scope, $http, $location,$rootScope) {
 
 
         // var userID = $rootScope.userId;

@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
 var DButilsAzure = require('./DButils');
-// var users = require('./Modules/Users');
-// var POI = require('./Modules/POI');
+var Sudoku = require('./Modules/Sudoku');
+var Knapsack = require('./Modules/Knapsack');
 // var favorites = require('./Modules/Favorites');
 
 app.use('/Sudoku', Sudoku);
-// app.use('/POI', POI);
+app.use('/Knapsack', Knapsack);
 // app.use('/Favorites', favorites);
 var cors = require('cors');
 app.use(cors());

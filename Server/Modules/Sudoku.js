@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 Sudoku.use(express.json());
 module.exports = Sudoku;
 
+var cors = require('cors');
+Sudoku.use(cors());
 
 Sudoku.get('/getBoard/:dif', function (req, res) {
     var dif = req.params.dif;

@@ -12,17 +12,17 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
         })
-        .when('/game', {
+        .when('/sudokuGame', {
             // this is a template
-            templateUrl: 'pages/game/game.html',
-            controller : 'gameController as gameCtrl'
+            templateUrl: 'pages/sudokuGame/sudokuGame.html',
+            controller : 'sudokuGameController as gameCtrl'
         })
 
         //
-        .when('/question', {
+        .when('/startQuestion', {
             // this is a template
-            templateUrl: 'pages/question/question.html',
-            controller : 'questionController as questionCtrl'
+            templateUrl: 'pages/startQuestion/startQuestion.html',
+            controller : 'startQuestionController as questionCtrl'
         })
 
         .when('/finishQuestion', {
