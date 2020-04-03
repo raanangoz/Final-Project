@@ -229,6 +229,7 @@ angular.module("sudokuApp")
                                     // GameID = response.data.length;
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
+                                    $rootScope.GameID = GameID;
                                     console.dir(GameID);
 
 

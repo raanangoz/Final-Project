@@ -1,5 +1,5 @@
 angular.module("sudokuApp")
-    .controller("questionController", function ($scope,$window, $http,$rootScope, $location) {
+    .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
         console.log("oshshshsdhd")
 
         var firstName;
@@ -45,7 +45,7 @@ angular.module("sudokuApp")
                                 .then(function(response) {
 
                                     //pass to Start Game
-                                    $location.url('/game');
+                                    $location.url('/sudokuGame');
 
 
 
