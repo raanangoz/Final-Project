@@ -165,3 +165,27 @@ Sudoku.get('/getUserID', function (req, res) {
         })
 
 })
+
+Sudoku.post('/submitFinishQuestion', function (req, res) {
+
+    var difficulty = req.body.difficulty;
+    var correctness = req.body.correctness;
+    var gameID = req.body.gameID;
+    var userID = req.body.userID;
+
+    console.log("gameID====== "+gameID);
+    console.log("userID====== "+userID);
+
+    var postQuery = "update SudokuToUser set  CorrectnessEstimate= '"+correctness+"', DifficultyEstimate= '"+difficulty+"' where UserID= '"+userID+"' and GameID= '"+gameID+"'";
+
+    DButilsAzure.execQuery(postQuery)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
