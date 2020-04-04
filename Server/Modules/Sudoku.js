@@ -9,7 +9,6 @@ module.exports = Sudoku;
 
 var cors = require('cors');
 Sudoku.use(cors());
-
 Sudoku.get('/getBoard/:dif', function (req, res) {
     var dif = req.params.dif;
     var type = req.params.type;
@@ -102,16 +101,11 @@ Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
             DButilsAzure.execQuery(postQuery)
                 .then(function (postQueryResult) {
                     res.send(postQueryResult)
-
-
                 })
                 .catch(function (postQueryResult) {
                     console.log(postQueryResult)
                     res.send(postQueryResult)
                 })
-
-
-
         })
         .catch(function (getResultErrr) {
             console.log(getResultErrr)
