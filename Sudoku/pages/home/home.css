@@ -6,4 +6,17 @@
 
 }
 
+#startButton{
 
+    background-color: #f4f1d2;
+    /*padding: 5px 15px;*/
+    height: 70px;
+    width: 200px;
+    font-size: 200%;
+    font-weight: bold;
+    /*align: center;*/
+    position: absolute;
+    right: calc(50% - 100px);
+    bottom: 20%;
+
+}

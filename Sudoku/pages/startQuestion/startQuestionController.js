@@ -45,7 +45,7 @@ angular.module("sudokuApp")
                                 .then(function(response) {
 
                                     //pass to Start Game
-                                    $location.url('/sudokuGame');
+                                    $location.url('/description');
 
 
 

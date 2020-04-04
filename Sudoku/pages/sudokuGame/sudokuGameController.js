@@ -9,6 +9,7 @@ angular.module("sudokuApp")
         var interval;
         var GameID;
 
+
         let second = 1000;
         let minute = 1000 * 60;
 
@@ -53,9 +54,14 @@ angular.module("sudokuApp")
                             }
                         })
                             .then(function (response) {
+
+                                //add to the board 2d array
+
                             }, function (response) {
                                 // $scope.records = response.statusText;
                             });
+
+
                     }
 
                     // if(val == 1){
@@ -141,13 +147,14 @@ angular.module("sudokuApp")
                 // console.log("length= "+length);
                 // console.log("yes: "+$location.absUrl().substring(length-4,length));
 
-                if(gameLocation != "game"){
+                if(gameLocation != "Game"){
                     clearInterval(interval);
 
                 }
 
                 if(document.getElementById("status") != null){
 
+                    console.log("hereInnerrrr");
                     document.getElementById("status").innerHTML = "Time Left: "
                         + minute + "m " + second + "s ";
                 }
