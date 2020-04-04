@@ -7,6 +7,11 @@ angular.module("sudokuApp")
         var userAge;
         var userRank;
         var userID;
+
+        //two arrays for the lottery between the games
+        var gameInstances = [1,2,3,4];
+        var gameInstancesChosen = [false, false, false, false];
+
         $scope.go = function(){
 
             firstName = fname.value;

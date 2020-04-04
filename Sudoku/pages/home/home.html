@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div ng-controller="homeController" ></div>
-    <h1 id= "titleHome" align="center">Welcome to Our Experiment
-    <br> <br>you have to solve some problems... estimated time is one hour...</h1>
+    <h1 id= "titleHome" align="center">Welcome to Our Experiment</h1>
+    <br> <br>
+    <h1 id="experimentDes" align="center">
+        <p>In the next experiment you will have to solve two different</p>
+        <p>problems with two different variations each.</p>
+        <p>Af first, you will fill a start questionnaire,</p>
+        <p>and at the end of every instance of each problem,</p>
+        <p>you will fill a finish questionnaire.</p>
+        <p>estimated time is one hour, thank you and good luck!</p></h1>
 
     <br>
     <div>
-        <button id= "startButton" class="start"  ng-click=" startGame()" >Start Experiment</button>
+        <button id= "startButton" class="start"  ng-click=" startGame()" >Start</button>
     </div>
 
 </head>
