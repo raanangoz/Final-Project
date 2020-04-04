@@ -9,8 +9,8 @@ angular.module("sudokuApp")
         var userID;
 
         //two arrays for the lottery between the games
-        var gameInstances = [1,2,3,4];
-        var gameInstancesChosen = [false, false, false, false];
+        $rootScope.gameInstances = 1;
+        $rootScope.gameInstancesChosen = [false, false, false, false];
 
         $scope.go = function(){
 
@@ -49,6 +49,8 @@ angular.module("sudokuApp")
                                 }})
                                 .then(function(response) {
 
+                                    $rootScope.gameInstances = Math.floor(Math.random() * 4) + 1;
+                                    console.log("number= "+$rootScope.gameInstances);
                                     //pass to Start Game
                                     $location.url('/description');
 
