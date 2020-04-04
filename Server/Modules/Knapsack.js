@@ -64,7 +64,7 @@ Knapsack.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
         })
 })
 
-Sudoku.get('/getUserID', function (req, res) {//TODO DUPLICATED CODE
+Knapsack.get('/getUserID', function (req, res) {//TODO DUPLICATED CODE
 
     var query = "select max (userID) as maxid from users";
     DButilsAzure.execQuery(query)
