@@ -63,3 +63,24 @@ Knapsack.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
             res.send(getResultErrr)
         })
 })
+
+Sudoku.get('/getUserID', function (req, res) {//TODO DUPLICATED CODE
+
+    var query = "select max (userID) as maxid from users";
+    DButilsAzure.execQuery(query)
+    // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
+
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            console.log(result)
+            console.log(result)
+            res.send(result)
+
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+
+})
