@@ -14,6 +14,7 @@ angular.module("sudokuApp")
         let minute = 1000 * 60;
 
         $scope.colors = false;
+
         $scope.typeCase = false;
         $scope.loading = true;
         $scope.message = null;
@@ -199,19 +200,79 @@ angular.module("sudokuApp")
                     // console.log("zzz= "+JSON.stringify(response.data[0].board,4,null));
                     $scope.sudokuBoard = board;
 
-                    /** replace the zeros with white spaces */
-                    for(var i= 0; i< $scope.sudokuBoard.length; i++){
+                    //numbers type
+                    if($rootScope.gameInstance===0){
 
-                        angular.forEach($scope.sudokuBoard[i], function (val, key) {
-                            if( val == 0){
-                                $scope.sudokuBoard[i][key] = '';
-                            }
+                        /** replace the zeros with white spaces */
+                        for(var i= 0; i< $scope.sudokuBoard.length; i++){
+
+                            angular.forEach($scope.sudokuBoard[i], function (val, key) {
+                                if( val == 0){
+                                    $scope.sudokuBoard[i][key] = '';
+                                }
 
 
-                        });
+                            });
+
+                        }
+
+                   //colors type
+                    }else{
+
+                        $scope.colors = !$scope.colors;
+                        $scope.typeCase = !$scope.typeCase;
+
+                        //update gameType
+                        if($scope.colors)
+                            gameTypeToSQL = 'color';
+                        else
+                            gameTypeToSQL = 'number';
+
+                        /** replace the zeros with white spaces */
+                        for(var i= 0; i< $scope.sudokuBoard.length; i++){
+
+                            angular.forEach($scope.sudokuBoard[i], function (val, key) {
+                                if( val == 0){
+                                    $scope.sudokuBoard[i][key] = '';
+                                }
+
+                                if(val==1){
+                                    // console.log("here111111");
+                                    // $scope.sudokuBoard[$scope.row][$scope.index] =1;
+                                    // $scope.sudokuBoard[i][key] = '';
+                                    $scope.sudokuBoard[i][key] = 1;
+                                }
+                                if(val==2){
+                                    // console.log("here2222222");
+                                    $scope.sudokuBoard[i][key] = 2;
+                                }
+                                if(val==3){
+                                    $scope.sudokuBoard[i][key] = 3;
+                                }
+                                if(val==4){
+                                    $scope.sudokuBoard[i][key] = 4;
+                                }
+                                if(val==5){
+                                    $scope.sudokuBoard[i][key] = 5;
+                                }
+                                if(val==6){
+                                    $scope.sudokuBoard[i][key] = 6;
+                                }
+                                if(val==7){
+                                    $scope.sudokuBoard[i][key] = 7;
+                                }
+                                if(val==8){
+                                    $scope.sudokuBoard[i][key] = 8;
+                                }
+                                if(val==9){
+                                    $scope.sudokuBoard[i][key] = 9;
+                                }
+
+                            });
+
+                        }
 
                     }
-
 
                     $scope.loading = false;
 
@@ -294,116 +355,6 @@ angular.module("sudokuApp")
             }
 
 
-
-        }
-
-        $scope.changeType = function () {
-
-            // document.getElementById("dec").innerHTML= '<font size="5"> 1</font>';
-            $scope.colors = !$scope.colors;
-            $scope.typeCase = !$scope.typeCase;
-
-            //update gameType
-            if($scope.colors)
-                gameTypeToSQL = 'color';
-            else
-                gameTypeToSQL = 'number';
-
-            $http ({
-
-                method: 'GET',
-                url:'http://localhost:3000/Sudoku/getBoard/1'}).then(function(response) {
-                const boardString = response.data[0].board;
-                // console.log("boardString = "+boardString);
-                const numbersArray = boardString.split(',');
-                let board = [], rowSliced;
-                for(let i = 0; i < 81; i = i + 9) {
-                    rowSliced = numbersArray.slice(i, i + 9);
-                    board.push(rowSliced);
-                }
-
-                // console.log("board = " + board);
-                // console.log("zzz= "+JSON.stringify(response.data[0].board,4,null));
-                $scope.sudokuBoard = board;
-
-                /** replace the zeros with white spaces */
-                for(var i= 0; i< $scope.sudokuBoard.length; i++){
-
-                    angular.forEach($scope.sudokuBoard[i], function (val, key) {
-                        if( val == 0){
-                            $scope.sudokuBoard[i][key] = '';
-                        }
-
-                        if(val==1){
-                            // console.log("here111111");
-                            // $scope.sudokuBoard[$scope.row][$scope.index] =1;
-                            // $scope.sudokuBoard[i][key] = '';
-                            $scope.sudokuBoard[i][key] = 1;
-                        }
-                        if(val==2){
-                            // console.log("here2222222");
-                            $scope.sudokuBoard[i][key] = 2;
-                        }
-                        if(val==3){
-                            $scope.sudokuBoard[i][key] = 3;
-                        }
-                        if(val==4){
-                            $scope.sudokuBoard[i][key] = 4;
-                        }
-                        if(val==5){
-                            $scope.sudokuBoard[i][key] = 5;
-                        }
-                        if(val==6){
-                            $scope.sudokuBoard[i][key] = 6;
-                        }
-                        if(val==7){
-                            $scope.sudokuBoard[i][key] = 7;
-                        }
-                        if(val==8){
-                            $scope.sudokuBoard[i][key] = 8;
-                        }
-                        if(val==9){
-                            $scope.sudokuBoard[i][key] = 9;
-                        }
-
-                    });
-
-                }
-
-
-                $scope.loading = false;
-
-                //post request for create new game in SudokuToUser
-                $http ({
-
-
-                    method: 'POST',
-                    url:'http://localhost:3000/Sudoku/createNewGame',
-                    data: {
-                        "userID":""+$rootScope.userID,
-                        "puzzleID":'2',
-                        "type":""+gameTypeToSQL
-                    }})
-                    .then(function(response) {
-
-                        $http ({
-                            method: 'GET',
-                            url:'http://localhost:3000/Sudoku/getGameID'
-                        })
-                            .then(function(response) {
-                                GameID = response.data.length;
-                                console.log(response.data.length);
-                            }, function(response) {
-                                // $scope.records = response.statusText;
-                            });
-                    }, function(response) {
-                        // $scope.records = response.statusText;
-                    });
-
-
-            }, function(response) {
-                // $scope.records = response.statusText;
-            });
 
         }
 

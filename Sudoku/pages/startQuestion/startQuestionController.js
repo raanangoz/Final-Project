@@ -10,7 +10,8 @@ angular.module("sudokuApp")
 
         //two arrays for the lottery between the games
         $rootScope.gameInstance = 1;
-        $rootScope.gameInstancesChosen = [false, false, false, false];
+        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
+        $rootScope.gameInstancesChosen = [false, false, true, true];
 
         $scope.go = function(){
 
@@ -49,7 +50,8 @@ angular.module("sudokuApp")
                                 }})
                                 .then(function(response) {
 
-                                    $rootScope.gameInstance = Math.floor(Math.random() * 3) + 1;
+                                    //TODO change to *4 after the KS page
+                                    $rootScope.gameInstance = Math.floor(Math.random() * 2);
                                     $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
                                     console.log("number= "+$rootScope.gameInstance);
                                     //pass to Start Game
