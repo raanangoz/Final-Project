@@ -10,6 +10,25 @@ module.exports = Knapsack;
 var cors = require('cors');
 Knapsack.use(cors());
 
+/**
+ * get instance of a problem by difficulty
+ */
+Knapsack.get('/getBoard/:dif', function (req, res) {
+    var dif = req.params.dif;
+    var type = req.params.type;
+    DButilsAzure.execQuery("SELECT * FROM KSInstance where difficult='"+dif+"'")
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
+
 Knapsack.post('/createNewGame', function (req, res) {
     var userID = req.body.userID;
     var puzzleID = req.body.puzzleID;
@@ -25,6 +44,20 @@ Knapsack.post('/createNewGame', function (req, res) {
             res.send(err)
         })
 
+})
+
+Knapsack.get('/getGameID', function (req, res) {
+
+    // var query = "select * from SudokuToUser";
+        var query = "SELECT MAX(GameID) FROM KSToUser";
+    DButilsAzure.execQuery(query)
+        .then(function (result) {
+            res.send(result)
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
 })
 
 Knapsack.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
