@@ -1,0 +1,42 @@
+<!--<div ng-class=" {'red' : ==1}"></div>-->
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> <link rel="stylesheet" type="text/css" href="pages/KnapsackGame/KnapsackGame.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div ng-controller="KnapsackGameController" ng-init= "init();" ><!-- class="board">
+    <p id="status"></p>-->
+    <div class="items" ng-repeat="item in items"  >
+        <div >
+
+            <textarea ng-model="items[$index][0]; " class = "none"> {{ items[index][0]}}</textarea>
+
+
+        </div>
+    </div>
+
+<!--    <img id="mySpinner" src="http://www2.emp.uva.es/wp-content/plugins/responsive-flipbook/assets/images/loader.gif" ng-show="loading" />-->
+
+    <br/>
+
+<!--    <div class="message"> {{message}}-->
+<!--        &lt;!&ndash;<span ng-if="message == 'Conflict'"> Move not allowed. Conflict at Row: {{conflictRow}}  - And Column: {{conflictCol}}</span> &ndash;&gt;-->
+<!--        <span ng-if="message == 'Bad Request'"> Validation error, input parameters not correct.</span>-->
+<!--    </div>-->
+
+    <div>
+            <button id= "finish" class="Finish Game" ng-click=" finishGame()" >Finish Game</button>
+    </div>
+
+    <br>
+    <div>
+        <button id= "type" class="Color Type"  ng-click=" changeType()" >Change Type</button>
+    </div>
+
+        <br /><br/>
+
+
+    <br/>
+
+</div>
+</body>
