@@ -32,6 +32,41 @@ angular.module("sudokuApp")
                     }})
                     .then(function(response) {
 
+                        var completed = true;
+                        //check if the whole games completed
+                        for (var i = 0; i <$rootScope.gameInstancesChosen.length ; i++) {
+                            if($rootScope.gameInstancesChosen[i]=== false){
+                                completed = false;
+                            }
+
+                        }
+
+                        console.log("completed= "+completed);
+                        if (!completed){
+
+                            //change to *4 after the KS page
+                            $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                            while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === true){
+                                $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                            }
+                            if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === false){
+                                console.log("number= "+$rootScope.gameInstance);
+                                $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
+                                $location.url('/description');
+
+                            }
+
+                        }else{
+
+                            console.log("hereOver123456");
+                            //experiment over
+                            $location.url('/ExperimentOver');
+                        }
+
+
+
+
+
                     }, function(response) {
 
                     });
