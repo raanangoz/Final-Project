@@ -215,7 +215,7 @@ angular.module("sudokuApp")
             $http ({
 
                 method: 'GET',
-                url:'http://localhost:3000/Sudoku/getBoard/1'})
+                url:'http://localhost:3000/Sudoku/getBoard/1'})//TODO we send dif 1.
                 .then(function(response) {
 
                     PuzzleID = response.data[0].PuzzleID;
