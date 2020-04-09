@@ -75,14 +75,20 @@ Sudoku.get('/getGameID', function (req, res) {
 
 })
 
-Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
+Sudoku.post('/move', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
 
     var GameID = req.body.GameID;
     console.log(GameID);
     var stepValueAndCords = req.body.stepValueAndCords;//rowcolval
     var query = "select *  from runningSudoku where gameID='"+GameID+"'";
     var stepID;
-    var steptype = "insert";
+    var stepType;
+    if(stepValueAndCords.length >2){
+        stepType = "insert";
+    }else{
+        stepType = "delete";
+    }
+
     var time = req.body.time;//TODO CLIENT SEND 4 DIGITS OF TIME LEFT/ TIME PASSED?
     DButilsAzure.execQuery(query)
     // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
@@ -94,7 +100,7 @@ Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
             // console.log(stepID);
             stepID = getResult.length+1;
             console.log(stepID);
-            var postQuery = "insert into runningSudoku values ('"+GameID+"','"+ stepID+"','"+ steptype+"','"+time+"','"+stepValueAndCords +"')";
+            var postQuery = "insert into runningSudoku values ('"+GameID+"','"+ stepID+"','"+ stepType+"','"+time+"','"+stepValueAndCords +"')";
 
             console.log("starting second query");
             console.log(postQuery);
