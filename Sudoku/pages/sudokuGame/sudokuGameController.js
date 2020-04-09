@@ -3,6 +3,13 @@
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope) {
 
+        // var inputeFieldsArray = document.getElementsByClassName ("field");
+        // for(let i = 0; i < inputeFieldsArray.length; i++) {
+        //     inputeFieldsArray[i].addEventListener("click", function(event) {
+        //         console.log("here mousedown");
+        //         event.preventDefault();
+        //     })
+        // }
 
         // var userID = $rootScope.userId;
         var PuzzleID;
@@ -15,6 +22,7 @@ angular.module("sudokuApp")
 
         $scope.colors = false;
 
+        //false if the type is numbers
         $scope.typeCase = false;
         $scope.loading = true;
         $scope.message = null;
@@ -40,17 +48,36 @@ angular.module("sudokuApp")
                         stringminute = "0" + minute;
                     $scope.sudokuBoard[row][col] = '';
                     console.log("gameID===="+GameID);
-                    var value = Number(val);
-                    console.log("value= "+value);
-                    if (value >= 1 && value <= 9) {
-                        $scope.sudokuBoard[row][col] = value;
+
+                    var value;
+                    var legalNum = false;
+                    //move of delete
+                    if(val == ""){
+                        console.log("hereDelete123");
+                        value = "";
+
+                    }
+
+                    //move of insert
+                    else{
+
+                        value = Number(val);
+                        console.log("value= "+value);
+                        if (value >= 1 && value <= 9) {
+                            $scope.sudokuBoard[row][col] = value;
+                            legalNum = true;
+                        }
+                    }
+
+                    if( value == "" || legalNum){
+
                         $http({
 
                             method: 'POST',
-                            url: 'http://localhost:3000/Sudoku/insertMove',
+                            url: 'http://localhost:3000/Sudoku/move',
                             data: {
                                 "GameID": "" + GameID,
-                                "stepValueAndCords": "" + row + "" + "" + col + "" + "" + val + "",
+                                "stepValueAndCords": "" + row + "" + "" + col + "" + "" + value + "",
                                 "time": "" + stringminute + ":" + stringsecond + ""
                             }
                         })
@@ -64,6 +91,8 @@ angular.module("sudokuApp")
 
 
                     }
+
+
 
                     // if(val == 1){
                     //     $scope.sudokuBoard[row][col]= 1;
@@ -116,6 +145,10 @@ angular.module("sudokuApp")
 
 
         };
+
+        // $scope.pressedKey = function(keyObj) {
+        //     $scope.myKey = keyObj.key;
+        // }
 
         //stop after 15 minutes
         $scope.timer = function (){
@@ -271,6 +304,8 @@ angular.module("sudokuApp")
                             });
 
                         }
+
+
 
                     }
 

@@ -1,6 +1,8 @@
 angular.module("sudokuApp")
     .controller("descriptionController", function ($scope, $http, $location, $rootScope) {
 
+
+
         //TODO UPDATE AFTER KS PAGE
         if ($rootScope.gameInstance === 0){
             desSudokuNum.style.display = 'block';
@@ -20,6 +22,12 @@ angular.module("sudokuApp")
 
         $scope.startGame = function(){
             $location.url('sudokuGame');
+
+        }
+
+        $scope.startTrial = function () {
+            //$location.url('sudokuGame');
+
 
         }
 
