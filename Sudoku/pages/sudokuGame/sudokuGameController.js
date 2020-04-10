@@ -11,6 +11,15 @@ angular.module("sudokuApp")
         //     })
         // }
 
+        // if($rootScope.gameInstance===0){
+        //
+        //     document.getElementById("tempColor").hidden= true;
+        //
+        // }else{
+        //
+        //     document.getElementById("temp").hidden= true;
+        // }
+
         // var userID = $rootScope.userId;
         var PuzzleID;
         var interval;
@@ -157,6 +166,7 @@ angular.module("sudokuApp")
             //show "game over" after 15 minutes
             setTimeout(function () {
                 alert("Game Over");
+                $location.url('/finishQuestion');
 
             },900000);
 
