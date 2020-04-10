@@ -15,7 +15,22 @@
     font-weight: bold;
     /*align: center;*/
     position: absolute;
-    right: calc(50% - 75px);
+    right: calc(40% - 75px);
+    bottom: 7%;
+
+}
+
+#tutorialButton{
+
+    background-color: #f4f1d2;
+    /*padding: 5px 15px;*/
+    height: 70px;
+    width: 150px;
+    font-size: 200%;
+    font-weight: bold;
+    /*align: center;*/
+    position: absolute;
+    right: calc(60% - 75px);
     bottom: 7%;
 
 }

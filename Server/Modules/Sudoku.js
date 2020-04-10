@@ -75,14 +75,20 @@ Sudoku.get('/getGameID', function (req, res) {
 
 })
 
-Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
+Sudoku.post('/move', function (req, res) {
 
     var GameID = req.body.GameID;
     console.log(GameID);
     var stepValueAndCords = req.body.stepValueAndCords;//rowcolval
     var query = "select *  from runningSudoku where gameID='"+GameID+"'";
     var stepID;
-    var steptype = "insert";
+    var stepType;
+    if(stepValueAndCords.length >2){
+        stepType = "insert";
+    }else{
+        stepType = "delete";
+    }
+
     var time = req.body.time;//TODO CLIENT SEND 4 DIGITS OF TIME LEFT/ TIME PASSED?
     DButilsAzure.execQuery(query)
     // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
@@ -94,7 +100,7 @@ Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
             // console.log(stepID);
             stepID = getResult.length+1;
             console.log(stepID);
-            var postQuery = "insert into runningSudoku values ('"+GameID+"','"+ stepID+"','"+ steptype+"','"+time+"','"+stepValueAndCords +"')";
+            var postQuery = "insert into runningSudoku values ('"+GameID+"','"+ stepID+"','"+ stepType+"','"+time+"','"+stepValueAndCords +"')";
 
             console.log("starting second query");
             console.log(postQuery);
@@ -122,11 +128,13 @@ Sudoku.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
 })
 
 Sudoku.post('/submitQuestinary', function (req, res) {
-    var fName = req.body.firstName;
-    var lName = req.body.lastName;
-    var age = req.body.userAge;
-    var rank = req.body.userRank;
-    var postQuery = "insert into users values ('"+fName+"','"+ lName+"','"+ age+"','"+rank+"')";
+
+    var workerID = req.body.workerID;
+    var age = req.body.age;
+    var gender = req.body.gender;
+    var hand = req.body.hand;
+    var education = req.body.education;
+    var postQuery = "insert into users values ('"+workerID+"','"+ age+"','"+ gender+"','"+hand+"','"+education+"')";
     DButilsAzure.execQuery(postQuery)
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {

@@ -19,6 +19,18 @@
 
 
     </div>
+
+<!--    <div class="rowColor" ng-repeat="rowColor in sudokuBoard"  >-->
+
+<!--        <div >-->
+<!--            <input  maxlength="1" min="1" max="9" id="tempColor"  ng-model="sudokuBoardColor[$parent.$index][$index]" class="field row-{{$parent.$index}} col-{{$index}}"  ng-repeat="field in row track by $index"  ng-class="{'red' : field===1 && typeCase, 'lightskyblue': field===2 && typeCase,'black': field===3 && typeCase,-->
+<!--              'yellow': field===4 && typeCase, 'green': field===5 && typeCase, 'orange': field===6 && typeCase,'blue': field===7 && typeCase, 'brown': field===8 && typeCase, 'pink': field===9 && typeCase, conflict: $parent.$index== conflictRow && $index==conflictCol }" ng-disabled="{{field !== '' }}" ng-change="move(field, sudokuBoardColor, $parent.$index,$index,sudokuBoardColor[$parent.$index][$index])"-->
+<!--                    ng-class="{conflict: $parent.$index== conflictRow && $index==conflictCol}" />-->
+
+<!--        </div>-->
+
+
+<!--    </div>-->
     <br/>
 
     <div class="message"> {{message}}

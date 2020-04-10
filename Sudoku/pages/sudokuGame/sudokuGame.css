@@ -63,6 +63,8 @@ body{
 .red{
     background-color: red;
     color:red;
+    /*user-select: none;*/
+
 
 }
 
