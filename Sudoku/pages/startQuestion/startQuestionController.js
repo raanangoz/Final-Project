@@ -15,6 +15,9 @@ angular.module("sudokuApp")
         $rootScope.gameInstance = 1;
         // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
         $rootScope.gameInstancesChosen = [false, false, true, true];
+        //boolean for the familiarity question
+        $rootScope.wasSudoko=0;
+        $rootScope.wasKS=0;
 
 
         $scope.go = function() {
@@ -61,6 +64,7 @@ angular.module("sudokuApp")
                                 //TODO change to *4 after the KS page
                                 $rootScope.gameInstance = Math.floor(Math.random() * 2);
                                 $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
+
                                 console.log("number= " + $rootScope.gameInstance);
                                 //pass to Start Game
                                 $location.url('/description');
