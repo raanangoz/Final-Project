@@ -10,6 +10,14 @@ angular.module("sudokuApp")
             desKS1.style.display = 'none';
             desKS2.style.display = 'none';
 
+            if($rootScope.wasSudoko > 1){
+                console.log("hereWas= "+$rootScope.wasSudoko);
+                sudokuFamiliar.style.display = 'none';
+                familiarOptions.style.display = 'none';
+
+            }
+            $rootScope.wasSudoko++;
+
         }
 
         if ($rootScope.gameInstance === 1){
@@ -17,6 +25,13 @@ angular.module("sudokuApp")
             desSudokuNum.style.display = 'none';
             desKS1.style.display = 'none';
             desKS2.style.display = 'none';
+            if($rootScope.wasSudoko > 1){
+                console.log("hereWas= "+$rootScope.wasSudoko);
+                sudokuFamiliar.style.display = 'none';
+                familiarOptions.style.display = 'none';
+
+            }
+            $rootScope.wasSudoko++;
         }
 
 
