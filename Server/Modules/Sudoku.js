@@ -75,7 +75,7 @@ Sudoku.get('/getGameID', function (req, res) {
 
 })
 
-Sudoku.post('/move', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
+Sudoku.post('/move', function (req, res) {
 
     var GameID = req.body.GameID;
     console.log(GameID);
@@ -128,11 +128,13 @@ Sudoku.post('/move', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
 })
 
 Sudoku.post('/submitQuestinary', function (req, res) {
-    var fName = req.body.firstName;
-    var lName = req.body.lastName;
-    var age = req.body.userAge;
-    var rank = req.body.userRank;
-    var postQuery = "insert into users values ('"+fName+"','"+ lName+"','"+ age+"','"+rank+"')";
+
+    var workerID = req.body.workerID;
+    var age = req.body.age;
+    var gender = req.body.gender;
+    var hand = req.body.hand;
+    var education = req.body.education;
+    var postQuery = "insert into users values ('"+workerID+"','"+ age+"','"+ gender+"','"+hand+"','"+education+"')";
     DButilsAzure.execQuery(postQuery)
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {
