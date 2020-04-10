@@ -10,6 +10,8 @@ angular.module("sudokuApp")
         var GameID;
         var items;// array, for each item : weight,value,inbag
         var bagsize;
+        var sizeUsed = 0;
+        var valueGained = 0;
 
         let second = 1000;
         let minute = 1000 * 60;
@@ -18,6 +20,7 @@ angular.module("sudokuApp")
         $scope.typeCase = false;
         $scope.loading = true;
         $scope.message = null;
+        $scope.coin = 'https://www.pngitem.com/pimgs/m/5-58221_cartoon-transparent-background-gold-coin-hd-png-download.png'
 
         var gameTypeToSQL = 'knapsackTYPE1';
         // if($scope.colors)
@@ -113,7 +116,7 @@ angular.module("sudokuApp")
 
 //init board and game
         $scope.init = function(){
-
+            console.log("inittttttttttttt");
             /**
              * get board
              */
@@ -128,14 +131,15 @@ angular.module("sudokuApp")
                     console.log(PuzzleID);
                     let stringweights = response.data[0].itemweights;
                     let stringvalues =  response.data[0].itemvalues;
+                    bagsize = parseFloat(response.data[0].bagsize);
                     const weights = stringweights.split(',');
                     const values = stringvalues.split(',');
                     items = new Array (weights.length);
 
                     for(let index = 0 ; index < weights.length; index++){
                         items[index] = new Array(3);
-                        items[index][0] = weights[index];
-                        items[index][1] = values[index];
+                        items[index][0] = parseFloat(weights[index]);
+                        items[index][1] = parseFloat(values[index]);
                         items[index][2] = false;
                     }
                     console.log(items);
@@ -165,6 +169,7 @@ angular.module("sudokuApp")
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
                                     $rootScope.GameID = GameID;
+                                    $scope.bagSize=bagsize;
 
                                 }, function(response) {
                                     // $scope.records = response.statusText;
@@ -193,6 +198,64 @@ angular.module("sudokuApp")
             $location.url('/finishQuestion');
 
 
+
+        }
+        $scope.coinClicked = function (item) {
+            console.log(item);
+            let itemWeight = item[0];
+            let itemValue = item[1];
+            let itemInBag = item[2];
+            var type;
+            if (!itemInBag)
+                type = "insert";
+            else
+                type = "extract";
+            if ((itemWeight + sizeUsed <= bagsize && itemInBag == false) || itemInBag) {//legal move
+
+                $http({
+
+                    method: 'POST',
+                    url: 'http://localhost:3000/Knapsack/insertMove',
+                    data: {
+                        //TODO "itemWeight": "" + GameID,
+                        "itemWeight": "" + 1,
+                        "itemValue": "" + itemValue,
+                        "itemSize": "" + itemWeight,
+                        "type": "" + type,
+
+                        //TODO "time": "" + stringminute + ":" + stringsecond + ""
+                        "time": "00:00"
+                    }
+                })
+                    .then(function (response) {
+                        updateBag(item[0], item[1],itemInBag);
+                        // item[2] = !item[2];
+
+                    }, function (response) {
+                        // $scope.records = response.statusText;
+                    });
+            }
+            else{
+                //TODO
+                window.alert("impossible move, osher lets not allow click ( make the coin grey ...)");
+            }
+
+        }
+
+
+        function updateBag(changedWeight, changedValue, itemInBag){//TODO osher finish coinClicked for insertion\extraction item.
+            // positive values for insertion.
+            //TODO handle if failed or not on parent function
+            if(itemInBag) {
+                changedWeight *= -1;
+                changedValue *= -1;
+            }
+            valueGained+=changedValue;
+            sizeUsed+=changedWeight;
+            console.log(sizeUsed);
+            console.log(valueGained);
+            $scope.sizeUsed = sizeUsed;
+            $scope.valueGained = valueGained;
 
         }
 

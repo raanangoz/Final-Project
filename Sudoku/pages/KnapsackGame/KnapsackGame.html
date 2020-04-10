@@ -7,12 +7,19 @@
 <div ng-controller="KnapsackGameController" ng-init= "init();" ><!-- class="board">
     <p id="status"></p>-->
     <div class="items" ng-repeat="item in items"  >
-        <div >
+        <div>
 
-            <textarea ng-model="items[$index][0]; " class = "none"> {{ items[index][0]}}</textarea>
+            <!--<textarea ng-model="items[$index][0]; " class = "none"> {{ }}</textarea>-->
+            <input type="button" ng-value="items[$index][0];" ng-click="coinClicked(items[$index])" >
+            <img class="button" ng-click="coinClicked($item)"><img id="followbutton" class="img-responsive smaller" ng-src="{{coin}}" /></img>
 
-
+            <!--<a input type="button"><img id="followbutton1" ng-src="{{coin}}"  /></a>-->
         </div>
+    </div>
+    <div class = "bag">
+        <ng-model> {{valueGained}}</ng-model>
+        <ng-model> {{sizeUsed}}</ng-model>
+        <ng-model> {{bagSize}}</ng-model>
     </div>
 
 <!--    <img id="mySpinner" src="http://www2.emp.uva.es/wp-content/plugins/responsive-flipbook/assets/images/loader.gif" ng-show="loading" />-->

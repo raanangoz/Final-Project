@@ -65,12 +65,12 @@ Knapsack.post('/insertMove', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
     var GameID = req.body.GameID;
     console.log(GameID);
     //TODO item ID?
-    var itemID= null;
+    var itemID= 1;
     var itemWeight = req.body.itemWeight;
     var itemValue = req.body.itemValue;
     var query = "select *  from runningKS where gameID='"+GameID+"'";
     var stepID;
-    var steptype = "insert";
+    var steptype = req.body.type;
     var time = req.body.time;//TODO CLIENT SEND 4 DIGITS OF TIME LEFT/ TIME PASSED?
     DButilsAzure.execQuery(query)
         .then(function (getResult) {
