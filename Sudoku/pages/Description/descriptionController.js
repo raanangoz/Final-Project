@@ -1,5 +1,5 @@
 angular.module("sudokuApp")
-    .controller("descriptionController", function ($scope, $http, $location, $rootScope) {
+    .controller("descriptionController", function ($scope, $http, $location, $rootScope, $window) {
 
 
 
@@ -9,11 +9,14 @@ angular.module("sudokuApp")
             desSudokuColors.style.display = 'none';
             desKS1.style.display = 'none';
             desKS2.style.display = 'none';
+            KSFamiliar.style.display = 'none';
 
             if($rootScope.wasSudoko > 1){
                 console.log("hereWas= "+$rootScope.wasSudoko);
                 sudokuFamiliar.style.display = 'none';
                 familiarOptions.style.display = 'none';
+                desSudokuNum.style.align = "center";
+
 
             }
             $rootScope.wasSudoko++;
@@ -25,10 +28,13 @@ angular.module("sudokuApp")
             desSudokuNum.style.display = 'none';
             desKS1.style.display = 'none';
             desKS2.style.display = 'none';
+            KSFamiliar.style.display = 'none';
+
             if($rootScope.wasSudoko > 1){
                 console.log("hereWas= "+$rootScope.wasSudoko);
                 sudokuFamiliar.style.display = 'none';
                 familiarOptions.style.display = 'none';
+                desSudokuColors.style.align = "center";
 
             }
             $rootScope.wasSudoko++;
@@ -43,6 +49,16 @@ angular.module("sudokuApp")
         $scope.startTrial = function () {
             //$location.url('sudokuGame');
 
+
+        }
+
+        $scope.continue = function () {
+
+            if( sudokuFamiliar.style.display != 'none' && $scope.familiar == undefined){
+                $window.alert("Please mark your familiarity with the next problem");
+            }else{
+                $location.url('sudokuGame');
+            }
 
         }
 
