@@ -7,73 +7,93 @@
     <title>Title</title>
 
     <div ng-controller="descriptionController" ></div>
-    <h id= "desSudokuNum" class="des" align= "center">
 
-        <p>The next task is Sudoku of numbers.</p>
-        <p>Sudoku is played on a grid of 9 x 9 spaces. </p>
-        <p>Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). </p>
-        <p>Each row, column and square (9 spaces each) </p>
-        <p>needs to be filled out with the numbers 1-9, </p>
-        <p>without repeating any numbers within the row, column or square.</p>
-        <br>
+    <table id= "tableFavorites" align= "center" >
+        <tr id ="singleRow">
+            <td id = "description" align="center">
 
-    </h>
+                <h id= "desSudokuNum" class="des" align= "center">
 
-    <h id= "desSudokuColors" class="des"  align= "center">
+                <p>The next task is Sudoku of numbers.</p>
+                <p>Sudoku is played on a grid of 9 x 9 spaces. </p>
+                <p>Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). </p>
+                <p>Each row, column and square (9 spaces each) </p>
+                <p>needs to be filled out with the numbers 1-9, </p>
+                <p>without repeating any numbers within the row, column or square.</p>
+                <br>
 
-        <p>The next problem is Sudoku of colors.</p>
-        <p>Sudoku is played on a grid of 9 x 9 spaces. </p>
-        <p>Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). </p>
-        <p>Each row, column and square (9 spaces each) </p>
-        <p>needs to be filled out with the 9 colors, </p>
-        <p>without repeating any colors within the row, column or square.</p>
+                </h>
 
-        <br>
+                <h id= "desSudokuColors" class="des"  align= "center">
 
-    </h>
+                    <p>The next problem is Sudoku of colors.</p>
+                    <p>Sudoku is played on a grid of 9 x 9 spaces. </p>
+                    <p>Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). </p>
+                    <p>Each row, column and square (9 spaces each) </p>
+                    <p>needs to be filled out with the 9 colors, </p>
+                    <p>without repeating any colors within the row, column or square.</p>
 
-    <div id="sudokuFamiliar">
-        <h2 class="familiar" align="center"><B>
-            <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>
-            <p>prior to this study:</p> </B></h2>
-    </div>
+                    <br>
 
-    <h id= "desKS1"  class="des" align= "center">
-
-        <p>The next problem is a KS1 problem,</p>
-        <p>you have 15 minutes for solving the problem,</p>
-        <p>if you finish before, press "finish game".</p>
-        <p>Solve the problem as well as you can.</p>
-        <p>Good Luck!</p>
-    </h>
-
-    <h id= "desKS2" class="des"  align= "center">
-
-        <p>The next problem is a KS2 problem,</p>
-        <p>you have 15 minutes for solving the problem,</p>
-        <p>if you finish before, press "finish game".</p>
-        <p>Solve the problem as well as you can.</p>
-        <p>Good Luck!</p>
-    </h>
-
-    <div id="familiarOptions" class="familiar" align="center">
-    <input type="radio" name="familiar" ng-model="familiar" value=" 0"   > 0 - absolutely no familiarity <br>
-    <input type="radio"  name="familiar" ng-model="familiar" value=" 1"  > 1 - minimal familiarity and little to no experience <br>
-    <input type="radio"  name="familiar" ng-model="familiar" value=" 2"  > 2 - below average level of expertise <br>
-    <input type="radio"  name="familiar" ng-model="familiar" value=" 3"  > 3 - moderate level of expertise <br>
-    <input type="radio"  name="familiar" ng-model="familiar" value=" 4"  > 4 - above average level of expertise <br>
-    <input type="radio"  name="familiar" ng-model="familiar" value=" 5"  > 5 - high level of expertise <br>
-    </div></p>
-
-    <br> <br>
+                </h>
 
 
-        <div>
-        <button id= "tutorialButton" class="start" data-toggle="modal" data-target="#exampleModal"  ng-click=" tutorial()" >Tutorial</button>
-    </div>
+
+                <h id= "desKS1"  class="des" align= "center">
+
+                    <p>The next problem is a KS1 problem,</p>
+                    <p>you have 15 minutes for solving the problem,</p>
+                    <p>if you finish before, press "finish game".</p>
+                    <p>Solve the problem as well as you can.</p>
+                    <p>Good Luck!</p>
+                </h>
+
+                <h id= "desKS2" class="des"  align= "center">
+
+                    <p>The next problem is a KS2 problem,</p>
+                    <p>you have 15 minutes for solving the problem,</p>
+                    <p>if you finish before, press "finish game".</p>
+                    <p>Solve the problem as well as you can.</p>
+                    <p>Good Luck!</p>
+                </h>
+
+            </td>
+
+            <td id = "familiar" align="center">
+                <div id="sudokuFamiliar">
+                    <h2 class="familiar" align="center"><B>
+                        <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>
+                        <p>prior to this study:</p> </B></h2>
+                </div>
+                <div id="KSFamiliar">
+                    <h2 class="familiar" align="center"><B>
+                        <p>Please rate your familiarity and level of expertise with Knapsack puzzles, </p>
+                        <p>prior to this study:</p> </B></h2>
+                </div>
 
 
-    <button ng-model="button" id= "startGameButton" ng-click=" startGame()" ng-disabled="!checked" >Start Play</button>
+                <div id="familiarOptions" class="familiar">
+                <div class="familiar-option"><input type="radio" name="familiar" ng-model="familiar" value=" 0"   > 0 - absolutely no familiarity</div>
+                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 1"  > 1 - minimal familiarity and little to no experience </div>
+                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 2"  > 2 - below average level of expertise</div>
+                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 3"  > 3 - moderate level of expertise</div>
+                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 4"  > 4 - above average level of expertise </div>
+                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 5"  > 5 - high level of expertise</div>
+                </div>
+
+                <br> <br>
+
+            </td>
+        </tr>
+    </table>
+<!--        <div>-->
+<!--        <button id= "tutorialButton" class="start" data-toggle="modal" data-target="#exampleModal"  ng-click=" tutorial()" >Tutorial</button>-->
+<!--    </div>-->
+
+
+<!--    <button ng-model="button" id= "startGameButton" ng-click=" startGame()" ng-disabled="!checked" >Start Play</button>-->
+
+    <button id= "continueButton" class="start"   ng-click=" continue()" >Continue</button>
 
 
 <!--    modal  for tutorial-->
