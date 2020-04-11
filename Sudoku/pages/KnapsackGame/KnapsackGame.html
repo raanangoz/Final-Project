@@ -6,20 +6,35 @@
 
 <div ng-controller="KnapsackGameController" ng-init= "init();" ><!-- class="board">
     <p id="status"></p>-->
+
+    <div class="score" >
+        <h4>
+            Value Gained: {{valueGained}}
+            <br>
+            Weight in bag: {{sizeUsed}}
+        </h4>
+    </div>
+
     <div class="items" ng-repeat="item in items"  >
-        <div>
+
 
             <!--<textarea ng-model="items[$index][0]; " class = "none"> {{ }}</textarea>-->
-            <input type="button" ng-value="items[$index][0];" ng-click="coinClicked(items[$index])" >
-            <img class="button" ng-click="coinClicked($item)"><img id="followbutton" class="img-responsive smaller" ng-src="{{coin}}" /></img>
+            <!--  <input type="button" ng-value="items[$index][0];" ng-click="coinClicked(items[$index])" >-->
+        <!--  <img class="img-responsive smaller" ng-click="coinClicked(items[$index])" ng-src="{{coin}}" /></img>-->
+      <img class="img-responsive smaller" ng-click="coinClicked(items[$index])" ng-src="{{drawCoin(items[$index][2])}}" /></img>
+        <div class="text-block">
+            <h4 ng-style="{{myStyle(items[$index])}}">
+            Weight: {{getWeight(items[$index][0])}}
+            <br>
+            Value: {{getValue(items[$index][1])}}
+            </h4>
 
-            <!--<a input type="button"><img id="followbutton1" ng-src="{{coin}}"  /></a>-->
-        </div>
     </div>
-    <div class = "bag">
-        <ng-model> {{valueGained}}</ng-model>
-        <ng-model> {{sizeUsed}}</ng-model>
-        <ng-model> {{bagSize}}</ng-model>
+     <br>
+     <br>
+
+      <!--<a input type="button"><img id="followbutton1" ng-src="{{coin}}"  /></a>-->
+        </div>
     </div>
 
 <!--    <img id="mySpinner" src="http://www2.emp.uva.es/wp-content/plugins/responsive-flipbook/assets/images/loader.gif" ng-show="loading" />-->
