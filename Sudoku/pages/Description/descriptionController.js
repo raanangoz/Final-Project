@@ -57,7 +57,8 @@ angular.module("sudokuApp")
             if( sudokuFamiliar.style.display != 'none' && $scope.familiar == undefined){
                 $window.alert("Please mark your familiarity with the next problem");
             }else{
-                $location.url('sudokuGame');
+                //TODO change to tutorial
+                $location.url('/sudokuGame');
             }
 
         }

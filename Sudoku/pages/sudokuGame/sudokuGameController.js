@@ -25,6 +25,8 @@ angular.module("sudokuApp")
         var interval;
         var GameID;
 
+        $scope.initialBoard = [];
+
 
         let second = 1000;
         let minute = 1000 * 60;
@@ -48,7 +50,7 @@ angular.module("sudokuApp")
 
         $scope.move = function(field, sudokuBoard, row, col, val) {
 
-
+                    console.log("row: " + row + ", col : " + col + ", val: " + val);
                     let stringsecond = second;
                     if (second < 10)
                         stringsecond = "0" + second;
@@ -207,6 +209,7 @@ angular.module("sudokuApp")
                 if (distance < 0) {
                     clearInterval(interval);
                     document.getElementById("status").innerHTML = "Game Over";
+                    $location.url('/finishQuestion');
                 }
 
             }, 1000)
@@ -227,16 +230,17 @@ angular.module("sudokuApp")
                 method: 'GET',
                 url:'http://localhost:3000/Sudoku/getBoard/1'})//TODO we send dif 1.
                 .then(function(response) {
-
                     PuzzleID = response.data[0].PuzzleID;
                     const boardString = response.data[0].board;
                     // console.log(response.data)
                     // console.log("boardString = "+boardString);
                     const numbersArray = boardString.split(',');
-                    let board = [], rowSliced;
+                    let board = [], rowSliced, rowSliced2;
                     for(let i = 0; i < 81; i = i + 9) {
                         rowSliced = numbersArray.slice(i, i + 9);
+                        rowSliced2 = numbersArray.slice(i, i + 9);
                         board.push(rowSliced);
+                        $scope.initialBoard.push(rowSliced2);
                     }
 
                     // console.log("board = " + board);
@@ -253,10 +257,7 @@ angular.module("sudokuApp")
                                 if( val == 0){
                                     $scope.sudokuBoard[i][key] = '';
                                 }
-
-
                             });
-
                         }
 
                    //colors type
@@ -315,8 +316,8 @@ angular.module("sudokuApp")
 
                         }
 
-
-
+                        console.log("print board initial: ");
+                        console.dir($scope.sudokuBoard);
                     }
 
                     $scope.loading = false;
@@ -400,6 +401,14 @@ angular.module("sudokuApp")
             }
 
 
+
+        }
+
+        $scope.onBoxClick = function(field, colIndex, rowIndex){
+
+            if ($scope.initialBoard[rowIndex][colIndex] === '0') {
+                $scope.sudokuBoard[rowIndex][colIndex] = '';
+            }
 
         }
 

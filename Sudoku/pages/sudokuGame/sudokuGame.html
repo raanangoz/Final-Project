@@ -8,15 +8,33 @@
     <p id="status"></p>
 <!--    <img id="mySpinner" src="http://www2.emp.uva.es/wp-content/plugins/responsive-flipbook/assets/images/loader.gif" ng-show="loading" />-->
 
-    <div class="row" ng-repeat="row in sudokuBoard"  >
+    <div class="row" ng-repeat="row in sudokuBoard track by $index" ng-init="rowIndex = $index" >
 
-        <div >
-            <input  maxlength="1" min="1" max="9" id="temp"  ng-model="sudokuBoard[$parent.$index][$index]" class="field row-{{$parent.$index}} col-{{$index}}"  ng-repeat="field in row track by $index"  ng-class="{'red' : field===1 && typeCase, 'lightskyblue': field===2 && typeCase,'black': field===3 && typeCase,
-              'yellow': field===4 && typeCase, 'green': field===5 && typeCase, 'orange': field===6 && typeCase,'blue': field===7 && typeCase, 'brown': field===8 && typeCase, 'pink': field===9 && typeCase, conflict: $parent.$index== conflictRow && $index==conflictCol }" ng-disabled="{{field !== '' }}" ng-change="move(field, sudokuBoard, $parent.$index,$index,sudokuBoard[$parent.$index][$index])"
-                   ng-class="{conflict: $parent.$index== conflictRow && $index==conflictCol}" />
+        <div ng-repeat="field in row track by $index" ng-init="colIndex = $index" class="one-box"
+             ng-click="onBoxClick(field, colIndex, rowIndex)"
+             ng-class="{conflict: rowIndex== conflictRow && colIndex==conflictCol, 'red' : field===1, 'lightskyblue': field===2 ,'black': field===3,
+                    'yellow': field===4 , 'green': field===5 , 'orange': field===6 ,'blue': field===7 , 'brown': field===8 , 'pink': field===9
+                    ,'right-border': colIndex === 2 || colIndex === 5, 'bottom-border': rowIndex === 2 || rowIndex === 5,
+                    'bold-border': initialBoard[rowIndex][colIndex] !== '0' && typeCase}">
+            <input ng-if="field === '' || !typeCase" maxlength="1" min="1" max="9"  ng-model="sudokuBoard[rowIndex][colIndex]"
+                   ng-disabled="{{field !== '' }}"
+                   ng-change="move(field, sudokuBoard, rowIndex,colIndex,sudokuBoard[rowIndex][colIndex])"
+                   class="input-field"
+            />
+<!--            <div ng-if="typeCase && field === ''"-->
+<!--                 ng-model="sudokuBoard[$parent.$index][$index]"-->
+<!--                 ng-class="{color-field: true, 'red' : field===1, 'lightskyblue': field===2 ,'black': field===3,-->
+<!--                    'yellow': field===4 , 'green': field===5 , 'orange': field===6 ,'blue': field===7 , 'brown': field===8 , 'pink': field===9}">-->
+<!--            </div>-->
 
         </div>
 
+
+<!--        <div >-->
+<!--            <input  maxlength="1" min="1" max="9" id="temp"  ng-model="sudokuBoard[$parent.$index][$index]" class="field row-{{$parent.$index}} col-{{$index}}"  ng-repeat="field in row track by $index"  ng-class="{'red' : field===1 && typeCase, 'lightskyblue': field===2 && typeCase,'black': field===3 && typeCase,-->
+<!--              'yellow': field===4 && typeCase, 'green': field===5 && typeCase, 'orange': field===6 && typeCase,'blue': field===7 && typeCase, 'brown': field===8 && typeCase, 'pink': field===9 && typeCase, conflict: $parent.$index== conflictRow && $index==conflictCol }" ng-disabled="{{field !== '' }}" ng-change="move(field, sudokuBoard, $parent.$index,$index,sudokuBoard[$parent.$index][$index])"-->
+<!--                    ng-class="{conflict: $parent.$index== conflictRow && $index==conflictCol}" />-->
+<!--        </div>-->
 
     </div>
 
