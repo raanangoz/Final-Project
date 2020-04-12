@@ -20,7 +20,15 @@ angular.module("sudokuApp")
         $scope.typeCase = false;
         $scope.loading = true;
         $scope.message = null;
-        $scope.coin = 'https://www.pngitem.com/pimgs/m/5-58221_cartoon-transparent-background-gold-coin-hd-png-download.png'
+
+
+        /////////////////////~!~!~!~
+        $scope.txtPos = 7;
+        $scope.coin = 'https://i.imgur.com/EVPcOj6.png'
+        $scope.chosen = 'https://sivim.co.il/wp-content/uploads/green-v-png-5.png'
+        $scope.valueGained =0;
+        $scope.sizeUsed = 0;
+        /////////////////////~!~!~!~
 
         var gameTypeToSQL = 'knapsackTYPE1';
         // if($scope.colors)
@@ -229,10 +237,10 @@ angular.module("sudokuApp")
                 })
                     .then(function (response) {
                         updateBag(item[0], item[1],itemInBag);
-                        // item[2] = !item[2];
+                        item[2] = !item[2];
 
                     }, function (response) {
-                        // $scope.records = response.statusText;
+                       //TODO fail
                     });
             }
             else{
@@ -257,6 +265,39 @@ angular.module("sudokuApp")
             $scope.sizeUsed = sizeUsed;
             $scope.valueGained = valueGained;
 
+        }
+        $scope.drawCoin = function (item) {
+            //console.log(item);
+            if (!item)
+                return $scope.coin;
+            else
+                return $scope.chosen;
+
+        }
+        $scope.getWeight = function (weight) {
+            return weight
+
+        }
+        $scope.getValue = function (value) {
+            return value
+
+        }
+        $scope.myStyle = function (item) {
+            //console.log(item);
+
+            let myObj = {
+                "color" : "black",
+                "position" :"absolute",
+                "top" : $scope.txtPos.toString()+"%",
+                "left" : "3%"
+
+                //"font-size" : "60px",
+                //"padding-right" : "20px"
+
+            }
+            if ($scope.txtPos < 23 * items.length )
+                $scope.txtPos = $scope.txtPos + 30
+            return myObj
         }
 
     });
