@@ -1,68 +1,69 @@
 <link rel="stylesheet" type="text/css" href="pages/startQuestion/startQuestion.css" />
 
-<div ng-controller="startQuestionController as quesCtrl">
-    <div class= "question">
+<div class="home-page-container" ng-controller="startQuestionController as quesCtrl">
+
+    <div class= "home-page-internal">
+
         <form name="questionsForm" ng-submit="submit()" novalidate>
-            <h1 class="title">Demographic information</h1>
+            <h1 class="titleQuestion"><b>Demographic information</b></h1>
+            <hr>
             <br>
 
-            <div class="form-group">
-                <h2 class= "subTitles"><B>Worker ID</B></h2>
-                <input  type="number" id="workerID" required ng-minlength="3">
-            </div>
+            <div class="details">
+                <div class="form-group">
+                    <h2 class= "subTitles"><B>Worker ID</B></h2>
+                    <input  type="number" id="workerID" required ng-minlength="3">
 
+                </div>
 
-            <div class="form-group">
-                <h2 class= "subTitles"><B>Age</B></h2>
-                <input type="age" id="age"  required ng-minlength="2">
-            </div>
-            <br>
+                <div class="form-group">
+                    <h2 class= "subTitles"><B>Age</B></h2>
+                    <input type="age" id="age"  required ng-minlength="2">
+                </div>
+                <br>
 
-            <div class="form-group">
-                <h2 class= "subTitles"><B> Gender</B></h2>
+                <div class="form-group">
+                    <h2 class= "subTitles"><B> Gender</B></h2>
 
-                <div>
-                    <input type="radio" name="gender" ng-model="gender" value=" male" > Male
-                    <input type="radio" name="gender" ng-model="gender" value=" female" >Female
+                    <div>
+                        <input type="radio" name="gender" ng-model="gender" value=" male" > Male
+                        <input type="radio" name="gender" ng-model="gender" value=" female" >Female
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <h2 class= "subTitles"><B> What is your strong hand?</B></h2>
+
+                    <div>
+                        <input type="radio" name="hand" ng-model="hand" value=" right"   > Right
+                        <input type="radio"  name="hand" ng-model="hand" value=" left"  > Left
+                        <input type="radio"  name="hand" ng-model="hand" value=" both"  > Both hands are equally strong
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <h2 class= "subTitles"><B> Education</B></h2>
+
+                    <div>
+                        <input type="radio" name="education" ng-model="education" value="less"  > Less than High School<br>
+                        <input type="radio" name="education" ng-model="education" value="high"   > High School/GED<br>
+                        <input type="radio" name="education" ng-model="education" value="college"   > College<br>
+                        <input type="radio" name="education" ng-model="education" value="degree"  > Graduate Degree<br>
+                        <input type="radio"  name="education" ng-model="education" value="prefer"  > Prefer not to say
+                    </div>
                 </div>
             </div>
-            <br>
-
-            <div class="form-group">
-                <h2 class= "subTitles"><B> What is your strong hand?</B></h2>
-
-                <div>
-                    <input type="radio" name="hand" ng-model="hand" value=" right"   > Right
-                    <input type="radio"  name="hand" ng-model="hand" value=" left"  > Left
-                    <input type="radio"  name="hand" ng-model="hand" value=" both"  > Both hands are equally strong
-                </div>
-            </div>
-            <br>
-
-            <div class="form-group">
-                <h2 class= "subTitles"><B> Education</B></h2>
-
-                <div>
-                    <input type="radio" name="education" ng-model="education" value="less"  > Less than High School<br>
-                    <input type="radio" name="education" ng-model="education" value="high"   > High School/GED<br>
-                    <input type="radio" name="education" ng-model="education" value="college"   > College<br>
-                    <input type="radio" name="education" ng-model="education" value="degree"  > Graduate Degree<br>
-                    <input type="radio"  name="education" ng-model="education" value="prefer"  > Prefer not to say
-                </div>
-            </div>
-
-
-
-
-
-
-
         </form>
         <br/>
-        <input  class="btn btn-primary" ng-disabled="loginForm.$invalid" type="submit" id="submit" value="Submit" ng-click='go()'>
+        <input  class= "submitButton" class="btn btn-primary" ng-disabled="loginForm.$invalid"  type="submit" id="submit" value="Submit" ng-click='go()'>
         </form>
         <div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
         </div>
     </div>
 </div>
+
+
+<!--class="btn btn-primary"-->
