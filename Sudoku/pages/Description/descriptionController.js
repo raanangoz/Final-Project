@@ -58,7 +58,7 @@ angular.module("sudokuApp")
                 $window.alert("Please mark your familiarity with the next problem");
             }else{
                 //TODO change to tutorial
-                $location.url('/sudokuGame');
+                $location.url('/Tutorial');
             }
 
         }
