@@ -1,13 +1,25 @@
-.home-page-internal{
-    width: 900px;
-    height: 900px;
+slideshow-container{
+    width: 700px;
+    height: 700px;
     background-color: white;
     border: 5px solid black;
     margin-bottom: 5px;
     border-radius: 6px;
+
 }
 
-.home-page-container{
+.home-page-internal{
+    width: 800px;
+    height: 800px;
+    background-color: white;
+    border: 5px solid black;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    align-items: center;
+    position: relative;
+}
+
+.page-container{
 
     display: flex;
     align-items: center; /* height*/
@@ -21,6 +33,8 @@
     /*color: white;*/
     justify-self: center;
     width: 100%;
+    padding-left: 50px;
+
 
 }
 
@@ -28,3 +42,34 @@
     width: 400px;
     height: 400px;
 }
+
+/** {box-sizing: border-box}*/
+/*body {font-family: Verdana, sans-serif; margin:0}*/
+.mySlides {
+    display: none;
+    width: 600px;
+    height: 300px;
+    align-self: center;
+    padding-left: 70px;
+
+
+
+}
+
+.w3-buttonPrev{
+
+    position: absolute;
+    bottom: 550px;
+
+}
+
+.w3-buttonNext{
+
+    position: absolute;
+    right: 20px;
+    bottom: 550px;
+}
+
+
+
+
