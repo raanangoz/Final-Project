@@ -1,42 +1,10 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
-        // var slideIndex = 1;
-        // showSlides(slideIndex);
-        //
-        // // Next/previous controls
-        // $scope.plusSlides = function (n) {
-        //
-        //     showSlides(slideIndex = slideIndex+  n);
-        // }
-        //
-        // // Thumbnail image controls
-        // $scope.currentSlide = function (n) {
-        //
-        //     showSlides(slideIndex = n);
-        //
-        // }
-        //
-        // function showSlides(n) {
-        //
-        //     var i;
-        //     var slides = document.getElementsByClassName("mySlides");
-        //     var dots = document.getElementsByClassName("dot");
-        //     if (n > slides.length) {slideIndex = 1}
-        //     if (n < 1) {slideIndex = slides.length}
-        //     for (i = 0; i < slides.length; i++) {
-        //         slides[i].style.display = "none";
-        //     }
-        //     for (i = 0; i < dots.length; i++) {
-        //         dots[i].className = dots[i].className.replace(" active", "");
-        //     }
-        //     slides[slideIndex-1].style.display = "block";
-        //     dots[slideIndex-1].className += " active";
-        // }
 
+        document.getElementById("prev").style.visibility = "hidden";
         var slideIndex = 1;
         showDivs(slideIndex);
-
 
         $scope.plusDivs = function (n) {
             showDivs(slideIndex += n);
@@ -45,6 +13,14 @@ angular.module("sudokuApp")
 
 
         function showDivs(n) {
+
+            if(slideIndex === 1){
+                document.getElementById("prev").style.visibility = "hidden";
+            }else{
+                document.getElementById("prev").style.visibility = "visible";
+            }
+
+
             var i;
             var x = document.getElementsByClassName("mySlides");
             if (n > x.length) {slideIndex = 1}
@@ -53,6 +29,17 @@ angular.module("sudokuApp")
                 x[i].style.display = "none";
             }
             x[slideIndex-1].style.display = "block";
+            if(slideIndex === x.length){
+                document.getElementById("next").style.visibility = "hidden";
+            }else{
+                document.getElementById("next").style.visibility = "visible";
+            }
+        }
+
+        $scope.startExam = function () {
+
+            $location.url('/ExamBeforeGame');
+
         }
 
 

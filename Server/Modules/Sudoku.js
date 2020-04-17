@@ -191,3 +191,26 @@ Sudoku.post('/submitFinishQuestion', function (req, res) {
             res.send(err)
         })
 })
+
+Sudoku.get('/getSudokuNumQuestion/:id', function (req, res) {
+
+    var questionID = req.params.id;
+
+    var query = "select * from sudokuNumbersQuestions where questionID= '"+questionID+"'";
+    DButilsAzure.execQuery(query)
+    // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
+
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            console.log(result)
+            console.log(result)
+            res.send(result)
+
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+
+})

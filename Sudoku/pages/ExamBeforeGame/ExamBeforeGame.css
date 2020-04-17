@@ -1,4 +1,4 @@
-.page-container{
+.home-page-container{
 
     display: flex;
     align-items: center; /* height*/
@@ -9,25 +9,11 @@
 
 .home-page-internal{
     width: 800px;
-    height: 500px;
+    height: 600px;
     background-color: white;
     border: 5px solid black;
     margin-bottom: 5px;
     border-radius: 6px;
-    align-items: center;
-    position: relative;
-}
-
-
-.titleTutorial{
-
-    font-size: 50px;
-    /*color: white;*/
-    justify-self: center;
-    width: 100%;
-    padding-left: 50px;
-
-
 }
 
 .icon{
@@ -35,12 +21,11 @@
     /*position: absolute;*/
     justify-self: center;
     align-self: center;
-    width: 400px;
-    height: 80px;
+    width: 300px;
+    height: 100px;
     /*padding-left: 50px;*/
 
 }
-
 
 .mySlides {
     display: none;
@@ -50,6 +35,11 @@
     padding-left: 70px;
     margin: 50px;
 
+}
+
+#firstPExam{
+
+    font-size: 20px;
 }
 
 .buttons{
@@ -73,43 +63,8 @@
 
 }
 
-#firstP{
+.imageQ{
 
-    font-size: 20px;
+    width:500px;
+    height: 250px;
 }
-
-#lastP{
-    font-size: 20px;
-
-}
-
-#titleSlide1{
-
-    font-size: 70px;
-    position: absolute;
-    text-align: center;
-    align-self: center;
-
-}
-
-#titleSlide2{
-
-    font-size: 70px;
-    position: absolute;
-    text-align: center;
-    align-self: center;
-
-
-}
-
-#piskaKeys{
-
-    font-size: 20px;
-
-}
-
-
-
-
-
-
