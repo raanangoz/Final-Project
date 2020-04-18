@@ -225,7 +225,7 @@ angular.module("sudokuApp")
                     method: 'POST',
                     url: 'http://localhost:3000/Knapsack/insertMove',
                     data: {
-                        //TODO "itemWeight": "" + GameID,
+                        "GameID": "" + $rootScope.GameID,
                         "itemWeight": "" + 1,
                         "itemValue": "" + itemValue,
                         "itemSize": "" + itemWeight,
@@ -240,7 +240,7 @@ angular.module("sudokuApp")
                         item[2] = !item[2];
 
                     }, function (response) {
-                       //TODO fail
+                        //TODO fail
                     });
             }
             else{
@@ -299,6 +299,62 @@ angular.module("sudokuApp")
                 $scope.txtPos = $scope.txtPos + 30
             return myObj
         }
+
+        $scope.timer = function (){
+
+            console.log("hereTimer");
+            //show "game over" after 15 minutes
+            setTimeout(function () {
+                alert("Game Over");
+                $location.url('/finishQuestion');
+
+            },900000);
+
+            // let second = 1000;
+            // let minute = 1000 * 60;
+            let countDown = new Date();
+
+            //define the time + 15 minutes
+            countDown.setMinutes ( countDown.getMinutes() + 15 );
+
+            //init an interval of countdown
+            interval= setInterval(function() {
+
+                let now = new Date().getTime();
+                let distance = countDown - now;
+
+                minute = Math.floor((distance % (60 *60 *1000)) / (60*1000));
+                second = Math.floor((distance % (60 *1000)) / 1000);
+
+                var length = $location.absUrl().length;
+                var gameLocation = $location.absUrl().substring(length-4,length);
+                // console.log("length= "+length);
+                // console.log("yes: "+$location.absUrl().substring(length-4,length));
+
+                if(gameLocation != "Game"){
+                    clearInterval(interval);
+
+                }
+
+                if(document.getElementById("status") != null){
+
+                    console.log("hereInnerrrr");
+                    document.getElementById("status").innerHTML = "Time Left: "
+                        + minute + "m " + second + "s ";
+                }
+
+                //game over
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("status").innerHTML = "Game Over";
+                    $location.url('/finishQuestion');
+                }
+
+            }, 1000)
+
+
+
+        };
 
     });
 
