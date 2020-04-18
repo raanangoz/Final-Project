@@ -6,6 +6,12 @@ angular.module("sudokuApp")
         var correctnessRank;
         var difficultyRank;
 
+        if($rootScope.gameInstance== 0 || $rootScope.gameInstance== 1 ){
+
+            //TODO 'none' the KS
+
+        }
+
         $scope.submitEstimates = function () {
 
 

@@ -46,6 +46,16 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/ExperimentOver/ExperimentOver.html',
             controller : 'ExperimentOverController as ExperimentOverCtrl'
         })
+        .when('/Tutorial', {
+        // this is a template
+        templateUrl: 'pages/Tutorial/Tutorial.html',
+        controller : 'TutorialController as TutorialCtrl'
+        })
+        .when('/ExamBeforeGame', {
+            // this is a template
+            templateUrl: 'pages/ExamBeforeGame/ExamBeforeGame.html',
+            controller : 'ExamBeforeGameController as ExamBeforeGameCtrl'
+        })
         // // about
         // .when('/about', {
         //     // this is a template url

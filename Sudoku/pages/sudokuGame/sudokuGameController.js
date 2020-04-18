@@ -1,7 +1,7 @@
 
 
 angular.module("sudokuApp")
-    .controller("sudokuGameController", function ($scope, $http, $location,$rootScope) {
+    .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window) {
 
         // var inputeFieldsArray = document.getElementsByClassName ("field");
         // for(let i = 0; i < inputeFieldsArray.length; i++) {
@@ -43,8 +43,14 @@ angular.module("sudokuApp")
             gameTypeToSQL = 'color';
         else
             gameTypeToSQL = 'number';
-        //load at start
 
+
+
+        //var for the user chose the range of difficulty
+        document.getElementById("startGame").disabled = true;
+
+
+        //load at start
         console.log("aaaaaaaaaaa"+$rootScope.userID);
 
 
@@ -360,8 +366,24 @@ angular.module("sudokuApp")
 
 
 
+            setTimeout(function() {
+                console.log("hereTIMEOUT");
+                $('#myModal').modal();
+            }, 2000);
+            // setTimeout(modalQuestion, 1000);
+
+
+
         }
 
+
+
+        function modalQuestion(){
+
+            exampleModal.style.display = 'block';
+
+
+        }
 
 
         $scope.finishGame = function(){
@@ -409,6 +431,25 @@ angular.module("sudokuApp")
             if ($scope.initialBoard[rowIndex][colIndex] === '0') {
                 $scope.sudokuBoard[rowIndex][colIndex] = '';
             }
+
+        }
+
+
+
+        $scope.submitDifficulty = function () {
+
+            //TODO decomentation the user's answer
+            document.getElementById("startGame").disabled = false;
+
+
+
+        }
+
+        $scope.changeRange = function () {
+
+            $scope.rangeValue = document.getElementById("myRange").value;
+
+
 
         }
 

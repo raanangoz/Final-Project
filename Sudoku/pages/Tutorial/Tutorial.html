@@ -1,16 +1,63 @@
+
 <link rel="stylesheet" type="text/css" href="pages/Tutorial/Tutorial.css" />
 
-<div ng-controller="TutorialController as TutorialCtrl">
+<div class="page-container" ng-controller="TutorialController" >
+    <div class="home-page-internal">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--    <h1 class="titleTutorial" ><b>Tutorial</b></h1>-->
+        <img class="icon" ng-src="pages/Tutorial/tutorialPictures/tutorial.jpg">
+<!--    <hr>-->
+
+<!--         Slideshow container-->
+<!--        <div class="slideshow-container">-->
+        <p  class="mySlides" id="firstP">In the next slides you will watch legal and illegal steps<br/>
+        of the next game and relevant keys for the game.<br/>
+        you should press the "Next" button when you finish watching each slide or return the<br/>
+             previously slide by the "Prev" button.<br/>
+        You may pay maximum attention throw the whole tutorial,<br/>
+            Once you're done, you'll have a test to make sure <br/>
+            you understand the rules of the game.<br/>
+            <br>
+        Press "Next" to start the tutorial</p>
+            <h  class="mySlides" id="titleSlide1">Legal steps</h>
+            <img class="mySlides" ng-src="pages/Tutorial/tutorialPictures/legal1.jpg">
+<!--            <img class="mySlides" ng-src="little3.jpg">-->
+            <h  class="mySlides" id="titleSlide2">The game's key</h>
+        <p  class="mySlides" id="piskaKeys">The games's keys on the keyboard are<br/>
+            the numbers 1-9 in order to fill the cells of the sudoku board<br/>
+            and the backspace key in order to delete a value of a cell if necessary.<br/>
+            In order to switch between the cells in the sudoku board,<br/>
+            you should use the right mouse button.<br/>
+            The illustration is shown in the next slide.</p>
+            <img class="mySlides" ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
+        <div class="mySlides" id="lastP">
+            On the next page, you will examine your proficiency in the rules of the game. <br/>
+            You can only switch to the game after you have answered all the questions correctly, <br/>
+            or you will be taken back to this page.<br/>
+            <br>
+            good luck! <br/>
+            <br>
+            <button id="startTest" ng-click="startExam()">Start exam</button>
+        </div>
+
+
+    <!--        <img class="mySlides" src="img_forest.jpg">-->
+
+    <!--        <button class="w3-button w3-display-left" ng-click="plusDivs(-1)">&#10094;</button>-->
+    <!--        <button class="w3-button w3-display-right" ng-click="plusDivs(+1)">&#10095;</button>-->
+            <div class="buttons">
+                <button id="prev" class="w3-buttonPrev" ng-click="plusDivs(-1)">&#10094; Prev</button>
+                <button id="next" class="w3-buttonNext" ng-click="plusDivs(1)">Next &#10095;</button>
+
+            </div>
+
+
+<!--        </div>-->
+    </div>
+</div>
 
 
 
-</body>
-</html>
+
+
+
