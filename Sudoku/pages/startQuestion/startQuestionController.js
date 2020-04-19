@@ -19,73 +19,76 @@ angular.module("sudokuApp")
         $rootScope.wasSudoko=0;
         $rootScope.wasKS=0;
 
+        //for check the worker ID
+        var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
 
-        $scope.go = function() {
+            $scope.go = function () {
 
-            userWorkerID = workerID.value;
-            userAge = age.value;
-            userGender = $scope.gender;
-            console.log("gender= "+userGender);
-            userHand = $scope.hand;
-            console.log("hand= "+userHand);
-            userEducation = $scope.education;
-            console.log("education= "+userEducation);
-
-            if (userWorkerID == "" || userWorkerID == undefined) {
-                $window.alert('Please enter your Worker ID');
-            } else {
-                if (userAge == "" || userAge == undefined) {
-                    $window.alert('Please enter your Age');
-                } else if (!(userAge >= 0 && userAge <= 150))
-                    $window.alert('Please enter a valid Age');
-                else {
-                    if (userGender == "" || userGender == undefined) {
-                        $window.alert('Please enter your Gender');
-                    } else if (userHand == "" || userHand== undefined) {
-                        $window.alert('Please enter your strong hand');
-                    } else if (userEducation == "" || userEducation== undefined) {
-                        $window.alert('Please enter your Education');
-                    } else {
-
-                        $http({
-                            method: 'POST',
-                            url: 'http://localhost:3000/Sudoku/submitQuestinary', // submitQuestinary - name if the function in the server
-                            data: {
-                                "workerID": userWorkerID,
-                                "age": userAge,
-                                "gender": userGender,
-                                "hand": userHand,
-                                "education": userEducation
-
-                            }
-                        })
-                            .then(function (response) {
-
-                                //TODO change to *4 after the KS page
-                                $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                                $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
-
-                                console.log("number= " + $rootScope.gameInstance);
-                                //pass to Start Game
-                                $location.url('/description');
+                userWorkerID = workerID.value;
+                userAge = age.value;
+                userGender = $scope.gender;
+                console.log("gender= " + userGender);
+                userHand = $scope.hand;
+                console.log("hand= " + userHand);
+                userEducation = $scope.education;
+                console.log("education= " + userEducation);
 
 
-                                $http({
-                                    method: "get",
-                                    url: 'http://localhost:3000/Sudoku/getUserID'
+                if (userWorkerID == "" || userWorkerID == undefined || !(userWorkerID.match(lettersAndNumbers))) {
+                    $window.alert('Please enter a valid Worker ID');
+                } else {
+                    if (userAge == "" || userAge == undefined) {
+                        $window.alert('Please enter your Age');
+                    } else if (!(userAge >= 0 && userAge <= 150))
+                        $window.alert('Please enter a valid Age');
+                    else {
+                        if (userGender == "" || userGender == undefined) {
+                            $window.alert('Please enter your Gender');
+                        } else if (userHand == "" || userHand == undefined) {
+                            $window.alert('Please enter your strong hand');
+                        } else if (userEducation == "" || userEducation == undefined) {
+                            $window.alert('Please enter your Education');
+                        } else {
+
+                            $http({
+                                method: 'POST',
+                                url: 'http://localhost:3000/Sudoku/submitQuestinary', // submitQuestinary - name if the function in the server
+                                data: {
+                                    "workerID": userWorkerID,
+                                    "age": userAge,
+                                    "gender": userGender,
+                                    "hand": userHand,
+                                    "education": userEducation
+
+                                }
+                            })
+                                .then(function (response) {
+
+                                    //TODO change to *4 after the KS page
+                                    $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                    $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
+
+                                    console.log("number= " + $rootScope.gameInstance);
+                                    //pass to Start Game
+                                    $location.url('/description');
 
 
-                                }).then(function (response) {
-                                    userID = response.data[0].maxid;
-                                    console.log(userID + "kilili");
-                                    $rootScope.userID = userID;
-                                })
+                                    $http({
+                                        method: "get",
+                                        url: 'http://localhost:3000/Sudoku/getUserID'
 
 
-                                console.log("hereeeeee");
-                            }, function (response) {
-                                // $scope.records = response.statusText;
-                            });
+                                    }).then(function (response) {
+                                        userID = response.data[0].maxid;
+                                        console.log(userID + "kilili");
+                                        $rootScope.userID = userID;
+                                    })
+
+
+                                    console.log("hereeeeee");
+                                }, function (response) {
+                                    // $scope.records = response.statusText;
+                                });
 
                         }
                     }

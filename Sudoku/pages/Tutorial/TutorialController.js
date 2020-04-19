@@ -2,6 +2,18 @@ angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
 
+        //if numbers
+        if($rootScope.gameInstance === 0){
+            $scope.numbers = true;
+            $scope.colors= false;
+        }
+
+        //if colors
+        if($rootScope.gameInstance === 1){
+            $scope.numbers = false;
+            $scope.colors= true;
+        }
+
         document.getElementById("prev").style.visibility = "hidden";
         var slideIndex = 1;
         showDivs(slideIndex);

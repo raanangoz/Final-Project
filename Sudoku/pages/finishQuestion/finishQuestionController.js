@@ -14,17 +14,15 @@ angular.module("sudokuApp")
 
         $scope.submitEstimates = function () {
 
-
             correctnessRank = rankCorrectness.value;
             difficultyRank = rankDifficulty.value;
 
-            if ((correctnessRank != "Perfect" && correctnessRank != "Correct" && correctnessRank != "Load Enhancement"
-                && correctnessRank != "Not Correct") || (difficultyRank != "Very Easy" && difficultyRank != "Easy" && difficultyRank != "Medium"
-                && difficultyRank != "Hard" && difficultyRank != "Very Hard" )) {
-                $window.alert("Please enter the two of the estimates");
-
             //if the user filled the two fields
-            }else{
+            if(correctnessRank <=9 && correctnessRank >=0 && difficultyRank <=10 && difficultyRank >=1){
+
+                //enable the next button
+                document.getElementById("nextTask").disabled = false;
+
 
                 $http ({
 
@@ -38,48 +36,50 @@ angular.module("sudokuApp")
                     }})
                     .then(function(response) {
 
-                        var completed = true;
-                        //check if the whole games completed
-                        for (var i = 0; i <$rootScope.gameInstancesChosen.length ; i++) {
-                            if($rootScope.gameInstancesChosen[i]=== false){
-                                completed = false;
-                            }
-
-                        }
-
-                        console.log("completed= "+completed);
-                        if (!completed){
-
-                            //change to *4 after the KS page
-                            $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                            while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === true){
-                                $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                            }
-                            if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === false){
-                                console.log("number= "+$rootScope.gameInstance);
-                                $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
-                                $location.url('/description');
-
-                            }
-
-                        }else{
-
-                            console.log("hereOver123456");
-                            //experiment over
-                            $location.url('/ExperimentOver');
-                        }
-
-
-
-
-
                     }, function(response) {
 
                     });
 
+            }else {
+
+                $window.alert("Please enter the two of the estimates");
             }
 
 
+        }
+
+        $scope.nextTask = function () {
+
+            var completed = true;
+            //check if the whole games completed
+            for (var i = 0; i <$rootScope.gameInstancesChosen.length ; i++) {
+                if($rootScope.gameInstancesChosen[i]=== false){
+                    completed = false;
+                }
+
+            }
+
+            console.log("completed= "+completed);
+            if (!completed){
+
+                //change to *4 after the KS page
+                $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === true){
+                    $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                }
+                if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === false){
+                    console.log("number= "+$rootScope.gameInstance);
+                    $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
+                    $location.url('/description');
+
+                }
+
+            }else{
+
+                console.log("hereOver123456");
+                //experiment over
+                $location.url('/ExperimentOver');
+            }
 
 
         }

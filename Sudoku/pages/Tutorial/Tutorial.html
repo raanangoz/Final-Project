@@ -19,17 +19,34 @@
             you understand the rules of the game.<br/>
             <br>
         Press "Next" to start the tutorial</p>
-            <h  class="mySlides" id="titleSlide1">Legal steps</h>
-            <img class="mySlides" ng-src="pages/Tutorial/tutorialPictures/legal1.jpg">
+
+        <h  class="mySlides" id="titleSlide1">Legal steps</h>
+
+        <img class="mySlides" ng-if="numbers" ng-src="pages/Tutorial/tutorialPictures/legal1.jpg">
+        <img class="mySlides" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor1.jpg">
+
 <!--            <img class="mySlides" ng-src="little3.jpg">-->
-            <h  class="mySlides" id="titleSlide2">The game's key</h>
-        <p  class="mySlides" id="piskaKeys">The games's keys on the keyboard are<br/>
+        <h  class="mySlides" id="titleSlide2">The game's key</h>
+
+        <p  class="mySlides" ng-if="numbers" class="piskaKeys">The games's keys on the keyboard are<br/>
             the numbers 1-9 in order to fill the cells of the sudoku board<br/>
             and the backspace key in order to delete a value of a cell if necessary.<br/>
             In order to switch between the cells in the sudoku board,<br/>
             you should use the right mouse button.<br/>
-            The illustration is shown in the next slide.</p>
-            <img class="mySlides" ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
+            The illustration is shown in the next slide.
+        </p>
+
+        <p  class="mySlides" ng-if="colors" class="piskaKeys">The games's keys on the keyboard are<br/>
+            the numbers 1-9 in order to fill the cells of the sudoku board<br/>
+            each number is matching a specific color, according to the given legend.<br/>
+            In addition, the right mouse button is used for switching between<br/>
+            the cells in the sudoku board and for deleting a value of a cell if necessary <br/>
+            The illustration is shown in the next slide.
+        </p>
+
+
+        <img class="mySlides" ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
+        <img class="mySlides" ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
         <div class="mySlides" id="lastP">
             On the next page, you will examine your proficiency in the rules of the game. <br/>
             You can only switch to the game after you have answered all the questions correctly, <br/>

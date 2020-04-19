@@ -64,5 +64,11 @@ angular.module("sudokuApp")
 
         }
 
+        $scope.submit = function () {
+
+            $location.url('/pageBeforeGame');
+
+        }
+
 
     })

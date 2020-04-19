@@ -1,41 +1,58 @@
 <link rel="stylesheet" type="text/css" href="pages/finishQuestion/finishQuestion.css" />
 
-<div ng-controller="finishQuestionController as quesCtrl">
+<div class="home-page-container"  ng-controller="finishQuestionController as quesCtrl">
 
-    <div class= "question">
+    <div class= "home-page-internal">
+
         <form name="questionsForm" ng-submit="submit()" novalidate>
             <h1 class="title">Finish Questionnarie</h1>
+            <hr>
             <br>
 
             <div class="form-group">
-                <h2><B> Estimate the problem's difficulty</B></h2>
-                <select type="rank" id= "rankDifficulty" name="rank" ng-model="rank1" required ng-minlength="5" >
-                    <option value="Very Easy">Very Easy</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Very Hard">Very Hard</option>
+                <h1 class="questions">How many boxes do you think you filled correctly?</h1>
+                <select type="rank" id= "rankCorrectness" name="rank" ng-model="rank2"  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
 
                 </select>
                 <br>
                 <br>
-                <h2><B> Estimate the correctness of your solution</B></h2>
-                <select type="rank" id= "rankCorrectness" name="rank" ng-model="rank2" required ng-minlength="5" >
-                    <option value="Perfect">Perfect</option>
-                    <option value="Correct">Correct</option>
-                    <option value="Load Enhancement">Load Enhancement</option>
-                    <option value="Not Correct">Not Correct</option>
+                <h1 class="questions">How difficult was it for you to solve this problem?</h1>
+                <select type="rank" id= "rankDifficulty" name="rank" ng-model="rank1" >
+                    <option value="1">1: Very easy</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10: Extremely difficult</option>
 
                 </select>
+
+
+
+            </div>
+
+            <div class="buttonSubmit">
+                <input class="btn btn-primary" type="submit" id="submit" value="Submit" ng-click = "submitEstimates()" >
+                <button id="nextTask" class="nextGame" ng-click="nextTask()" ng-disabled="!submit">Next task</button>
             </div>
 
 
+
         </form>
-        <br/>
-        <input  class="btn btn-primary" ng-disabled="loginForm.$invalid" type="submit" id="submit" value="Submit" ng-click = "submitEstimates()" >
-        </form>
-        <div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-        </div>
+
     </div>
 </div>

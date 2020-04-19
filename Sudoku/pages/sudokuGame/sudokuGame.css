@@ -46,7 +46,9 @@ h1{
 }
 
 .bold-border{
-    opacity: 0.7;
+
+    /*behiroot*/
+    /*opacity: 0.7;*/
 }
 
 .move{
@@ -149,7 +151,7 @@ body{
 #declaration {
 
     position: absolute;
-    bottom: 45%;
+    bottom: 30%;
     right: 10%;
     /*font-size: 35px;*/
 }

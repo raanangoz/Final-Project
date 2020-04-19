@@ -1,0 +1,35 @@
+.home-page-container{
+
+    display: flex;
+    align-items: center; /* height*/
+    justify-content: center; /* width*/
+
+}
+
+.home-page-internal{
+    width: 600px;
+    height: 500px;
+    background-color: #8db7a9;
+    border: 5px solid darkblue;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.explain{
+
+    font-size: 20px;
+    position: absolute;
+    top: 80px;
+}
+
+.start{
+
+    width:100px;
+    height: 50px;
+    position: absolute;
+    bottom: 20px;
+}
