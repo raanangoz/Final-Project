@@ -174,7 +174,7 @@ angular.module("sudokuApp")
             //show "game over" after 15 minutes
             setTimeout(function () {
                 alert("Game Over");
-                $location.url('/finishQuestion');
+                //$location.url('/finishQuestion');
 
             },900000);
 
@@ -386,15 +386,20 @@ angular.module("sudokuApp")
         }
 
 
+        $scope.finishGameYesOrNo = function(){
+
+            $('#myModal2').modal();
+
+
+        }
+
+
         $scope.finishGame = function(){
 
             clearInterval(interval);
-            // document.getElementById("status").innerHTML = "Game Over";
-            // document.getElementById("finish").hidden= true;
 
             //pass to the finish questionarrie
             $location.url('/finishQuestion');
-
 
 
         }

@@ -2,6 +2,29 @@ angular.module("sudokuApp")
     .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
         console.log("oshshshsdhd")
 
+        // function preventBack(){window.history.forward();}
+        // setTimeout("preventBack()", 0);
+        // window.onunload=function(){null};
+        //
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
+
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
+
+        //
+        // window.history = function(event) {
+        //     // do some stuff here, like reloading your current state
+        //     //this would work only if the user chooses not to leave the page
+        //     return 'why would you do that???';
+        // }
+
         var userWorkerID;
         var userAge;
         var userGender;

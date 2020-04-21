@@ -58,7 +58,7 @@
     </div>
 
     <div>
-            <button id= "finish" class="Finish Game" ng-click=" finishGame()" >Finish Game</button>
+            <button id= "finish" class="Finish Game" ng-click=" finishGameYesOrNo()" >Finish Game</button>
     </div>
 
     <br>
@@ -102,6 +102,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" ng-click="submitDifficulty()">Submit</button>
                     <button type="button" id="startGame" class="btn btn-default" data-dismiss="modal" ng-click="timer()" ng-disabled="!rangePress">Start Game</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+         data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+                    <h4 class="modal-title" id="myModalLabel2"><b>Before finish...</b></h4>
+                </div>
+                <div class="modal-body">
+                    <b>Are you sure you want to finish game?</b>
+                </div>
+                <br>
+                <div class="modal-footer">
+                    <button type="button"  data-dismiss="modal" ng-click="finishGame()">Yes</button>
+                    <button type="button" data-dismiss="modal"  >No</button>
 
                 </div>
             </div>
