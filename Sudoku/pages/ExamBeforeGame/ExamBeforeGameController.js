@@ -42,12 +42,12 @@ angular.module("sudokuApp")
         function getSudokuQuestion(){
 
             //TODO lottery number between 1-10
-            var q = Math.floor(Math.random() * 10) + 1;
+            var q = Math.floor(Math.random() * 5) + 1;
 
 
             $http({
                 method: "get",
-                url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/1'
+                url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'+q
 
 
             }).then(function (response) {
@@ -56,6 +56,8 @@ angular.module("sudokuApp")
                 $scope.imageSrc = response.data[0].image;
                 $scope.op1 = response.data[0].option1;
                 $scope.op2 = response.data[0].option2;
+                $scope.op3 = response.data[0].option3;
+                $scope.op4 = response.data[0].option4;
 
 
             }, function (response) {
