@@ -24,9 +24,13 @@
             <br><br>
             <img  class="imageQ" ng-src={{imageSrc}}>
             <br><br>
-            <input type="radio" name="op1" ng-model="Q1op" value={{op1}} > {{op1}}
+            <input type="radio" name="op1" ng-model="Q1op" value={{op1}} >{{op1}}
             <br>
             <input type="radio" name="op2" ng-model="Q1op" value={{op2}} >{{op2}}
+            <br>
+            <input type="radio" name="op3" ng-model="Q1op" value={{op3}} ng-show="op3!=null">{{op3}}
+            <br>
+            <input type="radio" name="op4" ng-model="Q1op" value={{op4}} ng-show="op4!=null">{{op4}}
             <br>
             <button id="submitAns" ng-click="submit()">Submit my answers</button>
         </div>
