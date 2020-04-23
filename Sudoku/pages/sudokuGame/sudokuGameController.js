@@ -3,22 +3,12 @@
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window) {
 
-        // var inputeFieldsArray = document.getElementsByClassName ("field");
-        // for(let i = 0; i < inputeFieldsArray.length; i++) {
-        //     inputeFieldsArray[i].addEventListener("click", function(event) {
-        //         console.log("here mousedown");
-        //         event.preventDefault();
-        //     })
-        // }
+        $scope.rangeValue = "---";
 
-        // if($rootScope.gameInstance===0){
-        //
-        //     document.getElementById("tempColor").hidden= true;
-        //
-        // }else{
-        //
-        //     document.getElementById("temp").hidden= true;
-        // }
+        //object for the board
+        // var box = {value:"0", isIcon:"true"};
+        // var box1 = new box();
+
 
         // var userID = $rootScope.userId;
         var PuzzleID;
@@ -37,6 +27,9 @@ angular.module("sudokuApp")
         $scope.typeCase = false;
         $scope.loading = true;
         $scope.message = null;
+
+        //false if the user did not clicked yet
+        $scope.clicked=false;
 
         var gameTypeToSQL = 'number';
         if($scope.colors)
@@ -170,6 +163,8 @@ angular.module("sudokuApp")
         //stop after 15 minutes
         $scope.timer = function (){
 
+            // document.getElementById("finish").disabled = "false";
+
             console.log("hereTimer");
             //show "game over" after 15 minutes
             setTimeout(function () {
@@ -229,6 +224,7 @@ angular.module("sudokuApp")
         $scope.init = function(){
 
 
+
             console.log("hereInit");
             //requests
             $http ({
@@ -249,8 +245,14 @@ angular.module("sudokuApp")
                         $scope.initialBoard.push(rowSliced2);
                     }
 
+                    var objectArray = [];
+
                     // console.log("board = " + board);
                     // console.log("zzz= "+JSON.stringify(response.data[0].board,4,null));
+                    // for(let j=0; j<9; j++){
+                    //     var box1 = new box();
+                    //     objectArray[j][j]= new box(board[j][j], false);
+                    // }
                     $scope.sudokuBoard = board;
 
                     //numbers type
@@ -433,9 +435,22 @@ angular.module("sudokuApp")
 
         $scope.onBoxClick = function(field, colIndex, rowIndex){
 
+
             if ($scope.initialBoard[rowIndex][colIndex] === '0') {
                 $scope.sudokuBoard[rowIndex][colIndex] = '';
+                // if($scope.typeCase){
+                //     $scope.clicked = true;
+
+                //}
             }
+
+
+
+
+
+
+
+
 
         }
 

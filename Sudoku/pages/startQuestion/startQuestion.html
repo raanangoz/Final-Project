@@ -7,7 +7,7 @@
         <form name="questionsForm" ng-submit="submit()" novalidate>
             <h1 class="titleQuestion"><b>Demographic information</b></h1>
             <hr>
-            <br>
+
 
             <div class="details">
                 <div class="form-group">
@@ -20,7 +20,7 @@
                     <h2 class= "subTitles"><B>Age</B></h2>
                     <input type="age" id="age"  required ng-minlength="2">
                 </div>
-                <br>
+
 
                 <div class="form-group">
                     <h2 class= "subTitles"><B> Gender</B></h2>
@@ -30,7 +30,7 @@
                         <input type="radio" name="gender" ng-model="gender" value=" female" >Female
                     </div>
                 </div>
-                <br>
+
 
                 <div class="form-group">
                     <h2 class= "subTitles"><B> What is your strong hand?</B></h2>
@@ -41,9 +41,9 @@
                         <input type="radio"  name="hand" ng-model="hand" value=" both"  > Both hands are equally strong
                     </div>
                 </div>
-                <br>
 
-                <div class="form-group">
+
+                <div class="form-group" id="educationDiv">
                     <h2 class= "subTitles"><B> Education</B></h2>
 
                     <div>

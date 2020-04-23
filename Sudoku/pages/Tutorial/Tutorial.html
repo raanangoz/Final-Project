@@ -20,27 +20,52 @@
             <br>
         Press "Next" to start the tutorial</p>
 
-        <h  class="mySlides" id="titleSlide1">Legal steps</h>
+        <h  class="mySlides" id="titleSlide1">Illegal steps</h>
 
-        <img class="mySlides" ng-if="numbers" ng-src="pages/Tutorial/tutorialPictures/legal1.jpg">
-        <img class="mySlides" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor1.jpg">
+        <div class="mySlides">
+            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
+            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorLine.jpg">
+            <br> <br>
+            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is illegal because the "4" digit is already exist at this line</b></p>
+            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is illegal because the yellow color is already exist at this line</b></p><br/>
+            <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
+            cells which should be filled during the game</b></p>
+        </div>
 
-<!--            <img class="mySlides" ng-src="little3.jpg">-->
+        <div class="mySlides">
+            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">
+            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorColumn.jpg">
+            <br> <br>
+            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is illegal because the "2" digit is already exist at this column</b></p>
+            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is illegal because the pink color is already exist at this column</b></p>
+        </div>
+
+        <div class="mySlides">
+            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">
+            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorQ.jpg">
+            <br> <br>
+            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is illegal because the "6" digit is already exist at this square</b></p>
+            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is illegal because the purple color is already exist at this square</b></p>
+        </div>
+
         <h  class="mySlides" id="titleSlide2">The game's key</h>
 
-        <p  class="mySlides" ng-if="numbers" class="piskaKeys">The games's keys on the keyboard are<br/>
-            the numbers 1-9 in order to fill the cells of the sudoku board<br/>
-            and the backspace key in order to delete a value of a cell if necessary.<br/>
+        <p  class="mySlides" ng-if="numbers" id="piskaKeys1">The games's keys on the keyboard are<br/>
+            the numbers 1-9 in order to fill the cells of the <br/>
+            sudoku board and the backspace key in order to <br/>
+            delete a value of a cell if necessary.<br/>
             In order to switch between the cells in the sudoku board,<br/>
             you should use the right mouse button.<br/>
             The illustration is shown in the next slide.
         </p>
 
-        <p  class="mySlides" ng-if="colors" class="piskaKeys">The games's keys on the keyboard are<br/>
-            the numbers 1-9 in order to fill the cells of the sudoku board<br/>
-            each number is matching a specific color, according to the given legend.<br/>
+        <p  class="mySlides" ng-if="colors" id="piskaKeys2">The games's keys on the keyboard are<br/>
+            the numbers 1-9 in order to fill the cells of the <br/>
+            sudoku board each number is matching a specific color, <br/>
+            according to the given legend.<br/>
             In addition, the right mouse button is used for switching between<br/>
-            the cells in the sudoku board and for deleting a value of a cell if necessary <br/>
+            the cells in the sudoku board and for deleting <br/>
+            a value of a cell if necessary <br/>
             The illustration is shown in the next slide.
         </p>
 
