@@ -59,6 +59,25 @@
     margin:10px;
 }
 
+#familiar{
+    padding-left: 20px;
+}
+.familiar{
+    font-size: 20px;
+}
+
+#familiarOptions{
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 100%;
+    padding-left: 80px;
+}
+
+.familiar-option{
+    justify-self: start;
+}
+
 .w3-buttonPrev{
 
     position: fixed;

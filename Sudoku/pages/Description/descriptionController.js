@@ -2,7 +2,6 @@ angular.module("sudokuApp")
     .controller("descriptionController", function ($scope, $http, $location, $rootScope, $window) {
 
 
-
         //TODO UPDATE AFTER KS PAGE
         if ($rootScope.gameInstance === 0){
             desSudokuNum.style.display = 'block';

@@ -70,7 +70,7 @@ angular.module("sudokuApp")
                 if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === false){
                     console.log("number= "+$rootScope.gameInstance);
                     $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
-                    $location.url('/description');
+                    $location.url('/Tutorial');
 
                 }
 

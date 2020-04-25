@@ -93,7 +93,7 @@ angular.module("sudokuApp")
 
                                     console.log("number= " + $rootScope.gameInstance);
                                     //pass to Start Game
-                                    $location.url('/description');
+                                    $location.url('/Tutorial');
 
 
                                     $http({

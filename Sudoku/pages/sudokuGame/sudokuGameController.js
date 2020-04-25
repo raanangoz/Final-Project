@@ -6,8 +6,7 @@ angular.module("sudokuApp")
         $scope.rangeValue = "---";
 
         //object for the board
-        // var box = {value:"0", isIcon:"true"};
-        // var box1 = new box();
+        var box = {value:"0", isIcon:"true"};
 
 
         // var userID = $rootScope.userId;
@@ -163,8 +162,7 @@ angular.module("sudokuApp")
         //stop after 15 minutes
         $scope.timer = function (){
 
-            // document.getElementById("finish").disabled = "false";
-
+            //document.getElementById("finish").disabled = "false";
             console.log("hereTimer");
             //show "game over" after 15 minutes
             setTimeout(function () {
@@ -223,14 +221,14 @@ angular.module("sudokuApp")
         //init board and game
         $scope.init = function(){
 
+            //document.getElementById("finish").disabled = "true";
 
-
-            console.log("hereInit");
+            console.log("hereInitttttttttttttttttttttttttt");
             //requests
             $http ({
 
                 method: 'GET',
-                url:'http://localhost:3000/Sudoku/getBoard/1'})//TODO we send dif 1.
+                url:'http://localhost:3000/Sudoku/getBoard/medium'})//TODO we send dif 1.
                 .then(function(response) {
                     PuzzleID = response.data[0].PuzzleID;
                     const boardString = response.data[0].board;
@@ -241,6 +239,8 @@ angular.module("sudokuApp")
                     for(let i = 0; i < 81; i = i + 9) {
                         rowSliced = numbersArray.slice(i, i + 9);
                         rowSliced2 = numbersArray.slice(i, i + 9);
+
+                        // rowSliced2 = rowSliced2.map(function(strVal){return {value: strVal, isIcon: false} });
                         board.push(rowSliced);
                         $scope.initialBoard.push(rowSliced2);
                     }
@@ -400,7 +400,52 @@ angular.module("sudokuApp")
 
             clearInterval(interval);
 
-            //pass to the finish questionarrie
+            //documentation solution and totalTime
+            var stringsecond = second;
+            if (second < 10){
+                stringsecond = "0" + second;
+
+            }
+            var intsecond = Number(stringsecond);
+            console.log("intSecond= "+intsecond);
+
+            var stringminute = minute;
+            if (minute < 10){
+                stringminute = "0" + minute;
+
+            }
+            var intminute = Number(stringminute);
+            console.log("intMinute= "+intminute);
+
+            if(intsecond === 00){
+                intsecond = 60;
+                intminute = intminute -1;
+            }
+
+            var totalSeconds = 60- intsecond;
+            var totalMinutes = 14- intminute;
+
+            var totalTime = totalMinutes + " : "+ totalSeconds;
+            console.log("totalTime= "+totalTime);
+
+        //     $http ({
+        //
+        //         method: 'POST',
+        //         url:'http://localhost:3000/Sudoku/createNewGame',
+        //         data: {
+        //             "userID":""+$rootScope.userID,
+        //             "puzzleID":'2',
+        //             "type":""+gameTypeToSQL
+        //         }})
+        //         .then(function(response) {
+        //
+        //         }, function(response) {
+        //     // $scope.records = response.statusText;
+        // });
+
+
+
+                    //pass to the finish questionarrie
             $location.url('/finishQuestion');
 
 
@@ -436,12 +481,9 @@ angular.module("sudokuApp")
         $scope.onBoxClick = function(field, colIndex, rowIndex){
 
 
-            if ($scope.initialBoard[rowIndex][colIndex] === '0') {
+            if ($scope.initialBoard[rowIndex][colIndex] === '0' && $scope.typeCase) {
                 $scope.sudokuBoard[rowIndex][colIndex] = '';
-                // if($scope.typeCase){
-                //     $scope.clicked = true;
 
-                //}
             }
 
 
