@@ -4,6 +4,7 @@ angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window) {
 
         $scope.rangeValue = "---";
+        $scope.gameStarted = false;
 
         //object for the board
         var box = {value:"0", isIcon:"true"};
@@ -162,6 +163,7 @@ angular.module("sudokuApp")
         //stop after 15 minutes
         $scope.timer = function (){
 
+            $scope.gameStarted = true;
             //document.getElementById("finish").disabled = "false";
             console.log("hereTimer");
             //show "game over" after 15 minutes
