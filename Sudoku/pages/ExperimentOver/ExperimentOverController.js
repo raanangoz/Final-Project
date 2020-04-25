@@ -12,5 +12,5 @@ angular.module("sudokuApp")
         var letter = letters[Math.floor(Math.random()*letters.length)];
         $scope.code = letter+$rootScope.userID;
 
-        
+
     })
