@@ -134,7 +134,8 @@ Sudoku.post('/submitQuestinary', function (req, res) {
     var gender = req.body.gender;
     var hand = req.body.hand;
     var education = req.body.education;
-    var postQuery = "insert into users values ('"+workerID+"','"+ age+"','"+ gender+"','"+hand+"','"+education+"')";
+    var compilation = "0";
+    var postQuery = "insert into users values ('"+workerID+"','"+ age+"','"+ gender+"','"+hand+"','"+education+"','"+compilation+"')";
     DButilsAzure.execQuery(postQuery)
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {
@@ -179,6 +180,49 @@ Sudoku.post('/submitFinishQuestion', function (req, res) {
     console.log("userID====== "+userID);
 
     var postQuery = "update SudokuToUser set  CorrectnessEstimate= '"+correctness+"', DifficultyEstimate= '"+difficulty+"' where UserID= '"+userID+"' and GameID= '"+gameID+"'";
+
+    DButilsAzure.execQuery(postQuery)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
+
+Sudoku.post('/updateCompletionCode', function (req, res) {
+
+    var code = req.body.compCode;
+    var userID = req.body.userID;
+
+    var postQuery = "update users set  completionCode= '"+code+"' where UserID= '"+userID+"'";
+
+    DButilsAzure.execQuery(postQuery)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
+
+Sudoku.post('/submitFamiliarityAndDifficultyEstimateBefore', function (req, res) {
+
+    var difBefore = req.body.difBefore;
+    var familiarity = req.body.familiarity;
+    var gameID = req.body.gameID;
+    var userID = req.body.userID;
+
+    console.log("gameID====== "+gameID);
+    console.log("userID====== "+userID);
+
+    var postQuery = "update SudokuToUser set  DifficultyEstBefore= '"+difBefore+"', familiarityAnswer= '"+familiarity+"'  where UserID= '"+userID+"' and GameID= '"+gameID+"'";
 
     DButilsAzure.execQuery(postQuery)
     // var query = "select orderPOI from userData where userName='"+username+"'";
