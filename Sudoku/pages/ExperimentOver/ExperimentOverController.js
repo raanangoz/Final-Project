@@ -3,14 +3,39 @@ angular.module("sudokuApp")
 
         //lottery a letter for adding the code
 
-        var  letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
-                ,"r","s","t","u","v","w","x","y","z"];
+            $scope.code= 0;
+            var  letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
+                    ,"r","s","t","u","v","w","x","y","z"];
 
-        console.log("length= "+letters.length );
-        var lotter =  Math.floor(Math.random()*letters.length);
-        console.log("lotter= "+lotter);
-        var letter = letters[Math.floor(Math.random()*letters.length)];
-        $scope.code = letter+$rootScope.userID;
+            var letter = letters[Math.floor(Math.random()*letters.length)];
+
+            $scope.init = function () {
+
+                    $scope.code = letter+$rootScope.userID;
+                    console.log("compCode= "+$scope.code);
+
+                    //documentation
+                    $http({
+
+                            method: 'POST',
+                            url: 'http://localhost:3000/Sudoku/updateCompletionCode ',
+                            data: {
+                                    "userID": ""+ $rootScope.userID,
+                                    "compCode": ""+ $scope.code
+
+                            }
+                    })
+                        .then(function (response) {
+
+
+                        }, function (response) {
+                                // $scope.records = response.statusText;
+                        });
+
+
+            }
+
+
 
 
     })

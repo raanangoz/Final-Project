@@ -4,6 +4,8 @@ angular.module("sudokuApp")
         var familiarityAgainNext;
         var familiarityAgainPrev;
 
+        $rootScope.familiarity = 0;
+
         $scope.init = function () {
 
             familiarityAgainNext = false;
@@ -112,8 +114,30 @@ angular.module("sudokuApp")
 
 
         $scope.$watch('familiar', function(value) {
-            console.log(value);
+
+            console.log("familiarity= "+value);
             document.getElementById("next").style.visibility = "visible";
+
+            $rootScope.familiarity = value;
+
+            //documentation
+            // $http({
+            //
+            //     method: 'POST',
+            //     url: 'http://localhost:3000/Sudoku/submitFamiliarityQuestion',
+            //     data: {
+            //         "gameID": ""+$scope.GameID,
+            //         "userID": ""+ $scope.userID,
+            //         "familiarity":  ""+value
+            //     }
+            // })
+            //     .then(function (response) {
+            //
+            //
+            //     }, function (response) {
+            //         // $scope.records = response.statusText;
+            //     });
+
         });
 
 

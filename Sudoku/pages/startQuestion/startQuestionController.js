@@ -87,14 +87,6 @@ angular.module("sudokuApp")
                             })
                                 .then(function (response) {
 
-                                    //TODO change to *4 after the KS page
-                                    $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                                    $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
-
-                                    console.log("number= " + $rootScope.gameInstance);
-                                    //pass to Start Game
-                                    $location.url('/Tutorial');
-
 
                                     $http({
                                         method: "get",
@@ -105,6 +97,14 @@ angular.module("sudokuApp")
                                         userID = response.data[0].maxid;
                                         console.log(userID + "kilili");
                                         $rootScope.userID = userID;
+
+                                        //TODO change to *4 after the KS page
+                                        $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                        $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
+
+                                        console.log("number= " + $rootScope.gameInstance);
+                                        //pass to Start Game
+                                        $location.url('/Tutorial');
                                     })
 
 

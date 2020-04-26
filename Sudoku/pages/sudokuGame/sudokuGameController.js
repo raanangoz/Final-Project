@@ -500,10 +500,33 @@ angular.module("sudokuApp")
 
 
 
-        $scope.submitDifficulty = function () {
+        $scope.submitDifficultyAndFamiliarity = function () {
 
-            //TODO decomentation the user's answer
             document.getElementById("startGame").disabled = false;
+            var answer = document.getElementById("myRange").value;
+            console.log("userIDNew= "+$rootScope.userID);
+            console.log("gameIDNew= "+$rootScope.GameID);
+
+            //documentation
+            $http({
+
+                method: 'POST',
+                url: 'http://localhost:3000/Sudoku/submitFamiliarityAndDifficultyEstimateBefore',
+                data: {
+                    "gameID": "" + $rootScope.GameID,
+                    "userID": ""+ $rootScope.userID,
+                    "difBefore": ""+ answer,
+                    "familiarity": ""+$rootScope.familiarity
+
+                }
+            })
+                .then(function (response) {
+
+
+                }, function (response) {
+                    // $scope.records = response.statusText;
+                });
+
 
 
 
