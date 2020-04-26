@@ -68,7 +68,7 @@
     </div>
 
     <div>
-            <button id= "finish" class="Finish Game" ng-click=" finishGameYesOrNo()" >Finish Game</button>
+            <button id= "finish" class="Finish Game" ng-if="gameStarted" ng-click=" finishGameYesOrNo()" >Finish Game</button>
     </div>
 
     <br>
@@ -110,7 +110,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="submitDifficulty()">Submit</button>
+                    <button type="button" class="btn btn-primary" ng-click="submitDifficultyAndFamiliarity()">Submit</button>
                     <button type="button" id="startGame" class="btn btn-default" data-dismiss="modal" ng-click="timer()" ng-disabled="!rangePress">Start Game</button>
 
                 </div>
