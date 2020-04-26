@@ -192,6 +192,25 @@ Sudoku.post('/submitFinishQuestion', function (req, res) {
         })
 })
 
+Sudoku.post('/finishGame', function (req, res) {
+
+    var gameID = req.body.gameID;
+    var solutionBoard = req.body.solutionBoard;
+
+    var sql = "update SudokuToUser set  Solution = '"+solutionBoard+"' where GameID= '"+gameID+"'";
+
+    DButilsAzure.execQuery(sql)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
+
 Sudoku.get('/getSudokuNumQuestion/:id', function (req, res) {
 
     var questionID = req.params.id;

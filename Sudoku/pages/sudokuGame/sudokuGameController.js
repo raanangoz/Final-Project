@@ -4,6 +4,7 @@ angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window) {
 
         $scope.rangeValue = "---";
+        $scope.gameStarted = false;
 
         //object for the board
         var box = {value:"0", isIcon:"true"};
@@ -13,7 +14,6 @@ angular.module("sudokuApp")
         var PuzzleID;
         var interval;
         var GameID;
-
         $scope.initialBoard = [];
 
 
@@ -48,109 +48,118 @@ angular.module("sudokuApp")
 
         $scope.move = function(field, sudokuBoard, row, col, val) {
 
-                    console.log("row: " + row + ", col : " + col + ", val: " + val);
-                    let stringsecond = second;
-                    if (second < 10)
-                        stringsecond = "0" + second;
-                    let stringminute = minute;
-                    if (minute < 10)
-                        stringminute = "0" + minute;
-                    $scope.sudokuBoard[row][col] = '';
-                    console.log("gameID===="+GameID);
 
-                    var value;
-                    var legalNum = false;
-                    //move of delete
-                    if(val == ""){
-                        console.log("hereDelete123");
-                        value = "";
+            console.log("row: " + row + ", col : " + col + ", val: " + val);
+            let stringsecond = second;
+            if (second < 10)
+                stringsecond = "0" + second;
+            let stringminute = minute;
+            if (minute < 10)
+                stringminute = "0" + minute;
+            $scope.sudokuBoard[row][col] = '';
+            console.log("gameID===="+GameID);
 
+            var value;
+            var legalNum = false;
+            //move of delete
+            if(val == ""){
+                console.log("hereDelete123");
+                value = "";
+
+            }
+
+            //move of insert
+            else{
+
+                value = Number(val);
+                console.log("value= "+value);
+                if (value >= 1 && value <= 9) {
+                    $scope.sudokuBoard[row][col] = value;
+                    legalNum = true;
+                }
+            }
+
+            if( value == "" || legalNum){
+                // board =[row][col]=val;
+                sessionStorage.solutionBoard[row][col]=value;
+                if(value == ""){
+                    value = 0;
+                    sessionStorage.solutionBoard[row][col]=value;
+                    value = "";
+                }
+
+
+                $http({
+
+                    method: 'POST',
+                    url: 'http://localhost:3000/Sudoku/move',
+                    data: {
+                        "GameID": "" + GameID,
+                        "stepValueAndCords": "" + row + "" + "" + col + "" + "" + value + "",
+                        "time": "" + stringminute + ":" + stringsecond + ""
                     }
+                })
+                    .then(function (response) {
 
-                    //move of insert
-                    else{
+                        //add to the board 2d array
 
-                        value = Number(val);
-                        console.log("value= "+value);
-                        if (value >= 1 && value <= 9) {
-                            $scope.sudokuBoard[row][col] = value;
-                            legalNum = true;
-                        }
-                    }
-
-                    if( value == "" || legalNum){
-
-                        $http({
-
-                            method: 'POST',
-                            url: 'http://localhost:3000/Sudoku/move',
-                            data: {
-                                "GameID": "" + GameID,
-                                "stepValueAndCords": "" + row + "" + "" + col + "" + "" + value + "",
-                                "time": "" + stringminute + ":" + stringsecond + ""
-                            }
-                        })
-                            .then(function (response) {
-
-                                //add to the board 2d array
-
-                            }, function (response) {
-                                // $scope.records = response.statusText;
-                            });
+                    }, function (response) {
+                        // $scope.records = response.statusText;
+                    });
 
 
-                    }
+            }
 
 
 
-                    // if(val == 1){
-                    //     $scope.sudokuBoard[row][col]= 1;
-                    // }
+            // if(val == 1){
+            //     $scope.sudokuBoard[row][col]= 1;
+            // }
 
-                    //
-                    //
-                    //
-                    //     $scope.conflictRow = null;
-                    //     $scope.conflictCol = null;
-                    //
-                    //     if( val != '') {
-                    //
-                    //         var data = {
-                    //             sudokuBoard : sudokuBoard,
-                    //             moveRow : row,
-                    //             moveColumn : col,
-                    //             moveValue : val
-                    //
-                    //         }
-                    //
-                    //         $http.put('https://afternoon-mountain-94217.herokuapp.com/sudoku/', JSON.stringify(data) )
-                    //             .then(
-                    //
-                    //                 function(response){
-                    //                     console.log(response);
-                    //                     $scope.message = response.statusText;
-                    //                     if(response.statusText == "OK" && response.data.gameOver == true){
-                    //                         $scope.message = "You won!"
-                    //                     }
-                    //                     //setting values to null if the response is OK
-                    //                     //$scope.conflictRow = null;
-                    //                     //$scope.conflictCol = null;
-                    //                 },
-                    //                 function(response){
-                    //                     //setting values to null if the response is bad request
-                    //
-                    //                     $scope.message = response.statusText;
-                    //                     // invalid response
-                    //                     if(response.statusText == "Conflict"){
-                    //                         //$scope.conflict = true;
-                    //                         $scope.conflictRow = response.data.conflictRow;
-                    //                         $scope.conflictCol = response.data.conflictColumn;
-                    //                     }
-                    //                 }
-                    //             );
-                    //     }
+            //
+            //
+            //
+            //     $scope.conflictRow = null;
+            //     $scope.conflictCol = null;
+            //
+            //     if( val != '') {
+            //
+            //         var data = {
+            //             sudokuBoard : sudokuBoard,
+            //             moveRow : row,
+            //             moveColumn : col,
+            //             moveValue : val
+            //
+            //         }
+            //
+            //         $http.put('https://afternoon-mountain-94217.herokuapp.com/sudoku/', JSON.stringify(data) )
+            //             .then(
+            //
+            //                 function(response){
+            //                     console.log(response);
+            //                     $scope.message = response.statusText;
+            //                     if(response.statusText == "OK" && response.data.gameOver == true){
+            //                         $scope.message = "You won!"
+            //                     }
+            //                     //setting values to null if the response is OK
+            //                     //$scope.conflictRow = null;
+            //                     //$scope.conflictCol = null;
+            //                 },
+            //                 function(response){
+            //                     //setting values to null if the response is bad request
+            //
+            //                     $scope.message = response.statusText;
+            //                     // invalid response
+            //                     if(response.statusText == "Conflict"){
+            //                         //$scope.conflict = true;
+            //                         $scope.conflictRow = response.data.conflictRow;
+            //                         $scope.conflictCol = response.data.conflictColumn;
+            //                     }
+            //                 }
+            //             );
+            //     }
 
-                    // strip out the non-numbers
+            // strip out the non-numbers
 
 
         };
@@ -162,6 +171,7 @@ angular.module("sudokuApp")
         //stop after 15 minutes
         $scope.timer = function (){
 
+            $scope.gameStarted = true;
             //document.getElementById("finish").disabled = "false";
             console.log("hereTimer");
             //show "game over" after 15 minutes
@@ -212,37 +222,36 @@ angular.module("sudokuApp")
                 }
 
             }, 1000)
-
-
-
         };
 
 
         //init board and game
-        $scope.init = function(){
+        $scope.init = function() {
 
             //document.getElementById("finish").disabled = "true";
 
             console.log("hereInitttttttttttttttttttttttttt");
             //requests
-            $http ({
+            $http({
 
                 method: 'GET',
-                url:'http://localhost:3000/Sudoku/getBoard/medium'})//TODO we send dif 1.
-                .then(function(response) {
+                url: 'http://localhost:3000/Sudoku/getBoard/medium'
+            })//TODO we send dif 1.
+                .then(function (response) {
                     PuzzleID = response.data[0].PuzzleID;
                     const boardString = response.data[0].board;
                     // console.log(response.data)
                     // console.log("boardString = "+boardString);
                     const numbersArray = boardString.split(',');
                     let board = [], rowSliced, rowSliced2;
-                    for(let i = 0; i < 81; i = i + 9) {
+                    for (let i = 0; i < 81; i = i + 9) {
                         rowSliced = numbersArray.slice(i, i + 9);
                         rowSliced2 = numbersArray.slice(i, i + 9);
 
                         // rowSliced2 = rowSliced2.map(function(strVal){return {value: strVal, isIcon: false} });
                         board.push(rowSliced);
                         $scope.initialBoard.push(rowSliced2);
+
                     }
 
                     var objectArray = [];
@@ -254,69 +263,70 @@ angular.module("sudokuApp")
                     //     objectArray[j][j]= new box(board[j][j], false);
                     // }
                     $scope.sudokuBoard = board;
+                    sessionStorage.solutionBoard = board;
 
                     //numbers type
-                    if($rootScope.gameInstance===0){
+                    if ($rootScope.gameInstance === 0) {
 
                         /** replace the zeros with white spaces */
-                        for(var i= 0; i< $scope.sudokuBoard.length; i++){
+                        for (var i = 0; i < $scope.sudokuBoard.length; i++) {
 
                             angular.forEach($scope.sudokuBoard[i], function (val, key) {
-                                if( val == 0){
+                                if (val == 0) {
                                     $scope.sudokuBoard[i][key] = '';
                                 }
                             });
                         }
 
-                   //colors type
-                    }else{
+                        //colors type
+                    } else {
 
                         $scope.colors = !$scope.colors;
                         $scope.typeCase = !$scope.typeCase;
 
                         //update gameType
-                        if($scope.colors)
+                        if ($scope.colors)
                             gameTypeToSQL = 'color';
                         else
                             gameTypeToSQL = 'number';
 
                         /** replace the zeros with white spaces */
-                        for(var i= 0; i< $scope.sudokuBoard.length; i++){
+                        for (var i = 0; i < $scope.sudokuBoard.length; i++) {
 
                             angular.forEach($scope.sudokuBoard[i], function (val, key) {
-                                if( val == 0){
+                                if (val == 0) {
                                     $scope.sudokuBoard[i][key] = '';
                                 }
 
-                                if(val==1){
+                                if (val == 1) {
                                     // console.log("here111111");
                                     // $scope.sudokuBoard[$scope.row][$scope.index] =1;
                                     // $scope.sudokuBoard[i][key] = '';
                                     $scope.sudokuBoard[i][key] = 1;
                                 }
-                                if(val==2){
+                                if (val == 2) {
                                     // console.log("here2222222");
                                     $scope.sudokuBoard[i][key] = 2;
                                 }
-                                if(val==3){
+                                if (val == 3) {
                                     $scope.sudokuBoard[i][key] = 3;
                                 }
-                                if(val==4){
+                                if (val == 4) {
                                     $scope.sudokuBoard[i][key] = 4;
                                 }
-                                if(val==5){
+                                if (val == 5) {
                                     $scope.sudokuBoard[i][key] = 5;
                                 }
-                                if(val==6){
+                                if (val == 6) {
                                     $scope.sudokuBoard[i][key] = 6;
                                 }
-                                if(val==7){
+                                if (val == 7) {
                                     $scope.sudokuBoard[i][key] = 7;
                                 }
-                                if(val==8){
+                                if (val == 8) {
                                     $scope.sudokuBoard[i][key] = 8;
                                 }
-                                if(val==9){
+                                if (val == 9) {
                                     $scope.sudokuBoard[i][key] = 9;
                                 }
 
@@ -331,23 +341,24 @@ angular.module("sudokuApp")
                     $scope.loading = false;
 
                     //post request for create new game in SudokuToUser
-                    $http ({
+                    $http({
 
 
                         method: 'POST',
-                        url:'http://localhost:3000/Sudoku/createNewGame',
+                        url: 'http://localhost:3000/Sudoku/createNewGame',
                         data: {
-                            "userID":""+$rootScope.userID,
-                            "puzzleID":'2',
-                            "type":""+gameTypeToSQL
-                        }})
-                        .then(function(response) {
+                            "userID": "" + $rootScope.userID,
+                            "puzzleID": '2',
+                            "type": "" + gameTypeToSQL
+                        }
+                    })
+                        .then(function (response) {
 
-                            $http ({
+                            $http({
                                 method: 'GET',
-                                url:'http://localhost:3000/Sudoku/getGameID'
+                                url: 'http://localhost:3000/Sudoku/getGameID'
                             })
-                                .then(function(response) {
+                                .then(function (response) {
                                     // GameID = response.data.length;
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
@@ -355,28 +366,45 @@ angular.module("sudokuApp")
                                     console.dir(GameID);
 
 
-                                }, function(response) {
+                                }, function (response) {
                                     // $scope.records = response.statusText;
                                 });
-                        }, function(response) {
+                        }, function (response) {
                             // $scope.records = response.statusText;
                         });
 
-                }, function(response) {
+                }, function (response) {
                     // $scope.records = response.statusText;
                 });
 
 
-
-            setTimeout(function() {
+            setTimeout(function () {
                 console.log("hereTIMEOUT");
                 $('#myModal').modal();
             }, 2000);
             // setTimeout(modalQuestion, 1000);
 
-
-
+            // sessionStorage.setItem("newGame","false");
         }
+        /* todo raanan - save board , time ... when refresh
+
+        else{
+
+            // console.log(response.data)
+            // console.log("boardString = "+boardString);
+            numbersArray = (sessionStorage.solutionBoard).split(',');
+            for(let i = 0; i < 81; i = i + 9) {
+                let board = [], rowSliced, rowSliced2;
+                rowSliced = numbersArray.slice(i, i + 9);
+                rowSliced2 = numbersArray.slice(i, i + 9);
+
+                // rowSliced2 = rowSliced2.map(function(strVal){return {value: strVal, isIcon: false} });
+                board.push(rowSliced);
+                $scope.initialBoard.push(rowSliced2);
+
+            }
+        }*/
+
 
 
 
@@ -416,7 +444,6 @@ angular.module("sudokuApp")
             }
             var intminute = Number(stringminute);
             console.log("intMinute= "+intminute);
-
             if(intsecond === 00){
                 intsecond = 60;
                 intminute = intminute -1;
@@ -428,26 +455,28 @@ angular.module("sudokuApp")
             var totalTime = totalMinutes + " : "+ totalSeconds;
             console.log("totalTime= "+totalTime);
 
-        //     $http ({
-        //
-        //         method: 'POST',
-        //         url:'http://localhost:3000/Sudoku/createNewGame',
-        //         data: {
-        //             "userID":""+$rootScope.userID,
-        //             "puzzleID":'2',
-        //             "type":""+gameTypeToSQL
-        //         }})
-        //         .then(function(response) {
-        //
-        //         }, function(response) {
-        //     // $scope.records = response.statusText;
-        // });
+            //     $http ({
+            //
+            //         method: 'POST',
+            //         url:'http://localhost:3000/Sudoku/createNewGame',
+            //         data: {
+            //             "userID":""+$rootScope.userID,
+            //             "puzzleID":'2',
+            //             "type":""+gameTypeToSQL
+            //         }})
+            //         .then(function(response) {
+            //
+            //         }, function(response) {
+            //     // $scope.records = response.statusText;
+            // });
 
 
 
-                    //pass to the finish questionarrie
+            //pass to the finish questionarrie
             $location.url('/finishQuestion');
 
+            console.log("raanan backup");
+            backupSolutionToDB();
 
         }
 
@@ -512,6 +541,26 @@ angular.module("sudokuApp")
             $scope.rangeValue = document.getElementById("myRange").value;
 
 
+
+        }
+        function backupSolutionToDB(){
+
+            console.log("backup");
+            $http({
+
+                method: 'POST',
+                url: 'http://localhost:3000/Sudoku/finishGame',
+                data: {
+                    "gameID": "" + GameID,
+                    "solutionBoard": sessionStorage.solutionBoard
+
+                }
+            })
+                .then(function (response) {
+
+                }, function (response) {
+
+                });
 
         }
 

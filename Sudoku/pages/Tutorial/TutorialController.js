@@ -4,6 +4,10 @@ angular.module("sudokuApp")
         var familiarityAgainNext;
         var familiarityAgainPrev;
 
+
+        sessionStorage.setItem("newGame","true");
+
+
         $scope.init = function () {
 
             familiarityAgainNext = false;
