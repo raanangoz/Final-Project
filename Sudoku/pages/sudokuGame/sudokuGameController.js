@@ -61,8 +61,9 @@ angular.module("sudokuApp")
 
             var value;
             var legalNum = false;
+
             //move of delete
-            if(val == ""){
+            if(val == "" ){
                 console.log("hereDelete123");
                 value = "";
 
@@ -453,13 +454,48 @@ angular.module("sudokuApp")
 
         }
 
+        //relevant for colors type only
         $scope.onBoxClick = function(field, colIndex, rowIndex){
 
-
             if ($scope.initialBoard[rowIndex][colIndex] === '0' && $scope.typeCase) {
+
+                if($scope.sudokuBoard[rowIndex][colIndex] !== ''){
+
+                    //move of delete in colors type
+                    var value="";
+                    let stringsecond = second;
+                    if (second < 10)
+                        stringsecond = "0" + second;
+                    let stringminute = minute;
+                    if (minute < 10)
+                        stringminute = "0" + minute;
+
+                    $http({
+
+                        method: 'POST',
+                        url: 'http://localhost:3000/Sudoku/move',
+                        data: {
+                            "GameID": "" + $rootScope.GameID,
+                            "stepValueAndCords": "" + rowIndex + "" + "" + colIndex + "" + "" + value + "",
+                            "time": "" + stringminute + ":" + stringsecond + ""
+                        }
+                    })
+                        .then(function (response) {
+
+                            //add to the board 2d array
+
+                        }, function (response) {
+                            // $scope.records = response.statusText;
+                        });
+
+
+                }
+
+                //press the cell (not for delete)
                 $scope.sudokuBoard[rowIndex][colIndex] = '';
 
             }
+
         }
 
         $scope.submitDifficultyAndFamiliarity = function () {
