@@ -49,109 +49,123 @@ angular.module("sudokuApp")
 
         $scope.move = function(field, sudokuBoard, row, col, val) {
 
-                    console.log("row: " + row + ", col : " + col + ", val: " + val);
-                    let stringsecond = second;
-                    if (second < 10)
-                        stringsecond = "0" + second;
-                    let stringminute = minute;
-                    if (minute < 10)
-                        stringminute = "0" + minute;
-                    $scope.sudokuBoard[row][col] = '';
-                    console.log("gameID===="+GameID);
+            console.log("row: " + row + ", col : " + col + ", val: " + val);
+            let stringsecond = second;
+            if (second < 10)
+                stringsecond = "0" + second;
+            let stringminute = minute;
+            if (minute < 10)
+                stringminute = "0" + minute;
+            $scope.sudokuBoard[row][col] = '';
+            console.log("gameID===="+GameID);
 
-                    var value;
-                    var legalNum = false;
-                    //move of delete
-                    if(val == ""){
-                        console.log("hereDelete123");
-                        value = "";
+            var value;
+            var legalNum = false;
+            //move of delete
+            if(val == ""){
+                console.log("hereDelete123");
+                value = "";
 
+            }
+
+            //move of insert
+            else{
+
+                value = Number(val);
+                console.log("value= "+value);
+                if (value >= 1 && value <= 9) {
+                    $scope.sudokuBoard[row][col] = value;
+                    legalNum = true;
+                }
+            }
+
+            if( value == "" || legalNum){
+                console.log("trying to update board");
+                // board =[row][col]=val;
+                var storedSolutionBoard = JSON.parse(sessionStorage.getItem("solutionBoard"));
+                storedSolutionBoard[row][col]=""+value;
+                console.log(""+storedSolutionBoard);
+
+                if(value == ""){
+
+                    storedSolutionBoard[row][col]=""+0;
+
+                }
+                sessionStorage.setItem("solutionBoard", JSON.stringify(storedSolutionBoard));
+
+
+
+                $http({
+
+                    method: 'POST',
+                    url: 'http://localhost:3000/Sudoku/move',
+                    data: {
+                        "GameID": "" + GameID,
+                        "stepValueAndCords": "" + row + "" + "" + col + "" + "" + value + "",
+                        "time": "" + stringminute + ":" + stringsecond + ""
                     }
+                })
+                    .then(function (response) {
 
-                    //move of insert
-                    else{
+                        //add to the board 2d array
 
-                        value = Number(val);
-                        console.log("value= "+value);
-                        if (value >= 1 && value <= 9) {
-                            $scope.sudokuBoard[row][col] = value;
-                            legalNum = true;
-                        }
-                    }
-
-                    if( value == "" || legalNum){
-
-                        $http({
-
-                            method: 'POST',
-                            url: 'http://localhost:3000/Sudoku/move',
-                            data: {
-                                "GameID": "" + GameID,
-                                "stepValueAndCords": "" + row + "" + "" + col + "" + "" + value + "",
-                                "time": "" + stringminute + ":" + stringsecond + ""
-                            }
-                        })
-                            .then(function (response) {
-
-                                //add to the board 2d array
-
-                            }, function (response) {
-                                // $scope.records = response.statusText;
-                            });
+                    }, function (response) {
+                        // $scope.records = response.statusText;
+                    });
 
 
-                    }
+            }
 
 
 
-                    // if(val == 1){
-                    //     $scope.sudokuBoard[row][col]= 1;
-                    // }
+            // if(val == 1){
+            //     $scope.sudokuBoard[row][col]= 1;
+            // }
 
-                    //
-                    //
-                    //
-                    //     $scope.conflictRow = null;
-                    //     $scope.conflictCol = null;
-                    //
-                    //     if( val != '') {
-                    //
-                    //         var data = {
-                    //             sudokuBoard : sudokuBoard,
-                    //             moveRow : row,
-                    //             moveColumn : col,
-                    //             moveValue : val
-                    //
-                    //         }
-                    //
-                    //         $http.put('https://afternoon-mountain-94217.herokuapp.com/sudoku/', JSON.stringify(data) )
-                    //             .then(
-                    //
-                    //                 function(response){
-                    //                     console.log(response);
-                    //                     $scope.message = response.statusText;
-                    //                     if(response.statusText == "OK" && response.data.gameOver == true){
-                    //                         $scope.message = "You won!"
-                    //                     }
-                    //                     //setting values to null if the response is OK
-                    //                     //$scope.conflictRow = null;
-                    //                     //$scope.conflictCol = null;
-                    //                 },
-                    //                 function(response){
-                    //                     //setting values to null if the response is bad request
-                    //
-                    //                     $scope.message = response.statusText;
-                    //                     // invalid response
-                    //                     if(response.statusText == "Conflict"){
-                    //                         //$scope.conflict = true;
-                    //                         $scope.conflictRow = response.data.conflictRow;
-                    //                         $scope.conflictCol = response.data.conflictColumn;
-                    //                     }
-                    //                 }
-                    //             );
-                    //     }
+            //
+            //
+            //
+            //     $scope.conflictRow = null;
+            //     $scope.conflictCol = null;
+            //
+            //     if( val != '') {
+            //
+            //         var data = {
+            //             sudokuBoard : sudokuBoard,
+            //             moveRow : row,
+            //             moveColumn : col,
+            //             moveValue : val
+            //
+            //         }
+            //
+            //         $http.put('https://afternoon-mountain-94217.herokuapp.com/sudoku/', JSON.stringify(data) )
+            //             .then(
+            //
+            //                 function(response){
+            //                     console.log(response);
+            //                     $scope.message = response.statusText;
+            //                     if(response.statusText == "OK" && response.data.gameOver == true){
+            //                         $scope.message = "You won!"
+            //                     }
+            //                     //setting values to null if the response is OK
+            //                     //$scope.conflictRow = null;
+            //                     //$scope.conflictCol = null;
+            //                 },
+            //                 function(response){
+            //                     //setting values to null if the response is bad request
+            //
+            //                     $scope.message = response.statusText;
+            //                     // invalid response
+            //                     if(response.statusText == "Conflict"){
+            //                         //$scope.conflict = true;
+            //                         $scope.conflictRow = response.data.conflictRow;
+            //                         $scope.conflictCol = response.data.conflictColumn;
+            //                     }
+            //                 }
+            //             );
+            //     }
 
-                    // strip out the non-numbers
+            // strip out the non-numbers
 
 
         };
@@ -256,6 +270,7 @@ angular.module("sudokuApp")
                     //     objectArray[j][j]= new box(board[j][j], false);
                     // }
                     $scope.sudokuBoard = board;
+                    sessionStorage.setItem("solutionBoard", JSON.stringify(board));
 
                     //numbers type
                     if($rootScope.gameInstance===0){
@@ -270,7 +285,7 @@ angular.module("sudokuApp")
                             });
                         }
 
-                   //colors type
+                        //colors type
                     }else{
 
                         $scope.colors = !$scope.colors;
@@ -397,59 +412,17 @@ angular.module("sudokuApp")
 
         }
 
-
+        //documentation solution and totalTime
         $scope.finishGame = function(){
 
             clearInterval(interval);
 
-            //documentation solution and totalTime
-            var stringsecond = second;
-            if (second < 10){
-                stringsecond = "0" + second;
+            let totalTime = calculateTotalTime();
+            console.log("raanan"+totalTime);
+            solutionAndTimeToDB(totalTime);
 
-            }
-            var intsecond = Number(stringsecond);
-            console.log("intSecond= "+intsecond);
-
-            var stringminute = minute;
-            if (minute < 10){
-                stringminute = "0" + minute;
-
-            }
-            var intminute = Number(stringminute);
-            console.log("intMinute= "+intminute);
-
-            if(intsecond === 00){
-                intsecond = 60;
-                intminute = intminute -1;
-            }
-
-            var totalSeconds = 60- intsecond;
-            var totalMinutes = 14- intminute;
-
-            var totalTime = totalMinutes + " : "+ totalSeconds;
-            console.log("totalTime= "+totalTime);
-
-        //     $http ({
-        //
-        //         method: 'POST',
-        //         url:'http://localhost:3000/Sudoku/createNewGame',
-        //         data: {
-        //             "userID":""+$rootScope.userID,
-        //             "puzzleID":'2',
-        //             "type":""+gameTypeToSQL
-        //         }})
-        //         .then(function(response) {
-        //
-        //         }, function(response) {
-        //     // $scope.records = response.statusText;
-        // });
-
-
-
-                    //pass to the finish questionarrie
+            //pass to the finish questionarrie
             $location.url('/finishQuestion');
-
 
         }
 
@@ -487,18 +460,7 @@ angular.module("sudokuApp")
                 $scope.sudokuBoard[rowIndex][colIndex] = '';
 
             }
-
-
-
-
-
-
-
-
-
         }
-
-
 
         $scope.submitDifficultyAndFamiliarity = function () {
 
@@ -538,6 +500,59 @@ angular.module("sudokuApp")
 
 
 
+        }
+
+        function solutionAndTimeToDB(time){
+
+            console.log("time to sql is " + time);
+            console.log("backup");
+            console.log("this is the board to sql"+sessionStorage.getItem("solutionBoard"));
+            $http({
+
+                method: 'POST',
+                url: 'http://localhost:3000/Sudoku/finishGame',
+                data: {
+                    "gameID": "" + GameID,
+                    "solutionBoard":JSON.parse(sessionStorage.getItem("solutionBoard")),
+                    "totalTime":""+time
+
+                }
+            })
+                .then(function (response) {
+
+                }, function (response) {
+
+                });
+
+        }
+        function calculateTotalTime(){
+            var stringsecond = second;
+            if (second < 10){
+                stringsecond = "0" + second;
+
+            }
+            var intsecond = Number(stringsecond);
+            console.log("intSecond= "+intsecond);
+
+            var stringminute = minute;
+            if (minute < 10){
+                stringminute = "0" + minute;
+
+            }
+            var intminute = Number(stringminute);
+            console.log("intMinute= "+intminute);
+
+            if(intsecond === 00){
+                intsecond = 60;
+                intminute = intminute -1;
+            }
+
+            var totalSeconds = 60- intsecond;
+            var totalMinutes = 14- intminute;
+
+            var totalTime = totalMinutes + ":"+ totalSeconds;
+            console.log("totalTime= "+totalTime);
+            return totalTime;
         }
 
 

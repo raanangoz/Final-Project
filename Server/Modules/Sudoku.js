@@ -193,6 +193,27 @@ Sudoku.post('/submitFinishQuestion', function (req, res) {
         })
 })
 
+
+Sudoku.post('/finishGame', function (req, res) {
+
+    var totalTime = req.body.totalTime;
+    var gameID = req.body.gameID;
+    var solutionBoard = req.body.solutionBoard + "";
+
+    var postQuery = "update SudokuToUser set Solution =' " +solutionBoard + "' , totalTime='" + totalTime + "' where GameID = "+gameID;
+    console.log("query is "+postQuery);
+    DButilsAzure.execQuery(postQuery)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
+
 Sudoku.post('/updateCompletionCode', function (req, res) {
 
     var code = req.body.compCode;
@@ -225,6 +246,7 @@ Sudoku.post('/submitFamiliarityAndDifficultyEstimateBefore', function (req, res)
     var postQuery = "update SudokuToUser set  DifficultyEstBefore= '"+difBefore+"', familiarityAnswer= '"+familiarity+"'  where UserID= '"+userID+"' and GameID= '"+gameID+"'";
 
     DButilsAzure.execQuery(postQuery)
+
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {
             res.send(result)
