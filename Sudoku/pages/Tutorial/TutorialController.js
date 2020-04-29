@@ -113,6 +113,8 @@ angular.module("sudokuApp")
         }
 
 
+
+
         $scope.$watch('familiar', function(value) {
 
             console.log("familiarity= "+value);

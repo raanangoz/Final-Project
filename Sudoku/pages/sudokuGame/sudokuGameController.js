@@ -1,9 +1,19 @@
 
 
 angular.module("sudokuApp")
-    .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window) {
+    .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
 
+        //range in the modal
         $scope.rangeValue = "---";
+
+        // document.getElementById("submitRange").disabled = "true";
+        // var rangeModal = document.getElementById("myRange");
+        // var defaultVal = rangeModal.defaultValue;
+        // var currentVal = rangeModal.value;
+        // rangeModal.defaultValue = currentVal;
+        // console.log("defaultRange= "+rangeModal.defaultValue);
+
+        //for saving the board in case of refresh
         $scope.gameStarted = false;
 
         //object for the board
@@ -181,22 +191,16 @@ angular.module("sudokuApp")
             $scope.gameStarted = true;
             //document.getElementById("finish").disabled = "false";
             console.log("hereTimer");
-            //show "game over" after 15 minutes
-            setTimeout(function () {
-                alert("Game Over");
-                //$location.url('/finishQuestion');
-
-            },900000);
 
             // let second = 1000;
             // let minute = 1000 * 60;
             let countDown = new Date();
 
             //define the time + 15 minutes
-            countDown.setMinutes ( countDown.getMinutes() + 15 );
+            countDown.setMinutes ( countDown.getMinutes() + 15 );  //15
 
             //init an interval of countdown
-            interval= setInterval(function() {
+            interval= $interval(function() {
 
                 let now = new Date().getTime();
                 let distance = countDown - now;
@@ -223,12 +227,23 @@ angular.module("sudokuApp")
 
                 //game over
                 if (distance < 0) {
-                    clearInterval(interval);
+                    $interval.cancel(interval);
                     document.getElementById("status").innerHTML = "Game Over";
+                    $window.alert("Game Over");
                     $location.url('/finishQuestion');
                 }
 
             }, 1000)
+
+            //show "game over" after 15 minutes
+            // $timeout(function() {
+            //     document.getElementById("status").innerHTML = "Game Over";
+            //     alert("Game Over");
+            //     clearInterval(interval);
+            //     console.log("hereTimeOut101010");
+            //     $location.url('/finishQuestion');
+            //
+            // },8000);   //900000
 
 
 
@@ -416,7 +431,8 @@ angular.module("sudokuApp")
         //documentation solution and totalTime
         $scope.finishGame = function(){
 
-            clearInterval(interval);
+            $interval.cancel(interval);
+            // clearInterval(interval);
 
             let totalTime = calculateTotalTime();
             console.log("raanan"+totalTime);
@@ -590,6 +606,18 @@ angular.module("sudokuApp")
             console.log("totalTime= "+totalTime);
             return totalTime;
         }
+
+        $scope.$watch('range', function(value) {
+            console.log("rangeValue= "+ value);
+
+            if( $scope.rangeValue !== "---"){
+
+                //document.getElementById("submitRange").disabled = "false";
+                console.log("hereIFrRange");
+            }
+
+
+        })
 
 
     });
