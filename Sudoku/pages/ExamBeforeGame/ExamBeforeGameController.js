@@ -42,22 +42,37 @@ angular.module("sudokuApp")
         function getSudokuQuestion(){
 
             //TODO lottery number between 1-10
-            var q = Math.floor(Math.random() * 5) + 1;
 
 
             $http({
                 method: "get",
-                url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'+q
+                url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
 
 
+                //TODO raanan 10 QUESTION, 5 RANDOM
             }).then(function (response) {
-                console.log(response.data[0].question);
-                $scope.Q1 = response.data[0].question;
-                $scope.imageSrc = response.data[0].image;
-                $scope.op1 = response.data[0].option1;
-                $scope.op2 = response.data[0].option2;
-                $scope.op3 = response.data[0].option3;
-                $scope.op4 = response.data[0].option4;
+                var questionsFromServer = [];
+                var printedQuestions = [];
+                for (var i = 0; i < 7; i++) {
+                    printedQuestions.push(false);
+                }
+                for(let que = 0; que < 3; que++) {
+                    var q = Math.floor(Math.random() * 6) + 1;
+                    while(printedQuestions[q]==true)
+                        q = Math.floor(Math.random() * 6) + 1;
+                    printedQuestions[q]=true;
+                    // $scope.Q1 = response.data[q].question;
+                    // $scope.imageSrc = response.data[q].image;
+                    // $scope.op1 = response.data[q].option1;
+                    // $scope.op2 = response.data[q].option2;
+                    // $scope.op3 = response.data[q].option3;
+                    // $scope.op4 = response.data[q].option4;
+                    questionsFromServer.push(response.data[q]);
+
+
+                }
+
+                $scope.questions = questionsFromServer;
 
 
             }, function (response) {
@@ -67,6 +82,8 @@ angular.module("sudokuApp")
         }
 
         $scope.submit = function () {
+
+            console.log(document.querySelector('input[name="op"]:checked').value);
 
             $location.url('/pageBeforeGame');
 

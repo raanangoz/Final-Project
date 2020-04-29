@@ -258,11 +258,11 @@ Sudoku.post('/submitFamiliarityAndDifficultyEstimateBefore', function (req, res)
         })
 })
 
-Sudoku.get('/getSudokuNumQuestion/:id', function (req, res) {
+Sudoku.get('/getSudokuNumQuestion', function (req, res) {
 
-    var questionID = req.params.id;
 
-    var query = "select * from sudokuNumbersQuestions where questionID= '"+questionID+"'";
+
+    var query = "select * from sudokuNumbersQuestions";
     DButilsAzure.execQuery(query)
     // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
 
