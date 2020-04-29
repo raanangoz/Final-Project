@@ -1,17 +1,25 @@
+/*body{*/
+
+/*    background-color: bisque;*/
+/*}*/
+
 .page-container{
 
     display: flex;
     align-items: center; /* height*/
     justify-content: center; /* width*/
+    /*background-color: bisque;*/
+    /*width:100%;*/
+    /*height:100%;*/
 
 }
 
 
 .home-page-internal{
     width: 800px;
-    height: 550px;
+    height: 650px;
     background-color: white;
-    border: 5px solid black;
+    border: 5px solid cadetblue;
     margin-bottom: 5px;
     border-radius: 6px;
     align-items: center;
@@ -35,27 +43,37 @@
     /*position: absolute;*/
     justify-self: center;
     align-self: center;
-    width: 400px;
-    height: 80px;
+    width: 790px;
+    height: 100px;
     /*padding-left: 50px;*/
 
 }
 
 
 .mySlides {
+
     display: none;
-    width: 600px;
-    height: 300px;
+    /*display: flex;*/
+    /*position: absolute;*/
+    position: relative;
+    width: 650px;
+    height: 450px;
     align-self: center;
     padding-left: 70px;
     margin: 50px;
+    font-weight: bold;
 
+}
+
+.des{
+
+    font-size: 18px;
 }
 
 .buttons{
 
     position: absolute;
-    bottom: 200px;
+    bottom: 300px;
     margin:10px;
 }
 
@@ -81,10 +99,9 @@
 .w3-buttonPrev{
 
     position: fixed;
-
     background-color: white;
     color: black;
-    border: 2px solid #e7e7e7;
+    border: 2px solid cadetblue;
     width:  70px;
     height: 50px;
 
@@ -97,12 +114,13 @@
 
     background-color: white;
     color: black;
-    border: 2px solid #e7e7e7;
+    border: 2px solid cadetblue;
+    /*border: 2px solid #e7e7e7;*/
     width:  70px;
     height: 50px;
 
     position: fixed;
-    right: 400px;
+    right: 383px;
 
 }
 
@@ -120,10 +138,13 @@
 
 #titleSlide1{
 
-    font-size: 70px;
+    font-size: 80px;
     position: absolute;
     text-align: center;
     align-self: center;
+    /*bottom: 5px;*/
+    /*top: 120px;*/
+    color: lightslategrey;
 
 }
 
@@ -155,8 +176,8 @@
 
 .tutorialPictures{
 
-    width: 100%;
-    height: 70%;
+    width: 85%;
+    height: 50%;
 }
 
 .tutorialSentence{

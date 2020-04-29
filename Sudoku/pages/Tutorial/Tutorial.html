@@ -5,19 +5,21 @@
     <div class="home-page-internal">
 
 <!--    <h1 class="titleTutorial" ><b>Tutorial</b></h1>-->
-        <img class="icon" ng-src="pages/Tutorial/tutorialPictures/tutorial.jpg">
+        <img class="icon" ng-src="pages/Tutorial/tutorialPictures/logo3.jpg">
 <!--    <hr>-->
 
         <div class="mySlides">
 
             <h id= "desSudokuNum" ng-if="numbers" class="des" align= "center">
 
-                The next task is Sudoku of numbers.<br/>
-                Sudoku is played on a grid of 9 x 9 spaces. <br/>
-                Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). <br/>
-                Each row, column and square (9 spaces each) <br/>
-                needs to be filled out with the numbers 1-9, <br/>
-                without repeating any numbers within the row, column or square.<br/>
+                The next task is to solve a number-placement puzzle -“Sudoku”.<br/>
+                The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
+                composed with 9 rows, 9 columns and 9 subgrids,<br/>
+                called “blocks” (made up of 3 x 3 spaces). <br/>
+                The objective is to fill the grid with digits so that each column, <br/>
+                each row, and each block contain all of the digits from 1 to 9.<br/>
+                That means, no number should appear more than once   <br/>
+                at the same column, row or block.  <br/>
                 <br>
 
             </h>
@@ -34,7 +36,7 @@
                 <br>
 
             </h>
-            Press "Next" to start the tutorial
+<!--            Press "Next" to start the tutorial-->
 
             <img class="tutorialPictures"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">
 <!--            <h id= "desKS1"  class="des" align= "center">-->
@@ -57,20 +59,25 @@
         </div>
         <!--         Slideshow container-->
 <!--        <div class="slideshow-container">-->
-        <p  class="mySlides" id="firstP">In the next slides, you will watch possible or impossible steps<br/>
-            and relevant keys for the game. <Br/>
+        <p  class="mySlides" id="firstP">Next, you will be demonstrated with examples of correct and  <br/>
+            incorrect number fills on a Sudoku puzzle board, <Br/>
 <!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
-            There might be more than one possible step for a single cell, but only one step is correct.<br/>
-        of the next game and relevant keys for the game.<br/>
-        you should press the "Next" button when you finish watching each slide or return the<br/>
-             previous slide by the "Prev" button.<br/>
-        You may pay maximum attention throw the whole tutorial,<br/>
-            Once you're done, you'll have a test to make sure <br/>
-            you understand the rules of the game.<br/>
+            as well as technical information regarding our Sudoku<br/>
+            number-placement puzzle interface. <Br/><br>
+            Click on the “Next” button for continuing to the next slide, <br/>
+            and “Prev” for returning to  the previous slide. <br/>
+            Following the tutorial slides, you will be tested to  <br/>
+            make sure you understood the instructions and the logic of the puzzle.  <br/><br>
+            Only after successfully completing the test,  <br/>
+            you will be transferred to the main puzzle-solving task. <br/>
             <br>
         </p>
 
-        <h  class="mySlides" id="titleSlide1">Incorrect steps</h>
+        <div class="mySlides">
+
+            <p  id="titleSlide1">Incorrect fills</p>
+        </div>
+
 
         <div class="mySlides">
             <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
