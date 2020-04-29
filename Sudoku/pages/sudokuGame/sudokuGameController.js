@@ -1,5 +1,5 @@
 
-
+//numberOfCellsChanged
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
 
@@ -18,7 +18,7 @@ angular.module("sudokuApp")
 
         //object for the board
         var box = {value:"0", isIcon:"true"};
-
+        var board_initial_to_compare;
 
         // var userID = $rootScope.userId;
         var PuzzleID;
@@ -91,20 +91,6 @@ angular.module("sudokuApp")
             }
 
             if( value == "" || legalNum){
-                console.log("trying to update board");
-                // board =[row][col]=val;
-                var storedSolutionBoard = JSON.parse(sessionStorage.getItem("solutionBoard"));
-                storedSolutionBoard[row][col]=""+value;
-                console.log(""+storedSolutionBoard);
-
-                if(value == ""){
-
-                    storedSolutionBoard[row][col]=""+0;
-
-                }
-                sessionStorage.setItem("solutionBoard", JSON.stringify(storedSolutionBoard));
-
-
 
                 $http({
 
@@ -117,7 +103,7 @@ angular.module("sudokuApp")
                     }
                 })
                     .then(function (response) {
-
+                        updateSessionBoard(row,col,value);
                         //add to the board 2d array
 
                     }, function (response) {
@@ -264,6 +250,7 @@ angular.module("sudokuApp")
                 .then(function(response) {
                     PuzzleID = response.data[0].PuzzleID;
                     const boardString = response.data[0].board;
+                    board_initial_to_compare = boardString;
                     // console.log(response.data)
                     // console.log("boardString = "+boardString);
                     const numbersArray = boardString.split(',');
@@ -498,6 +485,7 @@ angular.module("sudokuApp")
                     })
                         .then(function (response) {
 
+                            updateSessionBoard(rowIndex,colIndex,value);
                             //add to the board 2d array
 
                         }, function (response) {
@@ -556,9 +544,7 @@ angular.module("sudokuApp")
 
         function solutionAndTimeToDB(time){
 
-            console.log("time to sql is " + time);
-            console.log("backup");
-            console.log("this is the board to sql"+sessionStorage.getItem("solutionBoard"));
+
             $http({
 
                 method: 'POST',
@@ -566,12 +552,14 @@ angular.module("sudokuApp")
                 data: {
                     "gameID": "" + GameID,
                     "solutionBoard":JSON.parse(sessionStorage.getItem("solutionBoard")),
-                    "totalTime":""+time
+                    "totalTime":""+time,
+                    "originalBoard":board_initial_to_compare
 
                 }
             })
                 .then(function (response) {
-
+                    let numberOfCellsChanged = response.data[1];
+                    $rootScope.numberOfCellsChanged=numberOfCellsChanged;
                 }, function (response) {
 
                 });
@@ -619,6 +607,20 @@ angular.module("sudokuApp")
 
         })
 
+        function updateSessionBoard(row,col,value){
+
+            var storedSolutionBoard = JSON.parse(sessionStorage.getItem("solutionBoard"));
+            storedSolutionBoard[row][col]=""+value;
+
+
+            console.log(value+"1"+value);
+            if(value == ""){
+
+                storedSolutionBoard[row][col]=""+0;
+
+            }
+            sessionStorage.setItem("solutionBoard", JSON.stringify(storedSolutionBoard));
+        }
 
     });
 
