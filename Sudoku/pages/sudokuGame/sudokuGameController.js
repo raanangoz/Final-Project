@@ -16,6 +16,8 @@ angular.module("sudokuApp")
         //for saving the board in case of refresh
         $scope.gameStarted = false;
 
+        $rootScope.numberOfCellsChanged= 0;
+
         //object for the board
         var box = {value:"0", isIcon:"true"};
         var board_initial_to_compare;
@@ -410,7 +412,27 @@ angular.module("sudokuApp")
 
         $scope.finishGameYesOrNo = function(){
 
-            $('#myModal2').modal();
+            var filledWhole = true;
+
+            //check if filled the whole boxes
+            for (var i = 0; i < $scope.initialBoard.length ; i++) {
+                for (var j = 0; j < $scope.initialBoard.length ; j++) {
+
+                    if($scope.initialBoard[i][j] === '0' && filledWhole){
+                        if($scope.sudokuBoard[i][j] === ''){
+                            $window.alert("You have to finish the whole boxes in order to finish the game");
+                            filledWhole = false;
+                         }
+                    }
+                }
+
+            }
+
+            if(filledWhole){
+                $('#myModal2').modal();
+
+            }
+
 
 
         }
@@ -419,7 +441,26 @@ angular.module("sudokuApp")
         $scope.finishGame = function(){
 
             $interval.cancel(interval);
-            // clearInterval(interval);
+
+            //check how many boxes filled
+            $rootScope.boxes = 0;
+            for (var i = 0; i < $scope.initialBoard.length ; i++) {
+                for (var j = 0; j < $scope.initialBoard.length ; j++) {
+
+                    if($scope.initialBoard[i][j] === '0'){
+
+                        if($scope.sudokuBoard[i][j] != ''){
+                            console.log("hereIfBoxes");
+                            $rootScope.boxes ++;
+
+                        }
+                    }
+
+                }
+            }
+
+            console.log("newBoxes= "+$rootScope.boxes);
+
 
             let totalTime = calculateTotalTime();
             console.log("raanan"+totalTime);
@@ -544,7 +585,6 @@ angular.module("sudokuApp")
 
         function solutionAndTimeToDB(time){
 
-
             $http({
 
                 method: 'POST',
@@ -560,6 +600,7 @@ angular.module("sudokuApp")
                 .then(function (response) {
                     let numberOfCellsChanged = response.data[1];
                     $rootScope.numberOfCellsChanged=numberOfCellsChanged;
+                    console.log("boxesServer= "+ $rootScope.numberOfCellsChanged);
                 }, function (response) {
 
                 });

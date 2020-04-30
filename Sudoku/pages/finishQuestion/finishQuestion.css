@@ -1,6 +1,6 @@
 .home-page-internal{
     width: 700px;
-    height: 500px;
+    height: 600px;
     background-color: white;
     border: 5px solid black;
     margin-bottom: 5px;
@@ -39,5 +39,19 @@
 
 .buttonSubmit{
 
-    padding: 50px;
+    padding: 20px;
+    /* padding-top: 8px; */
+    padding-top: 30px;
+    padding-left: 250px;
+}
+
+.nextGame{
+
+    width: 150px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 20px;
+
+
+
 }

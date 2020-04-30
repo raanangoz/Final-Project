@@ -35,12 +35,15 @@
                             <br>
                         </h>
                         <h id= "desSudokuColors" ng-if="colors">
-                            The next task is Sudoku of colors.
-                            Sudoku is played on a grid of 9 x 9 spaces. <br/>
-                            Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). <br/>
-                            Each row, column and square (9 spaces each) <br/>
-                            needs to be filled out with the 9 colors, <br/>
-                            without repeating any colors within the row, column or square.<br/>
+                            The next task is to solve a color-placement puzzle -“Sudoku”.<br/>
+                            The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
+                            composed with 9 rows, 9 columns and 9 subgrids,<br/>
+                            called “blocks” (made up of 3 x 3 spaces). <br/>
+                            The objective is to fill the grid with colors so that each column, <br/>
+                            each row, and each block contain all of the colors <br/>
+                            according to the given declaration.<br/>
+                            That means, no color should appear more than once   <br/>
+                            at the same column, row or block.  <br/>
                             <br>
                         </h>
                         <!--            Press "Next" to start the tutorial-->
@@ -51,7 +54,7 @@
 <!--           Slide 2-->
                 <div class="mySlides">
                     <div class="slide2-8">
-                    <p> Next, you will be demonstrated with examples of correct and  <br/>
+                    <p ng-if="numbers"> Next, you will be demonstrated with examples of possible and  <br/>
                         incorrect number fills on a Sudoku puzzle board, <Br/>
                         <!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
                         as well as technical information regarding our Sudoku<br/>
@@ -64,10 +67,65 @@
                         you will be transferred to the main puzzle-solving task. <br/>
                         <br>
                     </p>
+                        <p ng-if="colors"> Next, you will be demonstrated with examples of possible and  <br/>
+                            incorrect color fills on a Sudoku puzzle board, <Br/>
+                            <!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
+                            as well as technical information regarding our Sudoku<br/>
+                            color-placement puzzle interface. <Br/><br>
+                            Click on the “Next” button for continuing to the next slide, <br/>
+                            and “Prev” for returning to  the previous slide. <br/>
+                            Following the tutorial slides, you will be tested to  <br/>
+                            make sure you understood the instructions and the logic of the puzzle.  <br/><br>
+                            Only after successfully completing the test,  <br/>
+                            you will be transferred to the main puzzle-solving task. <br/>
+                            <br>
+                        </p>
                 </div>
             </div>
 
 <!--                Slide 3-->
+                <div class="mySlides">
+                    <div class="slide3-7">
+                        <p >Possible fills</p>
+                    </div>
+
+                </div>
+
+
+                <div class="mySlides">
+                    <div class="slide4-5-6">
+                        <div class="images">
+                            <img class="image"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/legalNum1.png">
+                            <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor1.png">
+                        </div>
+                        <br> <br>
+                        <div class="explain">
+                            <p  ng-if="numbers"><b>This step (marked with "V") is possible because the "1" digit <br/>
+                                doesn't exist at this line/ column/ square</b></p>
+                            <p  ng-if="colors"><b>This step (marked with "V") is possible because the purple color <br/>
+                                doesn't exist at this line/ column/ square</b></p>
+                            <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
+                                cells which should be filled during the game</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide4-5-6">
+                        <div class="images">
+                            <img class="image" ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/legalNum2.png">
+                            <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor2.png">
+                        </div>
+                        <br> <br>
+                        <div class="explain">
+                            <p ng-if="numbers"><b>This step (marked with "V") is possible because the "3" digit <br/>
+                                doesn't exist at this line/ column/ square</b></p>
+                            <p  ng-if="colors"><b>This step (marked with "V") is possible because the orange color <br/>
+                                doesn't exist at this line/ column/ square</b></p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="mySlides">
                     <div class="slide3-7">
@@ -82,7 +140,7 @@
                     <div class="slide4-5-6">
                         <div class="images">
                             <img class="image"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
-                            <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorLine.jpg">
+                            <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/line.png">
                         </div>
                             <br> <br>
                         <div class="explain">
@@ -98,7 +156,7 @@
                     <div class="slide4-5-6">
                         <div class="images">
                     <img class="image" ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">
-                    <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorColumn.jpg">
+                    <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/column.png">
                         </div>
                             <br> <br>
                         <div class="explain">
@@ -112,7 +170,7 @@
                     <div class="slide4-5-6">
                         <div class="images">
                     <img class="image"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">
-                    <img class="image"  ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorQ.jpg">
+                    <img class="image"  ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/q.png">
                         </div>
                             <br> <br>
                         <div class="explain">
@@ -125,34 +183,51 @@
 
                 <div class="mySlides">
                     <div class="slide3-7">
-                        <h id="titleSlide2">The game's key</h>
+                        <h class="titleSlide2">Relevant keys</h>
+
                     </div>
 
                 </div>
 
                 <div class="mySlides">
                     <div class="slide2-8">
-                        <p  ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>
-                            -    numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>
-                            -    backspace key in order to delete a value of a cell if necessary.<Br/>
-                            -    left mouse button in order to  switch between the cells in the sudoku board.<Br/>
-                        </p>
-
-                        <p  ng-if="colors" id="piskaKeys2">The games's keys on the keyboard are<br/>
-                            the numbers 1-9 in order to fill the cells of the <br/>
-                            sudoku board each number is matching a specific color, <br/>
-                            according to the given legend.<br/>
-                            In addition, the left mouse button is used for switching between<br/>
-                            the cells in the sudoku board and for deleting <br/>
-                            a value of a cell if necessary <br/>
+                        <ul ng-if="numbers" id="piskaKeys1" >
+                            The relevant keys for the next game:<Br/><br>
+                            <li>numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.</li>
+                            <li>backspace key in order to delete a value of a cell if necessary.</li>
+                            <li>left mouse button in order to  switch between the cells in the sudoku board.</li>
+                            <br>
                             The illustration is shown in the next slide.
-                        </p>
+                        </ul>
+
+<!--                        <p  ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>-->
+<!--                        -    numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>-->
+<!--                        -    backspace key in order to delete a value of a cell if necessary.<Br/>-->
+<!--                        -    left mouse button in order to  switch between the cells in the sudoku board.<Br/>-->
+<!--                            The illustration is shown in the next slide.-->
+<!--                        </p>-->
+                        <ul ng-if="colors" id="piskaKeys2" >
+                            The relevant keys for the next game:<Br/><br>
+                            <li>numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.</li>
+                            <li>left mouse button in order to delete a value of a cell if necessary.</li>
+                            <li>left mouse button in order to  switch between the cells in the sudoku board.</li>
+                            <br>
+                            The illustration is shown in the next slide.
+                        </ul>
+
+
+<!--                        <p  ng-if="colors" id="piskaKeys2">The relevant keys for the next game:<Br/>-->
+<!--                            -    numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>-->
+<!--                            -    left mouse button in order to delete a value of a cell if necessary.<Br/>-->
+<!--                            -    left mouse button in order to  switch between the cells in the sudoku board.<Br/>-->
+<!--                            The illustration is shown in the next slide.-->
+<!--                        </p>-->
                     </div>
                 </div>
 
                 <div class="mySlides">
                     <div class="slide2-8">
-                    <img class="imageKey"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
+                    <img class="imageKey"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keysN.png">
                     <img class="imageKey"   ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="pages/finishQuestion/finishQuestion.css" />
 
-<div class="home-page-container"  ng-controller="finishQuestionController as quesCtrl">
+<div class="home-page-container"  ng-controller="finishQuestionController as quesCtrl" ng-init="init()">
 
     <div class= "home-page-internal">
 
@@ -10,18 +10,21 @@
             <br>
 
             <div class="form-group">
-                <h1 class="questions">How many boxes do you think you filled correctly?</h1>
+                <h1 class="questions">How many boxes do you think you filled correctly from {{boxes}} boxes?</h1>
                 <select type="rank" id= "rankCorrectness" name="rank" ng-model="rank2"  >
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
+<!--                    <option value="0">0</option>-->
+<!--                    <option value="1">1</option>-->
+<!--                    <option value="2">2</option>-->
+<!--                    <option value="3">3</option>-->
+<!--                    <option value="4">4</option>-->
+<!--                    <option value="5">5</option>-->
+<!--                    <option value="6">6</option>-->
+<!--                    <option value="7">7</option>-->
+<!--                    <option value="8">8</option>-->
+<!--                    <option value="9">9</option>-->
+                    <option ng-repeat="optionNumber in arrayOfOptionNumbers" value="{{optionNumber}}">
+                        {{optionNumber}}
+                    </option>
 
                 </select>
                 <br>
@@ -46,8 +49,8 @@
             </div>
 
             <div class="buttonSubmit">
-                <input class="btn btn-primary" type="submit" id="submit" value="Submit" ng-click = "submitEstimates()" >
-                <button id="nextTask" class="nextGame" ng-click="nextTask()" ng-disabled="!submit">Next task</button>
+<!--                <input class="btn btn-primary" type="submit" id="submit" value="Submit" ng-click = "submitEstimates()" >-->
+                <button id="nextTask" class="nextGame" ng-click="submitEstimates()" >Submit and next task</button>
             </div>
 
 

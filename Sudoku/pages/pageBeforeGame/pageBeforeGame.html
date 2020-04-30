@@ -3,36 +3,45 @@
 <div class="home-page-container" ng-controller="pageBeforeGameController" >
     <div class="home-page-internal">
 
-        <p class="explain" ng-if="numbers">The next game is Sudoku numbers.<br/>
-        The aim is to fill the whole board correctly according to the<br/>
-        rules you have been studied before.<br/>
-        You have 15 minutes for this game, you can press the<br/>
-            'Finish Game' any time you want.<br/>
-        Firstly, you only have to look at the board for a few seconds<br/>
-        and a question will appear on the page immediately,<br/>
-            As soon as you submit your answer, you should press<br/>
-            'Start Game' and the timer will start.<br/>
+        <p class="explain" ng-if="numbers">Your task is to solve a number-placement Sudoku puzzle.<br/>
+            The Sudoku puzzle grid you will be presented with is partly filled, <br/>
+            and has only one correct solution.<br/><br>
+            Your objective is to correctly fill every empty cell on the grid with a number<br/>
+            from 1 to 9, according to the instructions and rules.<br/>
+            The task will begin with a first impression phase, in which you will have a few <br/>
+            seconds of a first glance on the puzzle, followed by a question appearing on the screen. <br/><br>
+            After answering the first impression question, <br/>
+            you will be able to start the puzzle-solving task, by clicking on “Start Game”.<br/>
+            You will have 15 minutes to solve the puzzle. <br/>
+            If you have finished filling the entire grid before the time limits expire,  <Br/>
+            you can press the 'Finish Game’, and continue to the next page.<br/>
             <br>
             Good Luck!<br/>
 
         </p>
 
-        <p class="explain" ng-if="colors">The next game is Sudoku colors.<br/>
-            The aim is to fill the whole board correctly according to the<br/>
-            rules you have been studied before.<br/>
-            You have 15 minutes for this game, you can press the<br/>
-            'Finish Game' any time you want.<br/>
-            Firstly, you only have to look at the board for a few seconds<br/>
-            and a question will appear on the page immediately,<br/>
-            As soon as you submit your answer, you should press<br/>
-            'Start Game' and the timer will start.<br/>
+        <p class="explain" ng-if="colors">Your task is to solve a color-placement Sudoku puzzle.<br/>
+            The Sudoku puzzle grid you will be presented with is partly filled, <br/>
+            and has only one correct solution.<br/><br>
+            Your objective is to correctly fill every empty cell on the grid with a color<br/>
+            according to the given declaration and the instructions and rules.<br/>
+            The task will begin with a first impression phase, in which you will have a few <br/>
+            seconds of a first glance on the puzzle, followed by a question appearing on the screen. <br/><br>
+            After answering the first impression question, <br/>
+            you will be able to start the puzzle-solving task, by clicking on “Start Game”.<br/>
+            You will have 15 minutes to solve the puzzle. <br/>
+            If you have finished filling the entire grid before the time limits expire,  <Br/>
+            you can press the 'Finish Game’, and continue to the next page.<br/>
             <br>
             Good Luck!<br/>
 
         </p>
         <br>
 
-        <button class="start" ng-click="start()">Start</button>
+        <div class="buttonStart">
+            <button class="buttonS" ng-click="start()">Start</button>
+        </div>
+
 
 
 
