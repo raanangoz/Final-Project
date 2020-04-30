@@ -5,174 +5,382 @@
     <div class="home-page-internal">
 
 <!--    <h1 class="titleTutorial" ><b>Tutorial</b></h1>-->
-        <img class="icon" ng-src="pages/Tutorial/tutorialPictures/logo3.jpg">
-<!--    <hr>-->
-
-        <div class="mySlides">
-
-            <h id= "desSudokuNum" ng-if="numbers" class="des" align= "center">
-
-                The next task is to solve a number-placement puzzle -“Sudoku”.<br/>
-                The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
-                composed with 9 rows, 9 columns and 9 subgrids,<br/>
-                called “blocks” (made up of 3 x 3 spaces). <br/>
-                The objective is to fill the grid with digits so that each column, <br/>
-                each row, and each block contain all of the digits from 1 to 9.<br/>
-                That means, no number should appear more than once   <br/>
-                at the same column, row or block.  <br/>
-                <br>
-
-            </h>
-
-            <h id= "desSudokuColors" ng-if="colors" class="des"  align= "center">
-
-                The next task is Sudoku of colors.
-                Sudoku is played on a grid of 9 x 9 spaces. <br/>
-                Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). <br/>
-                Each row, column and square (9 spaces each) <br/>
-                needs to be filled out with the 9 colors, <br/>
-                without repeating any colors within the row, column or square.<br/>
-
-                <br>
-
-            </h>
-<!--            Press "Next" to start the tutorial-->
-
-            <img class="tutorialPictures"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">
-<!--            <h id= "desKS1"  class="des" align= "center">-->
-
-<!--                <p>The next task is a KS1 problem,</p>-->
-<!--                <p>you have 15 minutes for solving the problem,</p>-->
-<!--                <p>if you finish before, press "finish game".</p>-->
-<!--                <p>Solve the problem as well as you can.</p>-->
-<!--                <p>Good Luck!</p>-->
-<!--            </h>-->
-
-<!--            <h id= "desKS2" class="des"  align= "center">-->
-
-<!--                <p>The next task is a KS2 problem,</p>-->
-<!--                <p>you have 15 minutes for solving the problem,</p>-->
-<!--                <p>if you finish before, press "finish game".</p>-->
-<!--                <p>Solve the problem as well as you can.</p>-->
-<!--                <p>Good Luck!</p>-->
-<!--            </h>-->
+        <div class="titleTutorial">
+            <div class="clear-margin">TUTORIAL</div>
         </div>
+<!--        <hr>-->
+<!--        <img class="icon" ng-src="pages/Tutorial/tutorialPictures/logo3.jpg">-->
+<!--    <hr>-->
+        <div class="slider-container">
+<!--        This part is the main slide, it split to 3 part, left middle and right-->
+<!--        right and left are only for the buttons, the middle is going to show the current slide. -->
+            <div class="button-container">
+                <button id="prev" class="w3-buttonPrev" ng-click="plusDivs(-1)">&#10094; Prev</button>
+            </div>
+<!--        here will be the current slide to show
+            **'mySlides' is class with propose of collecting the slides**-->
+            <div class="main-slide">
+<!--                Slide 1-->
+                <div class="mySlides">
+                    <div class="slide1">
+                        <h id= "desSudokuNum" ng-if="numbers" >
+                            The next task is to solve a number-placement puzzle -“Sudoku”.<br/>
+                            The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
+                            composed with 9 rows, 9 columns and 9 subgrids,<br/>
+                            called “blocks” (made up of 3 x 3 spaces). <br/>
+                            The objective is to fill the grid with digits so that each column, <br/>
+                            each row, and each block contain all of the digits from 1 to 9.<br/>
+                            That means, no number should appear more than once   <br/>
+                            at the same column, row or block.  <br/>
+                            <br>
+                        </h>
+                        <h id= "desSudokuColors" ng-if="colors">
+                            The next task is Sudoku of colors.
+                            Sudoku is played on a grid of 9 x 9 spaces. <br/>
+                            Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). <br/>
+                            Each row, column and square (9 spaces each) <br/>
+                            needs to be filled out with the 9 colors, <br/>
+                            without repeating any colors within the row, column or square.<br/>
+                            <br>
+                        </h>
+                        <!--            Press "Next" to start the tutorial-->
+                        <img class="tutorialPictures"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">
+                    </div>
+                </div>
+
+<!--           Slide 2-->
+                <div class="mySlides">
+                    <div class="slide2-8">
+                    <p> Next, you will be demonstrated with examples of correct and  <br/>
+                        incorrect number fills on a Sudoku puzzle board, <Br/>
+                        <!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
+                        as well as technical information regarding our Sudoku<br/>
+                        number-placement puzzle interface. <Br/><br>
+                        Click on the “Next” button for continuing to the next slide, <br/>
+                        and “Prev” for returning to  the previous slide. <br/>
+                        Following the tutorial slides, you will be tested to  <br/>
+                        make sure you understood the instructions and the logic of the puzzle.  <br/><br>
+                        Only after successfully completing the test,  <br/>
+                        you will be transferred to the main puzzle-solving task. <br/>
+                        <br>
+                    </p>
+                </div>
+            </div>
+
+<!--                Slide 3-->
+
+                <div class="mySlides">
+                    <div class="slide3-7">
+                        <p  id="titleSlide1">Incorrect fills</p>
+                    </div>
+
+                </div>
+
+<!--                Slide 4-->
+
+                <div class="mySlides">
+                    <div class="slide4-5-6">
+                        <div class="images">
+                            <img class="image"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
+                            <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorLine.jpg">
+                        </div>
+                            <br> <br>
+                        <div class="explain">
+                            <p  ng-if="numbers"><b>This step (marked with "X") is incorrect because the "4" digit is already exist at this line</b></p>
+                            <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the yellow color is already exist at this line</b></p><br/>
+                            <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
+                                cells which should be filled during the game</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide4-5-6">
+                        <div class="images">
+                    <img class="image" ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">
+                    <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorColumn.jpg">
+                        </div>
+                            <br> <br>
+                        <div class="explain">
+                    <p ng-if="numbers"><b>This step (marked with "X") is incorrect because the "2" digit is already exist at this column</b></p>
+                    <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the pink color is already exist at this column</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide4-5-6">
+                        <div class="images">
+                    <img class="image"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">
+                    <img class="image"  ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorQ.jpg">
+                        </div>
+                            <br> <br>
+                        <div class="explain">
+                    <p  ng-if="numbers"><b>This step (marked with "X") is incorrect because the "6" digit is already exist at this square</b></p>
+                    <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the purple color is already exist at this square</b></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mySlides">
+                    <div class="slide3-7">
+                        <h id="titleSlide2">The game's key</h>
+                    </div>
+
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide2-8">
+                        <p  ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>
+                            -    numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>
+                            -    backspace key in order to delete a value of a cell if necessary.<Br/>
+                            -    left mouse button in order to  switch between the cells in the sudoku board.<Br/>
+                        </p>
+
+                        <p  ng-if="colors" id="piskaKeys2">The games's keys on the keyboard are<br/>
+                            the numbers 1-9 in order to fill the cells of the <br/>
+                            sudoku board each number is matching a specific color, <br/>
+                            according to the given legend.<br/>
+                            In addition, the left mouse button is used for switching between<br/>
+                            the cells in the sudoku board and for deleting <br/>
+                            a value of a cell if necessary <br/>
+                            The illustration is shown in the next slide.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide2-8">
+                    <img class="imageKey"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
+                    <img class="imageKey"   ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
+                    </div>
+                </div>
+
+
+                <div class="mySlides" id="familiarityDiv">
+                    <div class="slide9">
+                    <div id="sudokuFamiliar" >
+                        <h2 class="familiar" align="center"><B>
+                            <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>
+                            <p>prior to this study:</p> </B></h2>
+                    </div>
+
+                    <div id="familiarOptions" class="familiar2" >
+                        <div class="familiar-option" ><input type="radio" name="familiar" ng-model="familiar" value=" 0" > 0 - absolutely no familiarity</div>
+                        <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 1"  > 1 - minimal familiarity and little to no experience </div>
+                        <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 2"  > 2 - below average level of expertise</div>
+                        <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 3"  > 3 - moderate level of expertise</div>
+                        <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 4"  > 4 - above average level of expertise </div>
+                        <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 5"  > 5 - high level of expertise</div>
+                    </div>
+                    </div>
+                </div>
+                <br> <br>
+
+                <div class="mySlides" id="lastP">
+                    <div class="slide9">
+                        <div class="piskaEnd">
+
+                            Next, you will be tested to make sure you understood the instructions <br/>
+                            and the logic of the Sudoku puzzle.<br/>
+                            Only after successfully completing the test, you will be transferred to the main  <br/>
+                            puzzle-solving task. In order to do so, you will have to answer all questions correctly. <br/>
+                            If you will not succeed in the test, you will be transferred back to the tutorial page, <Br/>
+                            and redo the test. <br/>
+<!--                            <br>-->
+<!--                        Good luck! <br/>-->
+                        </div>
+                        <br>
+                        <div class="examButton">
+                            <button id="startTest" ng-click="startExam()">Start exam</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="button-container">
+                <button id="next" class="w3-buttonNext" ng-click="plusDivs(1)">Next &#10095;</button>
+            </div>
+        </div>
+
+
+
+<!--        <div class="mySlides">-->
+
+<!--            <h id= "desSudokuNum" ng-if="numbers" class="des" align= "center">-->
+
+<!--                The next task is to solve a number-placement puzzle -“Sudoku”.<br/>-->
+<!--                The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>-->
+<!--                composed with 9 rows, 9 columns and 9 subgrids,<br/>-->
+<!--                called “blocks” (made up of 3 x 3 spaces). <br/>-->
+<!--                The objective is to fill the grid with digits so that each column, <br/>-->
+<!--                each row, and each block contain all of the digits from 1 to 9.<br/>-->
+<!--                That means, no number should appear more than once   <br/>-->
+<!--                at the same column, row or block.  <br/>-->
+<!--                <br>-->
+
+<!--            </h>-->
+
+<!--            <h id= "desSudokuColors" ng-if="colors" class="des"  align= "center">-->
+
+<!--                The next task is Sudoku of colors.-->
+<!--                Sudoku is played on a grid of 9 x 9 spaces. <br/>-->
+<!--                Within the rows and columns are 9 “squares” (made up of 3 x 3 spaces). <br/>-->
+<!--                Each row, column and square (9 spaces each) <br/>-->
+<!--                needs to be filled out with the 9 colors, <br/>-->
+<!--                without repeating any colors within the row, column or square.<br/>-->
+
+<!--                <br>-->
+
+<!--            </h>-->
+<!--&lt;!&ndash;            Press "Next" to start the tutorial&ndash;&gt;-->
+
+<!--            <img class="tutorialPictures"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">-->
+<!--&lt;!&ndash;            <h id= "desKS1"  class="des" align= "center">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <p>The next task is a KS1 problem,</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>you have 15 minutes for solving the problem,</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>if you finish before, press "finish game".</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Solve the problem as well as you can.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Good Luck!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </h>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <h id= "desKS2" class="des"  align= "center">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <p>The next task is a KS2 problem,</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>you have 15 minutes for solving the problem,</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>if you finish before, press "finish game".</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Solve the problem as well as you can.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Good Luck!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </h>&ndash;&gt;-->
+<!--        </div>-->
         <!--         Slideshow container-->
 <!--        <div class="slideshow-container">-->
-        <p  class="mySlides" id="firstP">Next, you will be demonstrated with examples of correct and  <br/>
-            incorrect number fills on a Sudoku puzzle board, <Br/>
-<!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
-            as well as technical information regarding our Sudoku<br/>
-            number-placement puzzle interface. <Br/><br>
-            Click on the “Next” button for continuing to the next slide, <br/>
-            and “Prev” for returning to  the previous slide. <br/>
-            Following the tutorial slides, you will be tested to  <br/>
-            make sure you understood the instructions and the logic of the puzzle.  <br/><br>
-            Only after successfully completing the test,  <br/>
-            you will be transferred to the main puzzle-solving task. <br/>
-            <br>
-        </p>
-
-        <div class="mySlides">
-
-            <p  id="titleSlide1">Incorrect fills</p>
-        </div>
+<!--        <div class="mySlides">-->
+<!--            <p> Next, you will be demonstrated with examples of correct and  <br/>-->
+<!--                incorrect number fills on a Sudoku puzzle board, <Br/>-->
+<!--                &lt;!&ndash;            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>&ndash;&gt;-->
+<!--                as well as technical information regarding our Sudoku<br/>-->
+<!--                number-placement puzzle interface. <Br/><br>-->
+<!--                Click on the “Next” button for continuing to the next slide, <br/>-->
+<!--                and “Prev” for returning to  the previous slide. <br/>-->
+<!--                Following the tutorial slides, you will be tested to  <br/>-->
+<!--                make sure you understood the instructions and the logic of the puzzle.  <br/><br>-->
+<!--                Only after successfully completing the test,  <br/>-->
+<!--                you will be transferred to the main puzzle-solving task. <br/>-->
+<!--                <br>-->
+<!--            </p>-->
+<!--        </div>-->
 
 
-        <div class="mySlides">
-            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
-            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorLine.jpg">
-            <br> <br>
-            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "4" digit is already exist at this line</b></p>
-            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the yellow color is already exist at this line</b></p><br/>
-            <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
-            cells which should be filled during the game</b></p>
-        </div>
-
-        <div class="mySlides">
-            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">
-            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorColumn.jpg">
-            <br> <br>
-            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "2" digit is already exist at this column</b></p>
-            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the pink color is already exist at this column</b></p>
-        </div>
-
-        <div class="mySlides">
-            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">
-            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorQ.jpg">
-            <br> <br>
-            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "6" digit is already exist at this square</b></p>
-            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the purple color is already exist at this square</b></p>
-        </div>
-
-        <h  class="mySlides" id="titleSlide2">The game's key</h>
-
-        <p  class="mySlides" ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>
-            - numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>
-            - backspace key in order to delete a value of a cell if necessary.<Br/>
-            - left mouse button in order to  switch between the cells in the sudoku board.<Br/>
-
-        </p>
-
-        <p  class="mySlides" ng-if="colors" id="piskaKeys2">The games's keys on the keyboard are<br/>
-            the numbers 1-9 in order to fill the cells of the <br/>
-            sudoku board each number is matching a specific color, <br/>
-            according to the given legend.<br/>
-            In addition, the left mouse button is used for switching between<br/>
-            the cells in the sudoku board and for deleting <br/>
-            a value of a cell if necessary <br/>
-            The illustration is shown in the next slide.
-        </p>
+<!--        <div class="mySlides">-->
+<!--            <p  id="titleSlide1">Incorrect fills</p>-->
+<!--        </div>-->
 
 
-        <img class="mySlides" ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keys.jpg">
-        <img class="mySlides" ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
+<!--        <div class="mySlides">-->
+<!--            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">-->
+<!--            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorLine.jpg">-->
+<!--            <br> <br>-->
+<!--            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "4" digit is already exist at this line</b></p>-->
+<!--            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the yellow color is already exist at this line</b></p><br/>-->
+<!--            <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>-->
+<!--            cells which should be filled during the game</b></p>-->
+<!--        </div>-->
 
-        <div class="mySlides" id="familiarityDiv">
+<!--        <div class="mySlides">-->
+<!--            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">-->
+<!--            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorColumn.jpg">-->
+<!--            <br> <br>-->
+<!--            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "2" digit is already exist at this column</b></p>-->
+<!--            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the pink color is already exist at this column</b></p>-->
+<!--        </div>-->
 
-            <div id="sudokuFamiliar" >
-                <h2 class="familiar" align="center"><B>
-                    <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>
-                    <p>prior to this study:</p> </B></h2>
-            </div>
-<!--            <div id="KSFamiliar">-->
+<!--        <div class="mySlides">-->
+<!--            <img class="tutorialPictures"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">-->
+<!--            <img class="tutorialPictures" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/illegalColorQ.jpg">-->
+<!--            <br> <br>-->
+<!--            <p class="tutorialSentence" ng-if="numbers"><b>This step (marked with "X") is incorrect because the "6" digit is already exist at this square</b></p>-->
+<!--            <p class="tutorialSentence" ng-if="colors"><b>This step (marked with "X") is incorrect because the purple color is already exist at this square</b></p>-->
+<!--        </div>-->
+
+<!--        <div class="mySlides">-->
+<!--            <h id="titleSlide2">The game's key</h>-->
+<!--        </div>-->
+
+<!--        <div class="mySlides">-->
+<!--            <p  ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>-->
+<!--                - numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.<br/>-->
+<!--                - backspace key in order to delete a value of a cell if necessary.<Br/>-->
+<!--                - left mouse button in order to  switch between the cells in the sudoku board.<Br/>-->
+<!--            </p>-->
+<!--        </div>-->
+
+<!--        <div class="mySlides">-->
+<!--            <p  ng-if="colors" id="piskaKeys2">The games's keys on the keyboard are<br/>-->
+<!--                the numbers 1-9 in order to fill the cells of the <br/>-->
+<!--                sudoku board each number is matching a specific color, <br/>-->
+<!--                according to the given legend.<br/>-->
+<!--                In addition, the left mouse button is used for switching between<br/>-->
+<!--                the cells in the sudoku board and for deleting <br/>-->
+<!--                a value of a cell if necessary <br/>-->
+<!--                The illustration is shown in the next slide.-->
+<!--            </p>-->
+<!--        </div>-->
+
+
+
+<!--        <img class="mySlides" ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keys.jpg">-->
+<!--        <img class="mySlides" ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">-->
+
+<!--        <div class="mySlides" id="familiarityDiv">-->
+
+<!--            <div id="sudokuFamiliar" >-->
 <!--                <h2 class="familiar" align="center"><B>-->
-<!--                    <p>Please rate your familiarity and level of expertise with Knapsack puzzles, </p>-->
+<!--                    <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>-->
 <!--                    <p>prior to this study:</p> </B></h2>-->
 <!--            </div>-->
+<!--&lt;!&ndash;            <div id="KSFamiliar">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2 class="familiar" align="center"><B>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p>Please rate your familiarity and level of expertise with Knapsack puzzles, </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p>prior to this study:</p> </B></h2>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 
 
-            <div id="familiarOptions" class="familiar"   >
-                <div class="familiar-option" ><input type="radio" name="familiar" ng-model="familiar" value=" 0" > 0 - absolutely no familiarity</div>
-                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 1"  > 1 - minimal familiarity and little to no experience </div>
-                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 2"  > 2 - below average level of expertise</div>
-                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 3"  > 3 - moderate level of expertise</div>
-                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 4"  > 4 - above average level of expertise </div>
-                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 5"  > 5 - high level of expertise</div>
-            </div>
-        </div>
-        <br> <br>
+<!--            <div id="familiarOptions" class="familiar"   >-->
+<!--                <div class="familiar-option" ><input type="radio" name="familiar" ng-model="familiar" value=" 0" > 0 - absolutely no familiarity</div>-->
+<!--                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 1"  > 1 - minimal familiarity and little to no experience </div>-->
+<!--                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 2"  > 2 - below average level of expertise</div>-->
+<!--                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 3"  > 3 - moderate level of expertise</div>-->
+<!--                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 4"  > 4 - above average level of expertise </div>-->
+<!--                <div class="familiar-option"><input type="radio"  name="familiar" ng-model="familiar" value=" 5"  > 5 - high level of expertise</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <br> <br>-->
 
-        <div class="mySlides" id="lastP">
-            On the next page, you will examine your proficiency in the rules of the game. <br/>
-            You can only switch to the game after you have answered all the questions correctly, <br/>
-            or you will be taken back to this page.<br/>
-            <br>
-            Good luck! <br/>
-            <br>
-            <button id="startTest" ng-click="startExam()">Start exam</button>
-        </div>
+<!--        <div class="mySlides" id="lastP">-->
+<!--            On the next page, you will examine your proficiency in the rules of the game. <br/>-->
+<!--            You can only switch to the game after you have answered all the questions correctly, <br/>-->
+<!--            or you will be taken back to this page.<br/>-->
+<!--            <br>-->
+<!--            Good luck! <br/>-->
+<!--            <br>-->
+<!--            <button id="startTest" ng-click="startExam()">Start exam</button>-->
+<!--        </div>-->
 
 
     <!--        <img class="mySlides" src="img_forest.jpg">-->
 
     <!--        <button class="w3-button w3-display-left" ng-click="plusDivs(-1)">&#10094;</button>-->
     <!--        <button class="w3-button w3-display-right" ng-click="plusDivs(+1)">&#10095;</button>-->
-            <div class="buttons">
-                <button id="prev" class="w3-buttonPrev" ng-click="plusDivs(-1)">&#10094; Prev</button>
-                <button id="next" class="w3-buttonNext" ng-click="plusDivs(1)">Next &#10095;</button>
+<!--            <div class="buttons">-->
+<!--                <button id="prev" class="w3-buttonPrev" ng-click="plusDivs(-1)">&#10094; Prev</button>-->
+<!--                <button id="next" class="w3-buttonNext" ng-click="plusDivs(1)">Next &#10095;</button>-->
 
-            </div>
+<!--            </div>-->
 
 
 <!--        </div>-->
