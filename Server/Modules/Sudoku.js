@@ -193,25 +193,39 @@ Sudoku.post('/submitFinishQuestion', function (req, res) {
         })
 })
 
-
+// Sudoku.post('/amountOfCorrectedCells', function (req, res) {
+//
+//     var
+//
+//
+// }
 Sudoku.post('/finishGame', function (req, res) {
-
+    var originalBoard =req.body.originalBoard;
     var totalTime = req.body.totalTime;
     var gameID = req.body.gameID;
-    var solutionBoard = req.body.solutionBoard + "";
+    var solutionBoardOfUser = req.body.solutionBoard + "";
+    var filledCells = allFilledCells(originalBoard,solutionBoardOfUser);
+    console.log("filled cells are: "+filledCells);
+    var numberOfCellsFilled = filledCells.length;
+    console.log(numberOfCellsFilled);
+    // var numberOfCellsFilledCorrectly = numberOfCellsFilledCorrectly(solutionBoardOfUser,filledCells);
 
-    var postQuery = "update SudokuToUser set Solution =' " +solutionBoard + "' , totalTime='" + totalTime + "' where GameID = "+gameID;
-    console.log("query is "+postQuery);
+    var postQuery = "update SudokuToUser set Solution =' " +solutionBoardOfUser + "' , totalTime='" + totalTime + "' where GameID = "+gameID;
+
     DButilsAzure.execQuery(postQuery)
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {
-            res.send(result)
+            let results = [];
+            results.push(result);
+            results.push(numberOfCellsFilled);
+            res.send(results)
 
         })
         .catch(function (err) {
             console.log(err)
             res.send(err)
         })
+
 })
 
 Sudoku.post('/updateCompletionCode', function (req, res) {
@@ -258,11 +272,11 @@ Sudoku.post('/submitFamiliarityAndDifficultyEstimateBefore', function (req, res)
         })
 })
 
-Sudoku.get('/getSudokuNumQuestion/:id', function (req, res) {
+Sudoku.get('/getSudokuNumQuestion', function (req, res) {
 
-    var questionID = req.params.id;
 
-    var query = "select * from sudokuNumbersQuestions where questionID= '"+questionID+"'";
+
+    var query = "select * from sudokuNumbersQuestions";
     DButilsAzure.execQuery(query)
     // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
 
@@ -280,3 +294,21 @@ Sudoku.get('/getSudokuNumQuestion/:id', function (req, res) {
         })
 
 })
+
+function allFilledCells (original, solution){
+    var originalBoard = original.split(',');
+    var solutionBoardFromUser = solution.split(',');
+    let filledCells = [];
+    for(let i = 0; i < solutionBoardFromUser.length;i++){
+        if(originalBoard[i]==0 && solutionBoardFromUser[i] != 0)
+            filledCells.push(i);
+    }
+    return (filledCells);
+
+}
+
+// function numberOfCellsFilledCorrectly (solutionBoardOfUser,filledCells) {
+//     //sql to get solution
+//     //compare solution on ( filled cells ) with original on filled cells indexes
+//
+// }
