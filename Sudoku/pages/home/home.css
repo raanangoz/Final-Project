@@ -7,6 +7,15 @@
 
 }
 
+.footer{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
 .continueButton{
 
     background-color: #f4f1d2;
@@ -15,10 +24,11 @@
     width: 150px;
     font-size: 200%;
     font-weight: bold;
+    margin: 30px;
     /*align: center;*/
-    position: absolute;
-    right: calc(50% - 75px);
-    bottom: 7%;
+    /*position: absolute;*/
+    /*right: calc(50% - 75px);*/
+    /*bottom: 7%;*/
 
 }
 

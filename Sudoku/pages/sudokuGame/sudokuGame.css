@@ -142,9 +142,18 @@ body{
     color: lightskyblue;
 }
 
+.finishB{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .Finish Game{
-    position:fixed;
-    top:92px;
+
+    /*position:fixed;*/
+    /*top:92px;*/
     width: 20px;
     size: B4;
 }

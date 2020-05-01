@@ -1,15 +1,15 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
-        var familiarityAgainNext;
-        var familiarityAgainPrev;
+        var familiarityAgainNextSudoku;
+        var familiarityAgainPrevSudoku;
 
         $rootScope.familiarity = 0;
 
         $scope.init = function () {
 
-            familiarityAgainNext = false;
-            familiarityAgainPrev = false;
+            familiarityAgainNextSudoku = false;
+            familiarityAgainPrevSudoku = false;
             //if numbers
             if($rootScope.gameInstance === 0){
                 $scope.numbers = true;
@@ -36,22 +36,22 @@ angular.module("sudokuApp")
 
         $scope.plusDivs = function (n) {
             showDivs(slideIndex += n, n);
-            familiarityAgainNext = false;
-            familiarityAgainPrev = false;
+            familiarityAgainNextSudoku = false;
+            familiarityAgainPrevSudoku = false;
 
         }
 
         function next(){
 
             showDivs(slideIndex += 1,1);
-            familiarityAgainNext = true;
+            familiarityAgainNextSudoku = true;
 
         }
 
         function prev(){
 
             showDivs(slideIndex -= 1, -1);
-            familiarityAgainPrev = true;
+            familiarityAgainPrevSudoku = true;
 
         }
 
@@ -81,7 +81,13 @@ angular.module("sudokuApp")
 
             }
 
-            if( z === -1 && slideIndex === x.length-1 && !familiarityAgainPrev ){
+            //hide the prev button in the last page
+            if(slideIndex === x.length){
+                document.getElementById("prev").style.visibility = "hidden";
+            }
+
+            if( z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+
                 if($rootScope.wasSudoko > 1){
                     prev();
 
@@ -89,14 +95,14 @@ angular.module("sudokuApp")
 
             }else{
 
-                if(slideIndex === x.length-1 && !familiarityAgainNext ){
+                if(slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
                     console.log("hereIFFFF");
                     //if it's the second instance of the sudoku
                     if($rootScope.wasSudoko > 1){
                         next();
 
 
-                    //first instance oc sudoku
+                    //first instance of sudoku
                     }else{
                             document.getElementById("next").style.visibility = "hidden";
 
@@ -107,42 +113,25 @@ angular.module("sudokuApp")
             }
 
 
-
-
-
         }
-
-
 
 
         $scope.$watch('familiar', function(value) {
 
             console.log("familiarity= "+value);
             document.getElementById("next").style.visibility = "visible";
+            if (value !== undefined){
+                document.getElementById("next").innerHTML = "Submit and continue";
+                document.getElementById("next").style.width = "80px";
+                document.getElementById("next").style.height = "65px";
+            }
+
+
 
             $rootScope.familiarity = value;
 
-            //documentation
-            // $http({
-            //
-            //     method: 'POST',
-            //     url: 'http://localhost:3000/Sudoku/submitFamiliarityQuestion',
-            //     data: {
-            //         "gameID": ""+$scope.GameID,
-            //         "userID": ""+ $scope.userID,
-            //         "familiarity":  ""+value
-            //     }
-            // })
-            //     .then(function (response) {
-            //
-            //
-            //     }, function (response) {
-            //         // $scope.records = response.statusText;
-            //     });
 
         });
-
-
 
 
 
@@ -154,41 +143,5 @@ angular.module("sudokuApp")
 
 
 
-
-
-
-
-        //automatic
-        // var slideIndex = 0;
-        // showSlides();
-        //
-        // function showSlides() {
-        //     var i;
-        //     var slides = document.getElementsByClassName("mySlides");
-        //     for (i = 0; i < slides.length; i++) {
-        //         slides[i].style.display = "none";
-        //     }
-        //     slideIndex++;
-        //     if (slideIndex > slides.length) {slideIndex = 1}
-        //     slides[slideIndex-1].style.display = "block";
-        //     setTimeout(showSlides, 20000); // Change image every 2 seconds
-        // }
-
-        // //TODO UPDATE AFTER KS PAGE
-        // if ($rootScope.gameInstance === 0){  //numbers Sudoku
-        //
-        //
-        //
-        //
-        // }
-        //
-        // if ($rootScope.gameInstance === 1){  //colors Sudoku
-        //
-        //
-        //
-        //
-        //
-        //
-        // }
 
     })

@@ -25,25 +25,25 @@
                     <div class="slide1">
                         <h id= "desSudokuNum" ng-if="numbers" >
                             The next task is to solve a number-placement puzzle -“Sudoku”.<br/>
-                            The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
-                            composed with 9 rows, 9 columns and 9 subgrids,<br/>
+                            The Sudoku puzzle board is a grid of 9 x 9 spaces, composed with 9 rows,  <br/>
+                             9 columns and 9 subgrids,<br/>
                             called “blocks” (made up of 3 x 3 spaces). <br/>
                             The objective is to fill the grid with digits so that each column, <br/>
                             each row, and each block contain all of the digits from 1 to 9.<br/>
-                            That means, no number should appear more than once   <br/>
-                            at the same column, row or block.  <br/>
+                            That means, no number should appear more than once at the same column,    <br/>
+                            row or block.  <br/>
                             <br>
                         </h>
                         <h id= "desSudokuColors" ng-if="colors">
                             The next task is to solve a color-placement puzzle -“Sudoku”.<br/>
-                            The Sudoku puzzle board is a grid of 9 x 9 spaces,  <br/>
-                            composed with 9 rows, 9 columns and 9 subgrids,<br/>
+                            The Sudoku puzzle board is a grid of 9 x 9 spaces, composed with 9 rows,   <br/>
+                            9 columns and 9 subgrids,<br/>
                             called “blocks” (made up of 3 x 3 spaces). <br/>
-                            The objective is to fill the grid with colors so that each column, <br/>
-                            each row, and each block contain all of the colors <br/>
-                            according to the given declaration.<br/>
-                            That means, no color should appear more than once   <br/>
-                            at the same column, row or block.  <br/>
+                            The objective is to fill the grid with colors so that each column, each row,  <br/>
+                           and each block contain all of the colors <br/>
+                            according to the given information.<br/>
+                            That means, no color should appear more than once at the same column,     <br/>
+                            row or block.<br/>
                             <br>
                         </h>
                         <!--            Press "Next" to start the tutorial-->
@@ -84,12 +84,12 @@
             </div>
 
 <!--                Slide 3-->
-                <div class="mySlides">
-                    <div class="slide3-7">
-                        <p >Possible fills</p>
-                    </div>
+<!--                <div class="mySlides">-->
+<!--                    <div class="slide3-7">-->
+<!--                        <p >Possible fills</p>-->
+<!--                    </div>-->
 
-                </div>
+<!--                </div>-->
 
 
                 <div class="mySlides">
@@ -127,12 +127,12 @@
                 </div>
 
 
-                <div class="mySlides">
-                    <div class="slide3-7">
-                        <p  id="titleSlide1">Incorrect fills</p>
-                    </div>
+<!--                <div class="mySlides">-->
+<!--                    <div class="slide3-7">-->
+<!--                        <p  id="titleSlide1">Incorrect fills</p>-->
+<!--                    </div>-->
 
-                </div>
+<!--                </div>-->
 
 <!--                Slide 4-->
 
@@ -181,23 +181,26 @@
                 </div>
 
 
+<!--                <div class="mySlides">-->
+<!--                    <div class="slide3-7">-->
+<!--                        <h class="titleSlide2">Relevant keys</h>-->
+
+<!--                    </div>-->
+
+<!--                </div>-->
+
                 <div class="mySlides">
-                    <div class="slide3-7">
-                        <h class="titleSlide2">Relevant keys</h>
-
-                    </div>
-
-                </div>
-
-                <div class="mySlides">
-                    <div class="slide2-8">
-                        <ul ng-if="numbers" id="piskaKeys1" >
-                            The relevant keys for the next game:<Br/><br>
-                            <li>numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.</li>
-                            <li>backspace key in order to delete a value of a cell if necessary.</li>
-                            <li>left mouse button in order to  switch between the cells in the sudoku board.</li>
+                    <div class="slide8">
+                        <ul class="keys" ng-if="numbers" id="piskaKeys1" >
+<!--                            The relevant keys for the next game:<Br/><br>-->
+                            <li>Use the number keys 1-9 on your keyboard in order to fill empty cells on the Sudoku grid.</li>
+                            <li>Use the Backspace key in order to delete a previously filled cell if necessary.</li>
+                            <li>Use the mouse click in order to switch between the cells on the Sudoku grid.</li>
                             <br>
-                            The illustration is shown in the next slide.
+                            <div class="illustration">
+                                <img class="imageKey"  ng-src="pages/Tutorial/tutorialPictures/keysN.png">
+                            </div>
+<!--                            The illustration is shown in the next slide.-->
                         </ul>
 
 <!--                        <p  ng-if="numbers" id="piskaKeys1">The relevant keys for the next game:<Br/>-->
@@ -206,13 +209,16 @@
 <!--                        -    left mouse button in order to  switch between the cells in the sudoku board.<Br/>-->
 <!--                            The illustration is shown in the next slide.-->
 <!--                        </p>-->
-                        <ul ng-if="colors" id="piskaKeys2" >
-                            The relevant keys for the next game:<Br/><br>
-                            <li>numbers 1-9 on the keyboard  in order to fill the cells of the sudoku board.</li>
-                            <li>left mouse button in order to delete a value of a cell if necessary.</li>
-                            <li>left mouse button in order to  switch between the cells in the sudoku board.</li>
+                        <ul class="keys" ng-if="colors" id="piskaKeys2" >
+<!--                            The relevant keys for the next game:<Br/><br>-->
+                            <li>Use the number keys 1-9 on your keyboard in order to fill empty cells on the Sudoku grid.</li>
+                            <li>Use the mouse click in order to delete a previously filled cell if necessary.</li>
+                            <li>Use the mouse click in order to switch between the cells on the Sudoku grid.</li>
                             <br>
-                            The illustration is shown in the next slide.
+                            <div class="illustration">
+                                <img class="imageKey"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
+                            </div>
+<!--                            The illustration is shown in the next slide.-->
                         </ul>
 
 
@@ -225,12 +231,12 @@
                     </div>
                 </div>
 
-                <div class="mySlides">
-                    <div class="slide2-8">
-                    <img class="imageKey"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keysN.png">
-                    <img class="imageKey"   ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
-                    </div>
-                </div>
+<!--                <div class="mySlides">-->
+<!--                    <div class="slide2-8">-->
+<!--                    <img class="imageKey"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/keysN.png">-->
+<!--                    <img class="imageKey"   ng-if="colors"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
                 <div class="mySlides" id="familiarityDiv">
@@ -257,12 +263,13 @@
                     <div class="slide9">
                         <div class="piskaEnd">
 
-                            Next, you will be tested to make sure you understood the instructions <br/>
-                            and the logic of the Sudoku puzzle.<br/>
-                            Only after successfully completing the test, you will be transferred to the main  <br/>
-                            puzzle-solving task. In order to do so, you will have to answer all questions correctly. <br/>
-                            If you will not succeed in the test, you will be transferred back to the tutorial page, <Br/>
-                            and redo the test. <br/>
+                            Next, you will be tested to make sure you understood the <br/>
+                            instructions and the logic of the Sudoku puzzle.<br/>
+                            Only after successfully completing the test, you will be transferred  <br/>
+                            to the main puzzle-solving task.<br/>
+                            In order to do so, you will have to answer all questions correctly. <br/>
+                            If you will not succeed in the test, you will be transferred  <Br/>
+                            back to the tutorial page, and redo the test. <br/>
 <!--                            <br>-->
 <!--                        Good luck! <br/>-->
                         </div>
