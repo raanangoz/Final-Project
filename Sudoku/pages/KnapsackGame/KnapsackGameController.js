@@ -162,7 +162,7 @@ angular.module("sudokuApp")
                         method: 'POST',
                         url:'http://localhost:3000/Knapsack/createNewGame',
                         data: {
-                            "userID":""+$rootScope.userID,
+                            "userID":""+sessionStorage.userID,
                             "puzzleID":'2',
                             "type":""+gameTypeToSQL
                         }})

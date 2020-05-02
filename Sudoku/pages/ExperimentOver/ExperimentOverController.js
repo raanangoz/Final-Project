@@ -11,7 +11,7 @@ angular.module("sudokuApp")
 
             $scope.init = function () {
 
-                    $scope.code = letter+$rootScope.userID;
+                    $scope.code = letter+sessionStorage.userID;
                     console.log("compCode= "+$scope.code);
 
                     //documentation
@@ -20,7 +20,7 @@ angular.module("sudokuApp")
                             method: 'POST',
                             url: 'http://localhost:3000/Sudoku/updateCompletionCode ',
                             data: {
-                                    "userID": ""+ $rootScope.userID,
+                                    "userID": ""+ sessionStorage.userID,
                                     "compCode": ""+ $scope.code
 
                             }

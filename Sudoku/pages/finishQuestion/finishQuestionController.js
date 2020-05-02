@@ -56,7 +56,7 @@ angular.module("sudokuApp")
                     method: 'POST',
                     url:'http://localhost:3000/Sudoku/submitFinishQuestion',
                     data: {
-                        "userID":""+$rootScope.userID,
+                        "userID":""+sessionStorage.userID,
                         "gameID":""+$rootScope.GameID,
                         "difficulty":""+difficultyRank,
                         "correctness":""+correctnessRank

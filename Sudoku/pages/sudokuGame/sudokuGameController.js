@@ -240,8 +240,9 @@ angular.module("sudokuApp")
 
         //init board and game
         $scope.init = function(){
-
             //document.getElementById("finish").disabled = "true";
+
+            $rootScope.userID = sessionStorage.getItem("userID");
 
             console.log("hereInitttttttttttttttttttttttttt");
             //requests
@@ -359,7 +360,7 @@ angular.module("sudokuApp")
                         method: 'POST',
                         url:'http://localhost:3000/Sudoku/createNewGame',
                         data: {
-                            "userID":""+$rootScope.userID,
+                            "userID":""+sessionStorage.userID,
                             "puzzleID":'2',
                             "type":""+gameTypeToSQL
                         }})
@@ -557,7 +558,7 @@ angular.module("sudokuApp")
                 url: 'http://localhost:3000/Sudoku/submitFamiliarityAndDifficultyEstimateBefore',
                 data: {
                     "gameID": "" + $rootScope.GameID,
-                    "userID": ""+ $rootScope.userID,
+                    "userID": ""+ sessionStorage.userID,
                     "difBefore": ""+ answer,
                     "familiarity": ""+$rootScope.familiarity
 

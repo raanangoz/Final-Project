@@ -105,7 +105,7 @@ angular.module("sudokuApp")
                 $location.url('/pageBeforeGame');
             }
             else{
-                window.alert("You did not pass the test");
+                $location.url('/Tutorial');
             }
 
 

@@ -61,6 +61,7 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/pageBeforeGame/pageBeforeGame.html',
             controller : 'pageBeforeGameController as pageBeforeGameCtrl'
         })
+
         // // about
         // .when('/about', {
         //     // this is a template url

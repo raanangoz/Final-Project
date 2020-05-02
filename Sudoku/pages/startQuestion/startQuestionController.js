@@ -6,11 +6,13 @@ angular.module("sudokuApp")
         // setTimeout("preventBack()", 0);
         // window.onunload=function(){null};
         //
-        window.onbeforeunload = function(event) {
+        if(window.onbeforeunload = function(event) {
             // do some stuff here, like reloading your current state
             //this would work only if the user chooses not to leave the page
+            console.log("refresjed");
             return 'why would you do that???';
-        }
+        })
+
 
         $(document).ready(function() {
             function disablePrev() { window.history.forward() }
@@ -36,8 +38,11 @@ angular.module("sudokuApp")
 
         //two arrays for the lottery between the games
         $rootScope.gameInstance = 1;
+        // let gameInstancesChosen= {false,false,true,true};
         // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
         $rootScope.gameInstancesChosen = [false, false, true, true];
+        // sessionStorage.setItem("gameInstance","1");
+        // sessionStorage.setItem("gameInstancesChosen",JSON.stringify(gameInstancesChosen));
         //boolean for the familiarity question
         $rootScope.wasSudoko=0;
         $rootScope.wasKS=0;
@@ -97,11 +102,13 @@ angular.module("sudokuApp")
                                         userID = response.data[0].maxid;
                                         console.log(userID + "kilili");
                                         $rootScope.userID = userID;
+                                        sessionStorage.setItem("userID",userID);
 
                                         //TODO change to *4 after the KS page
                                         $rootScope.gameInstance = Math.floor(Math.random() * 2);
                                         $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
-
+                                        // sessionStorage.setItem("gameInstancesChosen",.gameInstance] = true;
+                                        // sessionStorage.setItem("gameInstancesChosen",JSON.stringify(($rootScope.gameInstancesChosen).gameInstancesChosen));
                                         console.log("number= " + $rootScope.gameInstance);
                                         //pass to Start Game
                                         $location.url('/Tutorial');
