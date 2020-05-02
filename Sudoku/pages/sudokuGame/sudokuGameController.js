@@ -420,7 +420,7 @@ angular.module("sudokuApp")
 
                     if($scope.initialBoard[i][j] === '0' && filledWhole){
                         if($scope.sudokuBoard[i][j] === ''){
-                            $window.alert("You have to finish the whole boxes in order to finish the game");
+                            $window.alert("You have to finish the puzzle first");
                             filledWhole = false;
                          }
                     }

@@ -2,13 +2,10 @@ angular.module("sudokuApp")
     .controller("ExamBeforeGameController", function ($scope, $http, $location, $window) {
 
 
-        document.getElementById("prevExam").style.visibility = "hidden";
+        // document.getElementById("prevExam").style.visibility = "hidden";
         var slideIndex = 1;
         showDivs(slideIndex);
-        var printedQuestions = [];
-        var questionsFromServer = [];
-        var numberOfQuestionsInDB = 6;
-        var numberOfQuestionsToAsk = 3;
+
         $scope.plusDivs = function (n) {
             showDivs(slideIndex += n);
         }
@@ -17,11 +14,11 @@ angular.module("sudokuApp")
 
         function showDivs(n) {
 
-            if(slideIndex === 1){
-                document.getElementById("prevExam").style.visibility = "hidden";
-            }else{
-                document.getElementById("prevExam").style.visibility = "visible";
-            }
+            // if(slideIndex === 1){
+            //     document.getElementById("prevExam").style.visibility = "hidden";
+            // }else{
+            //     document.getElementById("prevExam").style.visibility = "visible";
+            // }
 
 
             var i;
@@ -54,9 +51,11 @@ angular.module("sudokuApp")
 
                 //TODO raanan 10 QUESTION, 5 RANDOM
             }).then(function (response) {
-
-
-
+                let chosenQuestionsByID = [];
+                var numberOfQuestionsInDB = 9;
+                var numberOfQuestionsToAsk = 5;
+                var questionsFromServer = [];
+                var printedQuestions = [];
                 for (var i = 0; i < numberOfQuestionsInDB; i++) {
                     printedQuestions.push(false);
                 }
@@ -78,6 +77,8 @@ angular.module("sudokuApp")
                 $scope.question0 = questionsFromServer[0];
                 $scope.question1 = questionsFromServer[1];
                 $scope.question2 = questionsFromServer[2];
+                $scope.question3 = questionsFromServer[3];
+                $scope.question4 = questionsFromServer[4];
 
 
 
@@ -93,25 +94,19 @@ angular.module("sudokuApp")
 
             // let answer = document.querySelector('input[name!="null"]');
             // console.log(document.querySelector('input[name="op"]:checked').value);
-            let answer0 = $scope.a;
+            let answer0 = $scope.c;
             console.log(answer0);
-            let answer1 = $scope.b;
+            let answer1 = $scope.a;
             console.log(answer1);
-            let answer2 = $scope.c;
+            let answer2 = $scope.b;
             console.log(answer2);
-            if(answer0==questionsFromServer[0].correctAnswer&&
-                answer1==questionsFromServer[1].correctAnswer&&
-                answer2==questionsFromServer[2].correctAnswer){
-                $location.url('/pageBeforeGame');
-            }
-            else{
-                $location.url('/Tutorial');
-            }
+            let answer3 = $scope.d;
+            console.log(answer3);
+            let answer4 = $scope.e;
+            console.log(answer4);
 
 
-
-
-
+            $location.url('/pageBeforeGame');
 
         }
 

@@ -62,12 +62,8 @@
 <!--    </div>-->
     <br/>
 
-    <div class="message"> {{message}}
-        <!--<span ng-if="message == 'Conflict'"> Move not allowed. Conflict at Row: {{conflictRow}}  - And Column: {{conflictCol}}</span> -->
-        <span ng-if="message == 'Bad Request'"> Validation error, input parameters not correct.</span>
-    </div>
 
-    <div>
+    <div class="finishB">
             <button id= "finish" class="Finish Game" ng-if="gameStarted" ng-click=" finishGameYesOrNo()" >Finish Game</button>
     </div>
 
@@ -94,7 +90,7 @@
             <div class="modal-content">
                 <div class="modal-header">
 <!--                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
-                    <h4 class="modal-title" id="myModalLabel"><b>Before start...</b></h4>
+                    <h4 class="modal-title" id="myModalLabel"><b>Before you start...</b></h4>
                 </div>
                 <div class="modal-body">
                     <b>Estimate the problem's difficulty: (between 1 to 10)</b>
@@ -124,7 +120,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!--                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
-                    <h4 class="modal-title" id="myModalLabel2"><b>Before finish...</b></h4>
+                    <h4 class="modal-title" id="myModalLabel2"><b>Before you finish...</b></h4>
                 </div>
                 <div class="modal-body">
                     <b>Are you sure you want to finish game?</b>
