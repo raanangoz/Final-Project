@@ -2,6 +2,7 @@ angular.module("sudokuApp")
     .controller("pageBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
 
+        $rootScope.gameInstance = sessionStorage.getItem("gameInstance");
         //if numbers
         if($rootScope.gameInstance === 0){
             $scope.numbers = true;

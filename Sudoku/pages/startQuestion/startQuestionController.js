@@ -1,54 +1,55 @@
 angular.module("sudokuApp")
     .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
-        console.log("oshshshsdhd")
 
-        // function preventBack(){window.history.forward();}
-        // setTimeout("preventBack()", 0);
-        // window.onunload=function(){null};
-        //
-        if(window.onbeforeunload = function(event) {
-            // do some stuff here, like reloading your current state
-            //this would work only if the user chooses not to leave the page
-            console.log("refresjed");
-            return 'why would you do that???';
-        })
+            // function preventBack(){window.history.forward();}
+            // setTimeout("preventBack()", 0);
+            // window.onunload=function(){null};
+            //
+            if(window.onbeforeunload = function(event) {
+                // do some stuff here, like reloading your current state
+                //this would work only if the user chooses not to leave the page
+                console.log("refresjed");
+                return 'why would you do that???';
+            })
 
 
-        $(document).ready(function() {
-            function disablePrev() { window.history.forward() }
-            window.onload = disablePrev();
-            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
-        });
+                $(document).ready(function() {
+                    function disablePrev() { window.history.forward() }
+                    window.onload = disablePrev();
+                    window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+                });
 
-        //
-        // window.history = function(event) {
-        //     // do some stuff here, like reloading your current state
-        //     //this would work only if the user chooses not to leave the page
-        //     return 'why would you do that???';
-        // }
+            //
+            // window.history = function(event) {
+            //     // do some stuff here, like reloading your current state
+            //     //this would work only if the user chooses not to leave the page
+            //     return 'why would you do that???';
+            // }
 
-        var userWorkerID;
-        var userAge;
-        var userGender;
-        var userHand;
-        var userEducation;
+            var userWorkerID;
+            var userAge;
+            var userGender;
+            var userHand;
+            var userEducation;
 
-        // var g= $scope.gender.value;
-        // console.log("g= "+g);
+            // var g= $scope.gender.value;
+            // console.log("g= "+g);
 
-        //two arrays for the lottery between the games
-        $rootScope.gameInstance = 1;
-        // let gameInstancesChosen= {false,false,true,true};
-        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
-        $rootScope.gameInstancesChosen = [false, false, true, true];
-        // sessionStorage.setItem("gameInstance","1");
-        // sessionStorage.setItem("gameInstancesChosen",JSON.stringify(gameInstancesChosen));
-        //boolean for the familiarity question
-        $rootScope.wasSudoko=0;
-        $rootScope.wasKS=0;
+            //two arrays for the lottery between the games
+            $rootScope.gameInstance = 1;
+            sessionStorage.setItem("gameInstance","1");
+            // let gameInstancesChosen= {false,false,true,true};
+            // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
+            $rootScope.gameInstancesChosen = [false, false, true, true];
+            sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+            //boolean for the familiarity question
+            $rootScope.wasSudoko=0;
+            $rootScope.wasKS=0;
+            sessionStorage.setItem("wasSudoko","0");
+            sessionStorage.setItem("wasKS","0");
 
-        //for check the worker ID
-        var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
+            //for check the worker ID
+            var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
 
             $scope.go = function () {
 
@@ -99,23 +100,24 @@ angular.module("sudokuApp")
 
 
                                     }).then(function (response) {
-                                        userID = response.data[0].maxid;
-                                        console.log(userID + "kilili");
+                                        let userID = response.data[0].maxid;
                                         $rootScope.userID = userID;
                                         sessionStorage.setItem("userID",userID);
 
                                         //TODO change to *4 after the KS page
-                                        $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                                        $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
-                                        // sessionStorage.setItem("gameInstancesChosen",.gameInstance] = true;
-                                        // sessionStorage.setItem("gameInstancesChosen",JSON.stringify(($rootScope.gameInstancesChosen).gameInstancesChosen));
+                                        let gameInstance = ""+Math.floor(Math.random() * 2);
+                                        $rootScope.gameInstance = gameInstance;
+                                        $rootScope.gameInstancesChosen[gameInstance] = "true";
+                                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+                                        sessionStorage.setItem("gameInstance",JSON.stringify(gameInstance));
                                         console.log("number= " + $rootScope.gameInstance);
                                         //pass to Start Game
                                         $location.url('/Tutorial');
+
                                     })
 
 
-                                    console.log("hereeeeee");
+
                                 }, function (response) {
                                     // $scope.records = response.statusText;
                                 });

@@ -2,7 +2,10 @@
 angular.module("sudokuApp")
     .controller("finishQuestionController", function ($scope, $http, $location,$rootScope, $window) {
 
-
+        $rootScope.gameInstancesChosen=(sessionStorage.getItem("gameInstancesChosen"));
+        $rootScope.gameInstance = sessionStorage.getItem("gameInstance");
+        $rootScope.boxes = sessionStorage.getItem("boxes");
+        $rootScope.GameID = sessionStorage.getItem("GameID");
         var correctnessRank;
         var difficultyRank;
         $scope.arrayOfOptionNumbers = [];

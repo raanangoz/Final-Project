@@ -1,27 +1,33 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
+
+
         var familiarityAgainNext;
         var familiarityAgainPrev;
-
         $rootScope.familiarity = 0;
+        sessionStorage.setItem("familiarity","0");
+        $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
+        $rootScope.wasSudoko = sessionStorage.getItem("wasSudoko");
 
         $scope.init = function () {
 
             familiarityAgainNext = false;
             familiarityAgainPrev = false;
             //if numbers
-            if($rootScope.gameInstance === 0){
+            if($rootScope.gameInstance == 0){
                 $scope.numbers = true;
                 $scope.colors= false;
                 $rootScope.wasSudoko++;
+                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
             }
 
             //if colors
-            if($rootScope.gameInstance === 1){
+            if($rootScope.gameInstance == 1){
                 $scope.numbers = false;
                 $scope.colors= true;
                 $rootScope.wasSudoko++;
+                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
             }
 
             //TODO add KS cases
@@ -121,6 +127,7 @@ angular.module("sudokuApp")
             document.getElementById("next").style.visibility = "visible";
 
             $rootScope.familiarity = value;
+            sessionStorage.setItem("familiarity",value);
 
             //documentation
             // $http({

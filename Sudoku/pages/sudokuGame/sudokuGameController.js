@@ -2,7 +2,8 @@
 //numberOfCellsChanged
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
-
+        $rootScope.userID = sessionStorage.getItem("userID");
+        $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
         //range in the modal
         $scope.rangeValue = "---";
 
@@ -17,7 +18,7 @@ angular.module("sudokuApp")
         $scope.gameStarted = false;
 
         $rootScope.numberOfCellsChanged= 0;
-
+        sessionStorage.setItem("numberOfCellsChanged","0");
         //object for the board
         var box = {value:"0", isIcon:"true"};
         var board_initial_to_compare;
@@ -53,12 +54,7 @@ angular.module("sudokuApp")
 
         //var for the user chose the range of difficulty
         document.getElementById("startGame").disabled = true;
-
-
         //load at start
-        console.log("aaaaaaaaaaa"+$rootScope.userID);
-
-
         $scope.move = function(field, sudokuBoard, row, col, val) {
 
             console.log("row: " + row + ", col : " + col + ", val: " + val);
@@ -240,8 +236,9 @@ angular.module("sudokuApp")
 
         //init board and game
         $scope.init = function(){
-            //document.getElementById("finish").disabled = "true";
 
+            //document.getElementById("finish").disabled = "true";
+            $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
             $rootScope.userID = sessionStorage.getItem("userID");
 
             console.log("hereInitttttttttttttttttttttttttt");
@@ -279,7 +276,8 @@ angular.module("sudokuApp")
                     sessionStorage.setItem("solutionBoard", JSON.stringify(board));
 
                     //numbers type
-                    if($rootScope.gameInstance===0){
+                    if($rootScope.gameInstance==0){
+
 
                         /** replace the zeros with white spaces */
                         for(var i= 0; i< $scope.sudokuBoard.length; i++){
@@ -360,7 +358,7 @@ angular.module("sudokuApp")
                         method: 'POST',
                         url:'http://localhost:3000/Sudoku/createNewGame',
                         data: {
-                            "userID":""+sessionStorage.userID,
+                            "userID":""+sessionStorage.getItem("userID"),
                             "puzzleID":'2',
                             "type":""+gameTypeToSQL
                         }})
@@ -375,6 +373,7 @@ angular.module("sudokuApp")
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
                                     $rootScope.GameID = GameID;
+                                    sessionStorage.setItem("GameID",GameID);
                                     console.dir(GameID);
 
 
@@ -441,10 +440,12 @@ angular.module("sudokuApp")
         //documentation solution and totalTime
         $scope.finishGame = function(){
 
+            sessionStorage.setItem("newGame","true");
             $interval.cancel(interval);
 
             //check how many boxes filled
             $rootScope.boxes = 0;
+            sessionStorage.setItem("boxes","0");
             for (var i = 0; i < $scope.initialBoard.length ; i++) {
                 for (var j = 0; j < $scope.initialBoard.length ; j++) {
 
@@ -453,7 +454,8 @@ angular.module("sudokuApp")
                         if($scope.sudokuBoard[i][j] != ''){
                             console.log("hereIfBoxes");
                             $rootScope.boxes ++;
-
+                            sessionStorage.setItem("boxes",$rootScope.boxes);
+                            console.log("boxes"+sessionStorage.getItem("boxes"));
                         }
                     }
 
@@ -560,7 +562,7 @@ angular.module("sudokuApp")
                     "gameID": "" + $rootScope.GameID,
                     "userID": ""+ sessionStorage.userID,
                     "difBefore": ""+ answer,
-                    "familiarity": ""+$rootScope.familiarity
+                    "familiarity": ""+sessionStorage.getItem("familiarity")
 
                 }
             })
@@ -591,7 +593,7 @@ angular.module("sudokuApp")
                 method: 'POST',
                 url: 'http://localhost:3000/Sudoku/finishGame',
                 data: {
-                    "gameID": "" + GameID,
+                    "gameID": "" + $rootScope.GameID,
                     "solutionBoard":JSON.parse(sessionStorage.getItem("solutionBoard")),
                     "totalTime":""+time,
                     "originalBoard":board_initial_to_compare
@@ -601,6 +603,7 @@ angular.module("sudokuApp")
                 .then(function (response) {
                     let numberOfCellsChanged = response.data[1];
                     $rootScope.numberOfCellsChanged=numberOfCellsChanged;
+                    sessionStorage.setItem("numberOfCellsChanged",""+numberOfCellsChanged);
                     console.log("boxesServer= "+ $rootScope.numberOfCellsChanged);
                 }, function (response) {
 

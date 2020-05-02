@@ -1,7 +1,8 @@
 angular.module("sudokuApp")
     .controller("descriptionController", function ($scope, $http, $location, $rootScope, $window) {
 
-
+        $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
+        $rootScope.wasSudoko=sessionStorage.getItem("wasSudoko");
         //TODO UPDATE AFTER KS PAGE
         if ($rootScope.gameInstance === 0){
             desSudokuNum.style.display = 'block';
@@ -19,6 +20,7 @@ angular.module("sudokuApp")
 
             }
             $rootScope.wasSudoko++;
+            sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
 
         }
 
@@ -37,6 +39,7 @@ angular.module("sudokuApp")
 
             }
             $rootScope.wasSudoko++;
+            sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
         }
 
 
