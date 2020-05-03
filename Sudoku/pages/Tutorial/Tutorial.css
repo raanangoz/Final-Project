@@ -297,6 +297,20 @@
     margin-left: 30px;
 }
 
+.imageKeyKS{
+
+    width: 20%;
+    height: 10%;
+
+}
+
+.illustrationKS{
+
+    display: flex;
+    flex-direction: row;
+    padding-top: 70px;
+}
+
 .explain{
 
     margin-left: 30px;

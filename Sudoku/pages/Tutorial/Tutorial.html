@@ -239,6 +239,7 @@
                             <br>
                             <div class="illustration">
                                 <img class="imageKey"  ng-src="pages/Tutorial/tutorialPictures/keysN.png">
+
                             </div>
 <!--                            The illustration is shown in the next slide.-->
                         </ul>
@@ -259,6 +260,23 @@
                                 <img class="imageKey"  ng-src="pages/Tutorial/tutorialPictures/keysColors.jpg">
                             </div>
 <!--                            The illustration is shown in the next slide.-->
+                        </ul>
+
+                        <ul class="keys" ng-if="ks" id="piskaKeysKS" >
+                            <!--                            The relevant keys for the next game:<Br/><br>-->
+                            <li>Use the mouse click in order to add items</li>
+                            <li>While an item is chosen, it turns green with a white "V" inside</li>
+                            <li>For removing an item, use the mouse click and the original item will be shown</li>
+                            <br>
+                            A scenario for this is presented here:
+                            <div class="illustrationKS">
+                                <img class="imageKeyKS"  ng-src="pages/Tutorial/tutorialPictures/didntChosen.jpg">
+                                <img class="imageKeyKS"  ng-src="pages/Tutorial/tutorialPictures/mouse.png">
+                                <img class="imageKeyKS"  ng-src="pages/Tutorial/tutorialPictures/chosen.jpg">
+                                <img class="imageKeyKS"  ng-src="pages/Tutorial/tutorialPictures/mouse.png">
+                                <img class="imageKeyKS"  ng-src="pages/Tutorial/tutorialPictures/didntChosen.jpg">
+                            </div>
+                            <!--                            The illustration is shown in the next slide.-->
                         </ul>
 
 
@@ -282,8 +300,11 @@
                 <div class="mySlides" id="familiarityDiv">
                     <div class="slide9">
                     <div id="sudokuFamiliar" >
-                        <h2 class="familiar" align="center"><B>
+                        <h2 class="familiar" ng-if="!ks" align="center"><B>
                             <p>Please rate your familiarity and level of expertise with Sudoku puzzles, </p>
+                            <p>prior to this study:</p> </B></h2>
+                        <h2 class="familiar" ng-if="ks" align="center"><B>
+                            <p>Please rate your familiarity and level of expertise with Knapsack problems, </p>
                             <p>prior to this study:</p> </B></h2>
                     </div>
 
@@ -301,7 +322,7 @@
 
                 <div class="mySlides" id="lastP">
                     <div class="slide9">
-                        <div class="piskaEnd">
+                        <div class="piskaEnd" ng-if="!ks">
 
                             Next, you will be tested to make sure you understood the <br/>
                             instructions and the logic of the Sudoku puzzle.<br/>
@@ -312,6 +333,18 @@
                             back to the tutorial page, and redo the test. <br/>
 <!--                            <br>-->
 <!--                        Good luck! <br/>-->
+                        </div>
+                        <div class="piskaEnd" ng-if="ks">
+
+                            Next, you will be tested to make sure you understood the <br/>
+                            instructions and the logic of the Knapsack problem.<br/>
+                            Only after successfully completing the test, you will be transferred  <br/>
+                            to the main Knapsack problem solving task.<br/>
+                            In order to do so, you will have to answer all questions correctly. <br/>
+                            If you will not succeed in the test, you will be transferred  <Br/>
+                            back to the tutorial page, and redo the test. <br/>
+                            <!--                            <br>-->
+                            <!--                        Good luck! <br/>-->
                         </div>
                         <br>
                         <div class="examButton">
