@@ -66,6 +66,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/pageBeforeGame/pageBeforeGame.html',
             controller : 'pageBeforeGameController as pageBeforeGameCtrl'
         })
+        .when('/KnapsackFinishQuestion', {
+            // this is a template
+            templateUrl: 'pages/KnapsackFinishQuestion/KnapsackFinishQuestion.html',
+            controller : 'KnapsackFinishQuestionController as KnapsackFinishQuestionCtrl'
+        })
 
 
 
