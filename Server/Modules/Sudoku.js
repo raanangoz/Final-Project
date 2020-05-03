@@ -295,6 +295,29 @@ Sudoku.get('/getSudokuNumQuestion', function (req, res) {
 
 })
 
+Sudoku.get('/getKnapsackQuestions', function (req, res) {
+
+
+
+    var query = "select * from KSquestions";
+    DButilsAzure.execQuery(query)
+    // (intrestName, userName, date, reviewDescription, rank) values ('"+interestName+"','"+username+"','"+fullDate+"','"+description+"','"+rank+"')";
+
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            console.log(result)
+            console.log(result)
+            res.send(result)
+
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+
+})
+
 function allFilledCells (original, solution){
     var originalBoard = original.split(',');
     var solutionBoardFromUser = solution.split(',');
