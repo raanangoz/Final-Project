@@ -24,7 +24,14 @@ angular.module("sudokuApp")
                 $rootScope.wasSudoko++;
             }
 
-            //TODO add KS cases
+            if($rootScope.gameInstance === 2 || $rootScope.gameInstance === 3 ){
+                $scope.numbers = false;
+                $scope.colors= false;
+                $scope.ks= true;
+                $rootScope.wasKS++;
+
+            }
+
 
         }
 

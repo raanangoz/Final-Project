@@ -99,7 +99,8 @@ angular.module("sudokuApp")
                                         $rootScope.userID = userID;
 
                                         //TODO change to *4 after the KS page
-                                        $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                        $rootScope.gameInstance = 2;
                                         $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
 
                                         console.log("number= " + $rootScope.gameInstance);

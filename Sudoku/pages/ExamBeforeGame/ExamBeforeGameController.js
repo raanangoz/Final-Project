@@ -5,7 +5,10 @@ angular.module("sudokuApp")
         // document.getElementById("prevExam").style.visibility = "hidden";
         var slideIndex = 1;
         showDivs(slideIndex);
-
+        var printedQuestions = [];
+        var questionsFromServer = [];
+        var numberOfQuestionsInDB = 7;
+        var numberOfQuestionsToAsk = 4;
         $scope.plusDivs = function (n) {
             showDivs(slideIndex += n);
         }
@@ -51,11 +54,9 @@ angular.module("sudokuApp")
 
                 //TODO raanan 10 QUESTION, 5 RANDOM
             }).then(function (response) {
-                let chosenQuestionsByID = [];
-                var numberOfQuestionsInDB = 9;
-                var numberOfQuestionsToAsk = 5;
-                var questionsFromServer = [];
-                var printedQuestions = [];
+
+
+
                 for (var i = 0; i < numberOfQuestionsInDB; i++) {
                     printedQuestions.push(false);
                 }
@@ -94,21 +95,35 @@ angular.module("sudokuApp")
 
             // let answer = document.querySelector('input[name!="null"]');
             // console.log(document.querySelector('input[name="op"]:checked').value);
-            let answer0 = $scope.c;
+            let answer0 = $scope.a;
             console.log(answer0);
-            let answer1 = $scope.a;
+            let answer1 = $scope.b;
             console.log(answer1);
-            let answer2 = $scope.b;
+            let answer2 = $scope.c;
             console.log(answer2);
             let answer3 = $scope.d;
             console.log(answer3);
-            let answer4 = $scope.e;
-            console.log(answer4);
+            // let answer4 = $scope.e;
+            // console.log(answer4);
 
+            if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
+                window.alert("You have to answer every question before press 'Submit'");
 
+            }
+
+            else if(answer0==questionsFromServer[0].correctAnswer&&
+                answer1==questionsFromServer[1].correctAnswer&&
+                answer2==questionsFromServer[2].correctAnswer&&
+                answer3==questionsFromServer[3].correctAnswer){
             $location.url('/pageBeforeGame');
+            }
+
+            else{
+                window.alert("You did not answer all the questions correctly. \n" +
+                    "You are redirected to the tutorial.")
+                $location.url('/Tutorial');
+            }
 
         }
-
 
     })
