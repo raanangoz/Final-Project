@@ -52,7 +52,7 @@ angular.module("sudokuApp")
                 url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
 
 
-                //TODO raanan 10 QUESTION, 5 RANDOM
+
             }).then(function (response) {
 
 
