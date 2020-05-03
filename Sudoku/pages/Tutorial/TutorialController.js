@@ -1,27 +1,38 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
-        var familiarityAgainNextSudoku;
-        var familiarityAgainPrevSudoku;
+        let familiarityAgainNextSudoku;
+        let familiarityAgainPrevSudoku;
 
         $rootScope.familiarity = 0;
+        sessionStorage.setItem("familiarity","0");
+        $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
+        $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
 
         $scope.init = function () {
 
             familiarityAgainNextSudoku = false;
             familiarityAgainPrevSudoku = false;
             //if numbers
-            if($rootScope.gameInstance === 0){
+            console.log("wassudoko)");
+            console.log($rootScope.gameInstance);
+            if($rootScope.gameInstance == 0){
+                console.log("its 0");
                 $scope.numbers = true;
                 $scope.colors= false;
                 $rootScope.wasSudoko++;
+                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
+                console.log(sessionStorage.getItem("wasSudoko"));
             }
 
             //if colors
-            if($rootScope.gameInstance === 1){
+            if($rootScope.gameInstance == 1){
+                console.log("its 1");
                 $scope.numbers = false;
                 $scope.colors= true;
                 $rootScope.wasSudoko++;
+                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
+                console.log(sessionStorage.getItem("wasSudoko"));
             }
 
             if($rootScope.gameInstance === 2 || $rootScope.gameInstance === 3 ){
@@ -136,6 +147,7 @@ angular.module("sudokuApp")
 
 
             $rootScope.familiarity = value;
+            sessionStorage.setItem("familiarity",value);
 
 
         });

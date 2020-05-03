@@ -18,7 +18,7 @@
                     <div class="firstPiska" >
                         Next, you will be tested on your understanding of the rules and instructions<br/>
                         described in the tutorial.<br/>
-                        The test includes 4 questions, each has one correct answer.<br/>
+                        The test includes 5 questions, each has one correct answer.<br/>
                         You can go alter your answers to previous questions at any time.<br/>
                         Click on 'Submit' at the end of the page of the test if you have finished the test, and answer every question.<br/><br>
                         Only after successfully completing the test, you will be transferred<br/>
@@ -79,7 +79,7 @@
                     <div class="question">
                         4. {{question3.question}}
                         <br>
-                        <img  class="imageQ" ng-show ="question3.image!=null" ng-src={{question2.image}}>
+                        <img  class="imageQ" ng-show ="question3.image!=null" ng-src={{question3.image}}>
                         <br><br>
                         <input type = "radio" ng-model = "d" value = 1>  {{question3.option1}}
                         <br>
@@ -90,20 +90,20 @@
                         <input type = "radio" ng-model = "d" ng-show ="question3.option4!=null" value = 4>  {{question3.option4}}            <br>
                         <br>
                     </div>
-<!--                    <div class="question">-->
-<!--                        5. {{question4.question}}-->
-<!--                        <br>-->
-<!--                        <img  class="imageQ" ng-show ="question4.image!=null" ng-src={{question2.image}}>-->
-<!--                        <br><br>-->
-<!--                        <input type = "radio" ng-model = "e" value = 1>  {{question4.option1}}-->
-<!--                        <br>-->
-<!--                        <input type = "radio" ng-model = "e" value = 2>  {{question4.option2}}-->
-<!--                        <br>-->
-<!--                        <input type = "radio" ng-model = "e" ng-show ="question4.option3!=null" value = 3>  {{question4.option3}}-->
-<!--                        <br>-->
-<!--                        <input type = "radio" ng-model = "e" ng-show ="question4.option4!=null" value = 4>  {{question4.option4}}            <br>-->
-<!--                        <br>-->
-<!--                    </div>-->
+                    <div class="question">
+                        5. {{question4.question}}
+                        <br>
+                        <img  class="imageQ" ng-show ="question4.image!=null" ng-src={{question4.image}}>
+                        <br><br>
+                        <input type = "radio" ng-model = "e" value = 1>  {{question4.option1}}
+                        <br>
+                        <input type = "radio" ng-model = "e" value = 2>  {{question4.option2}}
+                        <br>
+                        <input type = "radio" ng-model = "e" ng-show ="question4.option3!=null" value = 3>  {{question4.option3}}
+                        <br>
+                        <input type = "radio" ng-model = "e" ng-show ="question4.option4!=null" value = 4>  {{question4.option4}}            <br>
+                        <br>
+                    </div>
 
                     <div class="submit"  >
                         <button  class= "submitButton" class="btn btn-primary" type="submit" id="submit"  ng-click='submit()'>Submit</button>

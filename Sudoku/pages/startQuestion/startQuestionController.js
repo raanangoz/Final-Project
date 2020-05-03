@@ -1,6 +1,5 @@
 angular.module("sudokuApp")
     .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
-        console.log("oshshshsdhd")
 
         // function preventBack(){window.history.forward();}
         // setTimeout("preventBack()", 0);
@@ -43,6 +42,18 @@ angular.module("sudokuApp")
         //boolean for the familiarity question
         $rootScope.wasSudoko=0;
         $rootScope.wasKS=0;
+            //two arrays for the lottery between the games
+            $rootScope.gameInstance = 1;
+            sessionStorage.setItem("gameInstance","1");
+            // let gameInstancesChosen= {false,false,true,true};
+            // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
+            $rootScope.gameInstancesChosen = [false, false, true, true];
+            sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+            //boolean for the familiarity question
+            $rootScope.wasSudoko=0;
+            $rootScope.wasKS=0;
+            sessionStorage.setItem("wasSudoko","0");
+            sessionStorage.setItem("wasKS","0");
 
         //for check the worker ID
         var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
@@ -96,10 +107,9 @@ angular.module("sudokuApp")
 
 
                                     }).then(function (response) {
-
-                                        userID = response.data[0].maxid;
-                                        console.log(userID + "kilili");
+                                        let userID = response.data[0].maxid;
                                         $rootScope.userID = userID;
+                                        sessionStorage.setItem("userID",userID);
 
                                         //TODO lehorid mark
                                         //$rootScope.gameInstance = Math.floor(Math.random() * 4);
@@ -156,6 +166,14 @@ angular.module("sudokuApp")
 
                                         }
 
+                                        //TODO lehorid in the end
+                                        //TODO change to *4 after the KS page
+                                        let gameInstance = ""+Math.floor(Math.random() * 2);
+                                        $rootScope.gameInstance = gameInstance;
+                                        $rootScope.gameInstancesChosen[gameInstance] = true;
+                                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+                                        sessionStorage.setItem("gameInstance",JSON.stringify(gameInstance));
+                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
                                         //TODO lehorid in the end
                                         $rootScope.gameInstance = 2;
                                         $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;

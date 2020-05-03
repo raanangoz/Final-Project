@@ -1,6 +1,8 @@
 angular.module("sudokuApp")
     .controller("homeController", function ($scope, $http, $location, $window) {
 
+        //TODO raanan refresh during game - save board , time, maybe check for each move if 15 minutes passed since when board was shown firstly compared to DB time.
+        //TODO raanan familiarity bug sometimes when refreshing / back page, on first game.
         window.history.forward();
         function noBack() { window.history.forward(); }
 
