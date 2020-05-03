@@ -2,8 +2,8 @@
 //numberOfCellsChanged
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
-        $rootScope.userID = sessionStorage.getItem("userID");
-        $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
+        $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
+        $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         //range in the modal
         $scope.rangeValue = "---";
 
@@ -238,8 +238,8 @@ angular.module("sudokuApp")
         $scope.init = function(){
 
             //document.getElementById("finish").disabled = "true";
-            $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
-            $rootScope.userID = sessionStorage.getItem("userID");
+            $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
+            $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
 
             console.log("hereInitttttttttttttttttttttttttt");
             //requests
@@ -415,18 +415,18 @@ angular.module("sudokuApp")
             var filledWhole = true;
 
             //check if filled the whole boxes
-            for (var i = 0; i < $scope.initialBoard.length ; i++) {
-                for (var j = 0; j < $scope.initialBoard.length ; j++) {
-
-                    if($scope.initialBoard[i][j] === '0' && filledWhole){
-                        if($scope.sudokuBoard[i][j] === ''){
-                            $window.alert("You have to finish the puzzle first");
-                            filledWhole = false;
-                         }
-                    }
-                }
-
-            }
+            // for (var i = 0; i < $scope.initialBoard.length ; i++) {
+            //     for (var j = 0; j < $scope.initialBoard.length ; j++) {
+            //
+            //         if($scope.initialBoard[i][j] === '0' && filledWhole){
+            //             if($scope.sudokuBoard[i][j] === ''){
+            //                 $window.alert("You have to finish the puzzle first");
+            //                 //TODO raanan  filledWhole = false;
+            //              }
+            //         }
+            //     }
+            //
+            // }
 
             if(filledWhole){
                 $('#myModal2').modal();
@@ -552,9 +552,12 @@ angular.module("sudokuApp")
             var answer = document.getElementById("myRange").value;
             console.log("userIDNew= "+$rootScope.userID);
             console.log("gameIDNew= "+$rootScope.GameID);
-
+            console.log("gameIDNew= "+$rootScope.GameID);
+            console.log("fam iss" +(sessionStorage.getItem("familiarity")));
+            console.log("fam iss" +(JSON.parse(sessionStorage.getItem("familiarity"))));
             //documentation
             $http({
+
 
                 method: 'POST',
                 url: 'http://localhost:3000/Sudoku/submitFamiliarityAndDifficultyEstimateBefore',
@@ -562,7 +565,7 @@ angular.module("sudokuApp")
                     "gameID": "" + $rootScope.GameID,
                     "userID": ""+ sessionStorage.userID,
                     "difBefore": ""+ answer,
-                    "familiarity": ""+sessionStorage.getItem("familiarity")
+                    "familiarity": JSON.parse(sessionStorage.getItem("familiarity"))
 
                 }
             })

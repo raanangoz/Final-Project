@@ -1,6 +1,12 @@
 angular.module("sudokuApp")
     .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
 
+        // let x = "1";
+        // sessionStorage.setItem("x",x);
+        // console.log(1==sessionStorage.getItem("x"));
+        // console.log(1==JSON.parse(sessionStorage.getItem("x")));
+        // console.log("1"==sessionStorage.getItem("x"));
+        // console.log("1"==JSON.parse(sessionStorage.getItem("x")));
             // function preventBack(){window.history.forward();}
             // setTimeout("preventBack()", 0);
             // window.onunload=function(){null};
@@ -107,11 +113,13 @@ angular.module("sudokuApp")
                                         //TODO change to *4 after the KS page
                                         let gameInstance = ""+Math.floor(Math.random() * 2);
                                         $rootScope.gameInstance = gameInstance;
-                                        $rootScope.gameInstancesChosen[gameInstance] = "true";
+                                        $rootScope.gameInstancesChosen[gameInstance] = true;
                                         sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
                                         sessionStorage.setItem("gameInstance",JSON.stringify(gameInstance));
                                         console.log("number= " + $rootScope.gameInstance);
                                         //pass to Start Game
+                                        console.log(JSON.parse(sessionStorage.getItem("gameInstance")));
+                                        console.log((sessionStorage.getItem("gameInstance")));
                                         $location.url('/Tutorial');
 
                                     })

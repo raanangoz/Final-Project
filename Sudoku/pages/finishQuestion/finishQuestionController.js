@@ -2,10 +2,11 @@
 angular.module("sudokuApp")
     .controller("finishQuestionController", function ($scope, $http, $location,$rootScope, $window) {
 
-        $rootScope.gameInstancesChosen=(sessionStorage.getItem("gameInstancesChosen"));
-        $rootScope.gameInstance = sessionStorage.getItem("gameInstance");
-        $rootScope.boxes = sessionStorage.getItem("boxes");
-        $rootScope.GameID = sessionStorage.getItem("GameID");
+        $rootScope.gameInstancesChosen=(JSON.parse(sessionStorage.getItem("gameInstancesChosen")));
+        console.log("works?)");
+        $rootScope.gameInstance = JSON.parse(sessionStorage.getItem("gameInstance"));
+        $rootScope.boxes = JSON.parse(sessionStorage.getItem("boxes"));
+        $rootScope.GameID = JSON.parse(sessionStorage.getItem("GameID"));
         var correctnessRank;
         var difficultyRank;
         $scope.arrayOfOptionNumbers = [];
@@ -72,8 +73,10 @@ angular.module("sudokuApp")
 
                 var completed = true;
                 //check if the whole games completed
+
                 for (var i = 0; i <$rootScope.gameInstancesChosen.length ; i++) {
-                    if($rootScope.gameInstancesChosen[i]=== false){
+                    console.log($rootScope.gameInstancesChosen[i]);
+                    if($rootScope.gameInstancesChosen[i]== false){
                         completed = false;
                     }
 
@@ -84,12 +87,14 @@ angular.module("sudokuApp")
 
                     //change to *4 after the KS page
                     $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                    while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === true){
+                    while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == true){
                         $rootScope.gameInstance = Math.floor(Math.random() * 2);
                     }
-                    if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] === false){
+                    if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == false){
                         console.log("number= "+$rootScope.gameInstance);
                         $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
+                        sessionStorage.setItem("gameInstance",$rootScope.gameInstance);
+                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
                         $location.url('/Tutorial');
 
                     }

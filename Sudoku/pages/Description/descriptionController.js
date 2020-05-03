@@ -1,8 +1,8 @@
 angular.module("sudokuApp")
     .controller("descriptionController", function ($scope, $http, $location, $rootScope, $window) {
 
-        $rootScope.gameInstance=sessionStorage.getItem("gameInstance");
-        $rootScope.wasSudoko=sessionStorage.getItem("wasSudoko");
+        $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
+        $rootScope.wasSudoko=JSON.parse(sessionStorage.getItem("wasSudoko"));
         //TODO UPDATE AFTER KS PAGE
         if ($rootScope.gameInstance === 0){
             desSudokuNum.style.display = 'block';
