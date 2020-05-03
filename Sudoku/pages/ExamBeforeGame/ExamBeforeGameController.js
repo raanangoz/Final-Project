@@ -1,5 +1,5 @@
 angular.module("sudokuApp")
-    .controller("ExamBeforeGameController", function ($scope, $http, $location, $window) {
+    .controller("ExamBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
 
         // document.getElementById("prevExam").style.visibility = "hidden";
@@ -7,7 +7,8 @@ angular.module("sudokuApp")
         showDivs(slideIndex);
         var printedQuestions = [];
         var questionsFromServer = [];
-        var numberOfQuestionsInDB = 7;
+        var numberOfQuestionsInDB = 10;
+        var numberOfQuestionsKSInDB = 9;
         var numberOfQuestionsToAsk = 4;
         $scope.plusDivs = function (n) {
             showDivs(slideIndex += n);
@@ -46,46 +47,98 @@ angular.module("sudokuApp")
 
             //TODO lottery number between 1-10
 
+            //KS
+            if ($rootScope.gameInstance === 2 || $rootScope.gameInstance === 3){
 
-            $http({
-                method: "get",
-                url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
-
-
-                //TODO raanan 10 QUESTION, 5 RANDOM
-            }).then(function (response) {
+                $http({
+                    method: "get",
+                    url: 'http://localhost:3000/Sudoku/getKnapsackQuestions/'
 
 
-
-                for (var i = 0; i < numberOfQuestionsInDB; i++) {
-                    printedQuestions.push(false);
-                }
-                for(let que = 0; que < numberOfQuestionsToAsk; que++) {
-                    var q = Math.floor(Math.random() * numberOfQuestionsInDB) ;
-                    while(printedQuestions[q]==true)
-                        q = Math.floor(Math.random() * numberOfQuestionsInDB) ;
-                    printedQuestions[q]=true;
-                    // $scope.Q1 = response.data[q].question;
-                    // $scope.imageSrc = response.data[q].image;
-                    // $scope.op1 = response.data[q].option1;
-                    // $scope.op2 = response.data[q].option2;
-                    // $scope.op3 = response.data[q].option3;
-                    // $scope.op4 = response.data[q].option4;
-                    questionsFromServer.push(response.data[q]);
-
-                }
-
-                $scope.question0 = questionsFromServer[0];
-                $scope.question1 = questionsFromServer[1];
-                $scope.question2 = questionsFromServer[2];
-                $scope.question3 = questionsFromServer[3];
-                $scope.question4 = questionsFromServer[4];
+                    //TODO raanan 10 QUESTION, 5 RANDOM
+                }).then(function (response) {
 
 
 
-            }, function (response) {
-                // $scope.records = response.statusText;
-            });
+                    for (var i = 0; i < numberOfQuestionsInDB; i++) {
+                        printedQuestions.push(false);
+                    }
+                    for(let que = 0; que < numberOfQuestionsToAsk; que++) {
+                        var q = Math.floor(Math.random() * numberOfQuestionsInDB);
+                        while(printedQuestions[q]==true)
+                            q = Math.floor(Math.random() * numberOfQuestionsInDB);
+                        printedQuestions[q]=true;
+                        // $scope.Q1 = response.data[q].question;
+                        // $scope.imageSrc = response.data[q].image;
+                        // $scope.op1 = response.data[q].option1;
+                        // $scope.op2 = response.data[q].option2;
+                        // $scope.op3 = response.data[q].option3;
+                        // $scope.op4 = response.data[q].option4;
+                        questionsFromServer.push(response.data[q]);
+
+                    }
+
+                    $scope.question0 = questionsFromServer[0];
+                    $scope.question1 = questionsFromServer[1];
+                    $scope.question2 = questionsFromServer[2];
+                    $scope.question3 = questionsFromServer[3];
+                    $scope.question4 = questionsFromServer[4];
+
+
+
+                }, function (response) {
+                    // $scope.records = response.statusText;
+                });
+
+            }
+
+            //Sudoku
+            else{
+
+                $http({
+                    method: "get",
+                    url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
+
+
+                    //TODO raanan 10 QUESTION, 5 RANDOM
+                }).then(function (response) {
+
+
+
+                    for (var i = 0; i < numberOfQuestionsInDB; i++) {
+                        printedQuestions.push(false);
+                    }
+                    for(let que = 0; que < numberOfQuestionsToAsk; que++) {
+                        var q = Math.floor(Math.random() * numberOfQuestionsInDB) ;
+                        while(printedQuestions[q]==true)
+                            q = Math.floor(Math.random() * numberOfQuestionsInDB) ;
+                        printedQuestions[q]=true;
+                        // $scope.Q1 = response.data[q].question;
+                        // $scope.imageSrc = response.data[q].image;
+                        // $scope.op1 = response.data[q].option1;
+                        // $scope.op2 = response.data[q].option2;
+                        // $scope.op3 = response.data[q].option3;
+                        // $scope.op4 = response.data[q].option4;
+                        questionsFromServer.push(response.data[q]);
+
+                    }
+
+                    $scope.question0 = questionsFromServer[0];
+                    $scope.question1 = questionsFromServer[1];
+                    $scope.question2 = questionsFromServer[2];
+                    $scope.question3 = questionsFromServer[3];
+                    $scope.question4 = questionsFromServer[4];
+
+
+
+                }, function (response) {
+                    // $scope.records = response.statusText;
+                });
+
+
+            }
+
+
 
         }
 

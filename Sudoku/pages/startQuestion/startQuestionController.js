@@ -36,7 +36,9 @@ angular.module("sudokuApp")
 
         //two arrays for the lottery between the games
         $rootScope.gameInstance = 1;
-        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
+        //KS presentation
+        $rootScope.KSpresentation = 0;
+        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1(everyone), 3-KS2 TODO change to false
         $rootScope.gameInstancesChosen = [false, false, true, true];
         //boolean for the familiarity question
         $rootScope.wasSudoko=0;
@@ -94,17 +96,72 @@ angular.module("sudokuApp")
 
 
                                     }).then(function (response) {
+
                                         userID = response.data[0].maxid;
                                         console.log(userID + "kilili");
                                         $rootScope.userID = userID;
 
-                                        //TODO change to *4 after the KS page
-                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                        //TODO lehorid mark
+                                        //$rootScope.gameInstance = Math.floor(Math.random() * 4);
+
+                                        //everyone presentation
+                                        // if( $rootScope.gameInstance==='2'){
+                                        //     $location.url('/Tutorial');
+                                        //
+                                        // }
+
+                                        if($rootScope.gameInstance==='3'){
+
+                                            var counterPresentation= 0;
+                                            while(counterPresentation === 0){
+
+                                                //0-weight presentation, 1-value presentation, 2-mix presentation
+                                                $rootScope.KSpresentation = Math.floor(Math.random() * 3);
+
+                                                $http ({
+
+                                                    method: 'GET',
+                                                    url:'http://localhost:3000/Knapsack/getPresentationCounter/'+$rootScope.KSpresentation
+                                                        .then(function(response) {
+                                                            counterPresentation = response.data;
+
+
+                                                        }, function(response) {
+                                                            // $scope.records = response.statusText;
+                                                        })
+                                                })
+
+
+                                            }
+
+                                            //reduce the counter if we chose the presentation
+                                            $http({
+
+                                                method: 'POST',
+                                                url: 'http://localhost:3000/Knapsack/updateCounterPresentation/',
+                                                data: {
+                                                    "presentation": "" + $rootScope.KSpresentation,
+                                                    "counterPresentation" : ""+counterPresentation
+
+                                                }
+                                            })
+                                                .then(function (response) {
+
+                                                    //add to the board 2d array
+
+                                                }, function (response) {
+                                                    // $scope.records = response.statusText;
+                                                });
+
+
+                                        }
+
+                                        //TODO lehorid in the end
                                         $rootScope.gameInstance = 2;
                                         $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
 
                                         console.log("number= " + $rootScope.gameInstance);
-                                        //pass to Start Game
+                                        //pass to tutorial
                                         $location.url('/Tutorial');
                                     })
 
