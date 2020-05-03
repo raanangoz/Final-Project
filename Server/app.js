@@ -30,6 +30,24 @@ app.get('/select', function (req, res) {
             res.send(err)
         })
 })
+app.post('/updateRecommendations', function (req, res) {
+    var userID = req.body.userID;
+    var exam = req.body.exam;
+    var tutorial = req.body.tutorial;
+    var games = req.body.games;
+    var other = req.body.other;
+    var sql = "insert into Recommendations values ("+userID+","+exam+","+tutorial+","+games+","+other+")";
+    console.log(sql);
+    DButilsAzure.execQuery(sql)
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})
 
 
 

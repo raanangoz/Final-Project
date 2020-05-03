@@ -103,7 +103,7 @@ angular.module("sudokuApp")
 
                     console.log("hereOver123456");
                     //experiment over
-                    $location.url('/ExperimentOver');
+                    $location.url('/Feedback');
                 }
 
             }else {

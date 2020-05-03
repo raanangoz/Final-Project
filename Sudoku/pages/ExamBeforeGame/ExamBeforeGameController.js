@@ -40,22 +40,13 @@ angular.module("sudokuApp")
             }
         }
 
-
-
         function getSudokuQuestion(){
-
-            //TODO lottery number between 1-10
-
 
             $http({
                 method: "get",
                 url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
 
-
-
             }).then(function (response) {
-
-
 
                 for (var i = 0; i < numberOfQuestionsInDB; i++) {
                     printedQuestions.push(false);
@@ -65,12 +56,6 @@ angular.module("sudokuApp")
                     while(printedQuestions[q]==true)
                         q = Math.floor(Math.random() * numberOfQuestionsInDB) ;
                     printedQuestions[q]=true;
-                    // $scope.Q1 = response.data[q].question;
-                    // $scope.imageSrc = response.data[q].image;
-                    // $scope.op1 = response.data[q].option1;
-                    // $scope.op2 = response.data[q].option2;
-                    // $scope.op3 = response.data[q].option3;
-                    // $scope.op4 = response.data[q].option4;
                     questionsFromServer.push(response.data[q]);
 
                 }
