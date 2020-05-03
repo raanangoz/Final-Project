@@ -90,18 +90,24 @@ angular.module("sudokuApp")
             console.log(answer3);
             let answer4 = $scope.e;
             console.log(answer4);
-            // if(answer0==questionsFromServer[0].correctAnswer&&
-            //     answer1==questionsFromServer[1].correctAnswer&&
-            //     answer2==questionsFromServer[2].correctAnswer&&
-            //     answer3==questionsFromServer[3].correctAnswer&&
-            //     answer4==questionsFromServer[4].correctAnswer){
-                $location.url('/pageBeforeGame');
-            // }
-            // else{
-            //     window.alert("You did not answer all the questions correctly. \n" +
-            //         "We are redirecting you to the tutorial.")
-            //     $location.url('/Tutorial');
-            // }
+
+            if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
+                window.alert("You have to answer every question before press 'Submit'");
+
+            }
+
+            else if(answer0==questionsFromServer[0].correctAnswer&&
+                answer1==questionsFromServer[1].correctAnswer&&
+                answer2==questionsFromServer[2].correctAnswer&&
+                answer3==questionsFromServer[3].correctAnswer){
+            $location.url('/pageBeforeGame');
+            }
+
+            else{
+                window.alert("You did not answer all the questions correctly. \n" +
+                    "You are redirected to the tutorial.")
+                $location.url('/Tutorial');
+            }
 
         }
 

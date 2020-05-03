@@ -1,45 +1,37 @@
 angular.module("sudokuApp")
     .controller("startQuestionController", function ($scope,$window, $http,$rootScope, $location) {
 
-        // let x = "1";
-        // sessionStorage.setItem("x",x);
-        // console.log(1==sessionStorage.getItem("x"));
-        // console.log(1==JSON.parse(sessionStorage.getItem("x")));
-        // console.log("1"==sessionStorage.getItem("x"));
-        // console.log("1"==JSON.parse(sessionStorage.getItem("x")));
-            // function preventBack(){window.history.forward();}
-            // setTimeout("preventBack()", 0);
-            // window.onunload=function(){null};
-            //
-            if(window.onbeforeunload = function(event) {
-                // do some stuff here, like reloading your current state
-                //this would work only if the user chooses not to leave the page
-                console.log("refresjed");
-                return 'why would you do that???';
-            })
+        // function preventBack(){window.history.forward();}
+        // setTimeout("preventBack()", 0);
+        // window.onunload=function(){null};
+        //
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
-                $(document).ready(function() {
-                    function disablePrev() { window.history.forward() }
-                    window.onload = disablePrev();
-                    window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
-                });
+        //
+        // window.history = function(event) {
+        //     // do some stuff here, like reloading your current state
+        //     //this would work only if the user chooses not to leave the page
+        //     return 'why would you do that???';
+        // }
 
-            //
-            // window.history = function(event) {
-            //     // do some stuff here, like reloading your current state
-            //     //this would work only if the user chooses not to leave the page
-            //     return 'why would you do that???';
-            // }
+        var userWorkerID;
+        var userAge;
+        var userGender;
+        var userHand;
+        var userEducation;
 
-            var userWorkerID;
-            var userAge;
-            var userGender;
-            var userHand;
-            var userEducation;
-
-            // var g= $scope.gender.value;
-            // console.log("g= "+g);
+        // var g= $scope.gender.value;
+        // console.log("g= "+g);
 
             //two arrays for the lottery between the games
             $rootScope.gameInstance = 1;
@@ -54,8 +46,8 @@ angular.module("sudokuApp")
             sessionStorage.setItem("wasSudoko","0");
             sessionStorage.setItem("wasKS","0");
 
-            //for check the worker ID
-            var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
+        //for check the worker ID
+        var lettersAndNumbers = /^[0-9a-zA-Z]+$/;
 
             $scope.go = function () {
 
@@ -116,16 +108,17 @@ angular.module("sudokuApp")
                                         $rootScope.gameInstancesChosen[gameInstance] = true;
                                         sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
                                         sessionStorage.setItem("gameInstance",JSON.stringify(gameInstance));
+                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                                        $rootScope.gameInstance = 2;
+                                        $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
+
                                         console.log("number= " + $rootScope.gameInstance);
                                         //pass to Start Game
-                                        console.log(JSON.parse(sessionStorage.getItem("gameInstance")));
-                                        console.log((sessionStorage.getItem("gameInstance")));
                                         $location.url('/Tutorial');
-
                                     })
 
 
-
+                                    console.log("hereeeeee");
                                 }, function (response) {
                                     // $scope.records = response.statusText;
                                 });

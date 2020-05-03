@@ -45,6 +45,7 @@ angular.module("sudokuApp")
         $scope.clicked=false;
 
         var gameTypeToSQL = 'number';
+
         if($scope.colors)
             gameTypeToSQL = 'color';
         else

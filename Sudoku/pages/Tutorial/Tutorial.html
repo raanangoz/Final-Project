@@ -46,8 +46,17 @@
                             row or block.<br/>
                             <br>
                         </h>
+                        <h id= "desKS" ng-if="ks">
+                            The knapsack problem is a problem in combinatorial optimization: Given a<br/>
+                            set of items, each with a weight and a value, determine the number of each item <br/>
+                            to include in a collection so that the total weight is less than or equal to a  <br/>
+                           given limit and the total value is as large as possible.<br/>
+
+                            <br>
+                        </h>
                         <!--            Press "Next" to start the tutorial-->
-                        <img class="tutorialPictures"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">
+                        <img class="tutorialPictures" ng-if="!ks"  ng-src="pages/Tutorial/tutorialPictures/sudokuExample.jpg">
+                        <img class="tutorialPictures" ng-if="ks"  ng-src="pages/Tutorial/tutorialPictures/iconKS.png">
                     </div>
                 </div>
 
@@ -75,9 +84,23 @@
                             Click on the “Next” button for continuing to the next slide, <br/>
                             and “Prev” for returning to  the previous slide. <br/>
                             Following the tutorial slides, you will be tested to  <br/>
-                            make sure you understood the instructions and the logic of the puzzle.  <br/><br>
+                            make sure you understood the instructions and the logic of the puzzle. <br/><br>
                             Only after successfully completing the test,  <br/>
                             you will be transferred to the main puzzle-solving task. <br/>
+                            <br>
+                        </p>
+                        <p ng-if="ks"> Next, you will be demonstrated with examples of possible and <br/>
+                            incorrect states on a Knapsack instance, <Br/>
+                            <!--            The  possible steps might be correct steps but not necessarily matching the final solution. <br/>-->
+                            as well as technical information regarding our Knapsack interface.<br/><br>
+                            Every instance includes values of the bag size (max size), current weight
+                            and value gained. <Br/>
+                            Click on the “Next” button for continuing to the next slide, <br/>
+                            and “Prev” for returning to  the previous slide. <br/>
+                            Following the tutorial slides, you will be tested to make sure you   <br/>
+                            understood the instructions and the logic of the game. <br/><br>
+                            Only after successfully completing the test,  <br/>
+                            you will be transferred to the main knapsack solving task. <br/>
                             <br>
                         </p>
                 </div>
@@ -97,6 +120,7 @@
                         <div class="images">
                             <img class="image"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/legalNum1.png">
                             <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor1.png">
+                            <img class="image" ng-if="ks" ng-src="pages/Tutorial/tutorialPictures/legalKS1.jpg">
                         </div>
                         <br> <br>
                         <div class="explain">
@@ -106,6 +130,8 @@
                                 doesn't exist at this line/ column/ square</b></p>
                             <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
                                 cells which should be filled during the game</b></p>
+                            <p  ng-if="ks"><b>This state is possible because the current total weight <br/>
+                                is equal to the given limit </b></p>
                         </div>
                     </div>
                 </div>
@@ -115,6 +141,7 @@
                         <div class="images">
                             <img class="image" ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/legalNum2.png">
                             <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/legalColor2.png">
+                            <img class="image" ng-if="ks" ng-src="pages/Tutorial/tutorialPictures/legalKS2.jpg">
                         </div>
                         <br> <br>
                         <div class="explain">
@@ -122,6 +149,8 @@
                                 doesn't exist at this line/ column/ square</b></p>
                             <p  ng-if="colors"><b>This step (marked with "V") is possible because the orange color <br/>
                                 doesn't exist at this line/ column/ square</b></p>
+                            <p  ng-if="ks"><b>This state is possible because the current total weight <br/>
+                                is less than the given limit </b></p>
                         </div>
                     </div>
                 </div>
@@ -141,6 +170,7 @@
                         <div class="images">
                             <img class="image"  ng-if="numbers"  ng-src="pages/Tutorial/tutorialPictures/illegalNumberLine.jpg">
                             <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/line.png">
+                            <img class="image" ng-if="ks" ng-src="pages/Tutorial/tutorialPictures/whichBetter1.jpg">
                         </div>
                             <br> <br>
                         <div class="explain">
@@ -148,6 +178,8 @@
                             <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the yellow color is already exist at this line</b></p><br/>
                             <p class="note" ng-if="colors"><b> Note: the icon "?" located at the right corner of some cells represents<br/>
                                 cells which should be filled during the game</b></p>
+                            <p  ng-if="ks"><b>This state is possible because the current total weight <br/>
+                                is less than the given limit </b></p>
                         </div>
                     </div>
                 </div>
@@ -157,11 +189,16 @@
                         <div class="images">
                     <img class="image" ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberColumn.jpg">
                     <img class="image" ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/column.png">
+                            <img class="image" ng-if="ks" ng-src="pages/Tutorial/tutorialPictures/whichBetter2.jpg">
                         </div>
                             <br> <br>
                         <div class="explain">
                     <p ng-if="numbers"><b>This step (marked with "X") is incorrect because the "2" digit is already exist at this column</b></p>
                     <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the pink color is already exist at this column</b></p>
+                            <p  ng-if="ks"><b>This state is possible because the current total weight <br/>
+                                is less than the given limit, </b></p>
+                            You can see that the state in the previous slide is better than the state in the current slide   because the gained value there is higher<br/>
+
                         </div>
                     </div>
                 </div>
@@ -171,11 +208,14 @@
                         <div class="images">
                     <img class="image"  ng-if="numbers"    ng-src="pages/Tutorial/tutorialPictures/illegalNumberQ.jpg">
                     <img class="image"  ng-if="colors" ng-src="pages/Tutorial/tutorialPictures/q.png">
+                    <img class="image"  ng-if="ks" ng-src="pages/Tutorial/tutorialPictures/illegalKS.jpg">
                         </div>
                             <br> <br>
                         <div class="explain">
                     <p  ng-if="numbers"><b>This step (marked with "X") is incorrect because the "6" digit is already exist at this square</b></p>
                     <p  ng-if="colors"><b>This step (marked with "X") is incorrect because the purple color is already exist at this square</b></p>
+                            <p  ng-if="ks"><b>This state is incorrect because the current total weight <br/>
+                                is higher than the given limit </b></p>
                         </div>
                     </div>
                 </div>
