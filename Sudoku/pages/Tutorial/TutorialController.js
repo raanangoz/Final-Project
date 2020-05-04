@@ -13,6 +13,7 @@ angular.module("sudokuApp")
 
         $rootScope.familiarity = 0;
         sessionStorage.setItem("familiarity","0");
+        console.log(sessionStorage.getItem("familiarity"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
         console.log("wasSudokuuuuu= "+$rootScope.wasSudoko);
@@ -175,7 +176,7 @@ angular.module("sudokuApp")
 
 
             $rootScope.familiarity = value;
-            sessionStorage.setItem("familiarity",value);
+            sessionStorage.setItem("familiarity",JSON.stringify(value));
 
 
         });

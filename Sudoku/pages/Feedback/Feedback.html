@@ -5,12 +5,13 @@
 
     <div class= "home-page-internal">
 
-        <h1 class="titleQuestion"><b>Feedback</b></h1>
+        <h1 class="titleQuestion"><b>Feedback</b> (optional)</h1>
+
         <hr>
 
         <div class="textFidback">
             Before the end of this experiment, we would like to receive feedback. <br>
-            Please tell us if you have any recommendations, or encountered in a problem on the following topics.<br/>
+            Please write shortly if you have any recommendations, or encountered in a problem on the following topics.<br/>
             It is very important to us for the continuation of our research.<br/>
             Thank you!
         </div>
@@ -18,25 +19,26 @@
         <div class="details">
             <div class="form-group">
                 <h2 class= "subTitles"><B>Exam</B></h2>
-                <input id="exam" ng-model = "exam">
+                <textarea id="exam" class = "inputBox" ng-model = "exam" maxlength="500"  >
+                </textarea>
 
             </div>
-            <br>
             <div class="form-group">
                 <h2 class= "subTitles"><B>Tutorial</B></h2>
-                <input id="tutorial" ng-model = "tutorial">
+                <textarea id="tutorial"  class = "inputBox" ng-model = "tutorial"  maxlength="500">
+                </textarea>
             </div>
 
 
             <div class="form-group">
                 <h2 class= "subTitles"><B> Games</B></h2>
-                <input id="games"ng-model = "games">
+                <textarea id="games"ng-model = "games" class = "inputBox"  maxlength="500">
+                </textarea>
             </div>
-            <br>
-            <br>
             <div class="form-group">
                 <h2 class= "subTitles"><B> Other</B></h2>
-                <input id="other" ng-model = "other">
+                <textarea id="other" ng-model = "other" class = "inputBox"  maxlength="500">
+                </textarea>
             </div>
         </div>
 
