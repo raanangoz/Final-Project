@@ -228,7 +228,7 @@ Knapsack.post('/submitFamiliarityAndDifficultyEstimateBefore', function (req, re
     console.log("gameID====== "+gameID);
     console.log("userID====== "+userID);
 
-    var postQuery = "update KnapsackToUser set  DifficultyEstBefore= '"+difBefore+"', familiarityAnswer= '"+familiarity+"'  where UserID= '"+userID+"' and GameID= '"+gameID+"'";
+    var postQuery = "update KSToUser set  DifficultyEstBefore= '"+difBefore+"', familiarityAnswer= '"+familiarity+"'  where UserID= '"+userID+"' and GameID= '"+gameID+"'";
 
     DButilsAzure.execQuery(postQuery)
 
