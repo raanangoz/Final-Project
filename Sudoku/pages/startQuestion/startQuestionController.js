@@ -38,16 +38,17 @@ angular.module("sudokuApp")
         //KS presentation
         $rootScope.KSpresentation = 0;
         // 0-sudokuNumbers, 1-sudokuColors, 2-KS1(everyone), 3-KS2 TODO change to false
-        $rootScope.gameInstancesChosen = [false, false, true, true];
+        $rootScope.gameInstancesChosen = [true, true, false, false];
         //boolean for the familiarity question
         $rootScope.wasSudoko=0;
         $rootScope.wasKS=0;
+
             //two arrays for the lottery between the games
             $rootScope.gameInstance = 1;
             sessionStorage.setItem("gameInstance","1");
             // let gameInstancesChosen= {false,false,true,true};
             // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
-            $rootScope.gameInstancesChosen = [false, false, true, true];
+            $rootScope.gameInstancesChosen = [true, true, false, false];
             sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
             //boolean for the familiarity question
             $rootScope.wasSudoko=0;
@@ -112,15 +113,14 @@ angular.module("sudokuApp")
                                         sessionStorage.setItem("userID",userID);
 
                                         //TODO lehorid mark
-                                        //$rootScope.gameInstance = Math.floor(Math.random() * 4);
+                                        // $rootScope.gameInstance = Math.floor(Math.random() * 4);
+                                        $rootScope.gameInstance = 2;
 
                                         //everyone presentation
-                                        // if( $rootScope.gameInstance==='2'){
-                                        //     $location.url('/Tutorial');
-                                        //
-                                        // }
+                                        $rootScope.KSpresentation = 3;
 
-                                        if($rootScope.gameInstance==='3'){
+
+                                        if($rootScope.gameInstance=='3'){
 
                                             var counterPresentation= 0;
                                             while(counterPresentation === 0){
@@ -164,19 +164,25 @@ angular.module("sudokuApp")
                                                 });
 
 
+
                                         }
 
-                                        //TODO lehorid in the end
-                                        //TODO change to *4 after the KS page
-                                        let gameInstance = ""+Math.floor(Math.random() * 2);
-                                        $rootScope.gameInstance = gameInstance;
-                                        $rootScope.gameInstancesChosen[gameInstance] = true;
-                                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
-                                        sessionStorage.setItem("gameInstance",JSON.stringify(gameInstance));
-                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
-                                        //TODO lehorid in the end
-                                        $rootScope.gameInstance = 2;
+                                        sessionStorage.setItem("KSpresentation", ""+$rootScope.KSpresentation);
+                                        console.log("KSpresentationStart= "+sessionStorage.getItem("KSpresentation"));
+
+
+
+
+                                        //TO DO change to *4 after the KS page
+                                        // let gameInstance = ""+Math.floor(Math.random() * 2);
+                                        // $rootScope.gameInstance = gameInstance;
+                                        // $rootScope.gameInstance = 0;
                                         $rootScope.gameInstancesChosen[$rootScope.gameInstance] = true;
+                                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+                                        sessionStorage.setItem("gameInstance",JSON.stringify($rootScope.gameInstance));
+                                        // $rootScope.gameInstance = Math.floor(Math.random() * 2);
+
+
 
                                         console.log("number= " + $rootScope.gameInstance);
                                         //pass to tutorial

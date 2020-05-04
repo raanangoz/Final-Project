@@ -9,13 +9,13 @@ angular.module("sudokuApp")
                 let games = $scope.games;
 
                 if ($scope.exam == undefined)
-                    exam = null;
+                    exam = "a";
                 if ($scope.tutorial == undefined)
-                    tutorial = null;
+                    tutorial = "a";
                 if ($scope.other == undefined)
-                    other = null;
+                    other = "a";
                 if ($scope.games == undefined)
-                    games = null;
+                    games = "a";
 
                 $http({
 

@@ -40,6 +40,7 @@ angular.module("sudokuApp")
                 $scope.colors= false;
                 $scope.ks= true;
                 $rootScope.wasKS++;
+                sessionStorage.setItem("wasKS",$rootScope.wasKS);
 
             }
 
@@ -104,6 +105,20 @@ angular.module("sudokuApp")
                 document.getElementById("prev").style.visibility = "hidden";
             }
 
+            if(slideIndex === x.length-2 && $rootScope.wasSudoko > 1){
+                console.log("hereIFNowwww");
+                document.getElementById("next").innerHTML = "Continue";
+            }
+
+            //last slide and already made a test
+            if(slideIndex === x.length && $rootScope.wasSudoko > 1){
+                console.log("hereIfNotExam");
+                console.log("wasSudoku= "+$rootScope.wasSudoko);
+                $location.url('/pageBeforeGame');
+
+
+            }
+
             if( z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
 
                 if($rootScope.wasSudoko > 1){
@@ -142,6 +157,10 @@ angular.module("sudokuApp")
                 document.getElementById("next").innerHTML = "Submit and continue";
                 document.getElementById("next").style.width = "80px";
                 document.getElementById("next").style.height = "65px";
+                // if($rootScope.wasSudoko != '0'){
+                //     document.getElementById("next").onclick = toThePageBeforeGame();
+                //
+                // }
             }
 
 
@@ -151,6 +170,13 @@ angular.module("sudokuApp")
 
 
         });
+
+        // function toThePageBeforeGame(){
+        //
+        //     $location.url('/pageBeforeGame');
+        //
+        //
+        // }
 
 
 

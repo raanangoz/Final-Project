@@ -11,6 +11,14 @@ angular.module("sudokuApp")
         var difficultyRank;
         $scope.arrayOfOptionNumbers = [];
 
+        var countersArray = [];
+        for(let i = 0; i <= 2; i++) {
+            countersArray[i] = 0;
+        }
+
+
+        console.log("gameInstances[3]= "+$rootScope.gameInstancesChosen[3]);
+
         $scope.init = function(){
             for(let i = 0; i <= $rootScope.boxes; i++) {
                 $scope.arrayOfOptionNumbers[i] = i;
@@ -78,6 +86,7 @@ angular.module("sudokuApp")
                     console.log($rootScope.gameInstancesChosen[i]);
                     if($rootScope.gameInstancesChosen[i]== false){
                         completed = false;
+                        console.log("hereCompletedFalse");
                     }
 
                 }
@@ -85,19 +94,146 @@ angular.module("sudokuApp")
                 console.log("completed= "+completed);
                 if (!completed){
 
-                    //change to *4 after the KS page
-                    $rootScope.gameInstance = Math.floor(Math.random() * 2);
+
+                    //TODO hen change to *4 after the KS page
+                    $rootScope.gameInstance = Math.floor(Math.random() * 4);
+
                     while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == true){
-                        $rootScope.gameInstance = Math.floor(Math.random() * 2);
+                        console.log("hereWhileFinish");
+                        $rootScope.gameInstance = Math.floor(Math.random() * 4);
                     }
-                    if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == false){
-                        console.log("number= "+$rootScope.gameInstance);
-                        $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
-                        sessionStorage.setItem("gameInstance",$rootScope.gameInstance);
-                        sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
-                        $location.url('/Tutorial');
+
+                    //everyone presentation
+                    $rootScope.KSpresentation = 3;
+
+                    if($rootScope.gameInstance=='3'){
+
+                        console.log("here333333");
+
+                        //0-weight presentation, 1-value presentation, 2-mix presentation
+                        $rootScope.KSpresentation = Math.floor(Math.random() * 3);
+
+                        var counterPresentation= 0;
+                        updateCounter(0);
+                        updateCounter(1);
+                        updateCounter(2);
+
+
+                        function updateCounter(KSpresentation){
+
+                            //update the counterPresentation
+                            $http ({
+                                method: 'GET',
+                                url:'http://localhost:3000/Knapsack/getPresentationCounter/'+KSpresentation
+                            })
+
+                                .then(function(response) {
+                                    var place = "p"+KSpresentation;
+                                    console.dir("response= "+response.data[0][place]);
+                                    console.log("response= "+ JSON.stringify(response.data[0][place]));
+                                    counterPresentation = response.data[0][place];
+                                    countersArray[KSpresentation]= response.data[0][place];
+                                    console.log("counterPresentation= "+counterPresentation);
+                                    console.log("countersArray[0] = "+countersArray[KSpresentation]);
+                                    if(KSpresentation === 2){
+                                        checkCounter();
+                                    }
+
+
+                                }, function(response) {
+                                    // $scope.records = response.statusText;
+                                });
+
+
+                        }
+
+
+                        function checkCounter(){
+                            // for (var i = 0; i <countersArray.length ; i++) {
+                            //     console.log("cell1:"+countersArray[i]);
+                            //
+                            // }
+                            console.dir("counterArray= "+countersArray);
+                            while(countersArray[$rootScope.KSpresentation] === 0){
+                                console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
+                                $rootScope.KSpresentation = Math.floor(Math.random() * 3);
+                            }
+                            counterPresentation = countersArray[$rootScope.KSpresentation];
+
+                            reduceCounter();
+
+
+                        }
+
+
+
+                        // while(counterPresentation === 0){
+                        //
+                        //     console.log("hereWhilecounterPresentation === 0")
+                        //
+                        //     console.log("KSpresentation= "+$rootScope.KSpresentation);
+                        //     console.log('http://localhost:3000/Knapsack/getPresentationCounter/'+$rootScope.KSpresentation);
+                        //
+                        //
+                        //
+                        //  }
+
+                        function reduceCounter(){
+
+                            //reduce the counter if we chose the presentation
+                            $http({
+
+                                method: 'POST',
+                                url: 'http://localhost:3000/Knapsack/updateCounterPresentation/',
+                                data: {
+                                    "presentation": "" + $rootScope.KSpresentation,
+                                    "counterPresentation" : ""+counterPresentation
+
+                                }
+                            })
+                                .then(function (response) {
+
+                                    //add to the board 2d array
+
+                                }, function (response) {
+                                    // $scope.records = response.statusText;
+                                });
+
+
+
+                            movePage();
+                        }
+
 
                     }
+
+                    function movePage(){
+
+                        sessionStorage.setItem("KSpresentation", ""+$rootScope.KSpresentation);
+                        console.log("KSpresentationStart= "+sessionStorage.getItem("KSpresentation"));
+
+                        if($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == false){
+                            console.log("number= "+$rootScope.gameInstance);
+                            $rootScope.gameInstancesChosen[$rootScope.gameInstance]= true;
+                            sessionStorage.setItem("gameInstance",$rootScope.gameInstance);
+                            sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
+
+                            console.log("gameInstanceFinish= "+sessionStorage.getItem("gameInstance"));
+                            console.log("wasKSfinish= "+sessionStorage.getItem("wasKS"));
+
+                            if((sessionStorage.getItem("gameInstance")==2 || sessionStorage.getItem("gameInstance")==3)
+                                && sessionStorage.getItem("wasKS") >= 1){
+                                $location.url('/pageBeforeGame');
+
+                            }else{
+                                $location.url('/Tutorial');
+                            }
+
+
+                        }
+                    }
+
+
 
                 }else{
 
@@ -108,7 +244,7 @@ angular.module("sudokuApp")
 
             }else {
 
-                $window.alert("Please enter the two of the estimates");
+                $window.alert("Please answer both of the questions");
             }
 
 

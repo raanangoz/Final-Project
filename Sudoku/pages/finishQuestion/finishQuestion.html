@@ -12,16 +12,7 @@
             <div class="form-group">
                 <h1 class="questions">How many boxes do you think you filled correctly out of {{boxes}} boxes?</h1>
                 <select type="rank" id= "rankCorrectness" name="rank" ng-model="rank2"  >
-<!--                    <option value="0">0</option>-->
-<!--                    <option value="1">1</option>-->
-<!--                    <option value="2">2</option>-->
-<!--                    <option value="3">3</option>-->
-<!--                    <option value="4">4</option>-->
-<!--                    <option value="5">5</option>-->
-<!--                    <option value="6">6</option>-->
-<!--                    <option value="7">7</option>-->
-<!--                    <option value="8">8</option>-->
-<!--                    <option value="9">9</option>-->
+
                     <option ng-repeat="optionNumber in arrayOfOptionNumbers" value="{{optionNumber}}">
                         {{optionNumber}}
                     </option>
@@ -29,6 +20,7 @@
                 </select>
                 <br>
                 <br>
+
                 <h1 class="questions">How difficult was it for you to solve this problem?</h1>
                 <select type="rank" id= "rankDifficulty" name="rank" ng-model="rank1" >
                     <option value="1">1: Very easy</option>

@@ -9,18 +9,33 @@ angular.module("sudokuApp")
         if($rootScope.gameInstance == 0){
             $scope.numbers = true;
             $scope.colors= false;
+            $scope.ks= false;
         }
 
         //if colors
         if($rootScope.gameInstance == 1){
             $scope.numbers = false;
             $scope.colors= true;
+            $scope.ks= false;
+        }
+
+        //if ks
+        if($rootScope.gameInstance == 2 || $rootScope.gameInstance == 3 ){
+            $scope.numbers = false;
+            $scope.colors= false;
+            $scope.ks= true;
         }
 
 
         $scope.start= function () {
 
-            $location.url('/sudokuGame');
+            if($rootScope.gameInstance == 2 || $rootScope.gameInstance == 3 ){
+                $location.url('/KnapsackGame');
+            }else{
+                $location.url('/sudokuGame');
+
+            }
+
 
         }
 

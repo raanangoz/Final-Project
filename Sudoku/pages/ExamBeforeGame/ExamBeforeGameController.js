@@ -2,6 +2,9 @@ angular.module("sudokuApp")
     .controller("ExamBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
 
+
+        $rootScope.gameInstance = sessionStorage.getItem("gameInstance");
+        console.log("gameInstanceExam= "+$rootScope.gameInstance);
         // document.getElementById("prevExam").style.visibility = "hidden";
         var slideIndex = 1;
         showDivs(slideIndex);
@@ -46,7 +49,7 @@ angular.module("sudokuApp")
             //TODO lottery number between 1-10
 
             //KS
-            if ($rootScope.gameInstance === 2 || $rootScope.gameInstance === 3){
+            if ($rootScope.gameInstance === '2' || $rootScope.gameInstance === '3'){
 
                 $http({
                     method: "get",
@@ -58,13 +61,13 @@ angular.module("sudokuApp")
 
 
 
-                    for (var i = 0; i < numberOfQuestionsInDB; i++) {
+                    for (var i = 0; i < numberOfQuestionsKSInDB; i++) {
                         printedQuestions.push(false);
                     }
                     for(let que = 0; que < numberOfQuestionsToAsk; que++) {
-                        var q = Math.floor(Math.random() * numberOfQuestionsInDB);
+                        var q = Math.floor(Math.random() * numberOfQuestionsKSInDB);
                         while(printedQuestions[q]==true)
-                            q = Math.floor(Math.random() * numberOfQuestionsInDB);
+                            q = Math.floor(Math.random() * numberOfQuestionsKSInDB);
                         printedQuestions[q]=true;
                         // $scope.Q1 = response.data[q].question;
                         // $scope.imageSrc = response.data[q].image;
@@ -134,39 +137,41 @@ angular.module("sudokuApp")
 
         $scope.submit = function () {
 
-            let answers = [];
+            // let answers = [];
+            //
+            // //// let answer = document.querySelector('input[name!="null"]');
+            // //// console.log(document.querySelector('input[name="op"]:checked').value);
+            // let answer0 = $scope.a;
+            // console.log(answer0);
+            // let answer1 = $scope.b;
+            // console.log(answer1);
+            // let answer2 = $scope.c;
+            // console.log(answer2);
+            // let answer3 = $scope.d;
+            // console.log(answer3);
+            // //// let answer4 = $scope.e;
+            // //// console.log(answer4);
+            //
+            // if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
+            //     window.alert("You have to answer every question before press 'Submit'");
+            //
+            // }
+            //
+            // else if(answer0==questionsFromServer[0].correctAnswer&&
+            //     answer1==questionsFromServer[1].correctAnswer&&
+            //     answer2==questionsFromServer[2].correctAnswer&&
+            //     answer3==questionsFromServer[3].correctAnswer){
+            // $location.url('/pageBeforeGame');
+            // }
+            //
+            // else{
+            //     window.alert("You did not answer all the questions correctly. \n" +
+            //         "You are redirected to the tutorial.")
+            //     $location.url('/Tutorial');
+            // }
 
-            // let answer = document.querySelector('input[name!="null"]');
-            // console.log(document.querySelector('input[name="op"]:checked').value);
-            let answer0 = $scope.a;
-            console.log(answer0);
-            let answer1 = $scope.b;
-            console.log(answer1);
-            let answer2 = $scope.c;
-            console.log(answer2);
-            let answer3 = $scope.d;
-            console.log(answer3);
-            // let answer4 = $scope.e;
-            // console.log(answer4);
 
-            if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
-                window.alert("You have to answer every question before press 'Submit'");
-
-            }
-
-            else if(answer0==questionsFromServer[0].correctAnswer&&
-                answer1==questionsFromServer[1].correctAnswer&&
-                answer2==questionsFromServer[2].correctAnswer&&
-                answer3==questionsFromServer[3].correctAnswer){
             $location.url('/pageBeforeGame');
-            }
-
-            else{
-                window.alert("You did not answer all the questions correctly. \n" +
-                    "You are redirected to the tutorial.")
-                $location.url('/Tutorial');
-            }
-
         }
 
     })

@@ -9,10 +9,10 @@ module.exports = Sudoku;
 
 var cors = require('cors');
 Sudoku.use(cors());
-Sudoku.get('/getBoard/:dif', function (req, res) {
-    var dif = req.params.dif;
+Sudoku.get('/getBoard/:PuzzleID', function (req, res) {
+    var PuzzleID = req.params.PuzzleID;
     var type = req.params.type;
-    DButilsAzure.execQuery("SELECT * FROM sodukoInstance where difficult='"+dif+"'")
+    DButilsAzure.execQuery("SELECT * FROM sodukoInstance where PuzzleID='"+PuzzleID+"'")
     // var query = "select orderPOI from userData where userName='"+username+"'";
         .then(function (result) {
             res.send(result)
