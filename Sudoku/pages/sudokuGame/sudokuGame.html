@@ -1,6 +1,7 @@
 <!--<div ng-class=" {'red' : ==1}"></div>-->
 
-
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""></BODY>
 
 <link rel="stylesheet" type="text/css" href="pages/sudokuGame/sudokuGame.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,7 +15,7 @@
         <div  ng-repeat="field in row track by $index" ng-init="colIndex = $index" class="one-box"
 
              ng-click="onBoxClick(field, colIndex, rowIndex)"
-             ng-class="{conflict: rowIndex== conflictRow && colIndex==conflictCol, 'red' : field===1, 'lightskyblue': field===2 ,'lightGreen': field===3,
+             ng-class="{'red' : field===1, 'lightskyblue': field===2 ,'lightGreen': field===3,
                     'yellow': field===4 , 'green': field===5 , 'orange': field===6 ,'blue': field===7 , 'brown': field===8 , 'pink': field===9
                     ,'right-border': colIndex === 2 || colIndex === 5, 'bottom-border': rowIndex === 2 || rowIndex === 5,
                     'bold-border': initialBoard[rowIndex][colIndex] !== '0' && typeCase}">
@@ -106,7 +107,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="submitRange" class="btn btn-primary" ng-click="submitDifficultyAndFamiliarity()">Submit</button>
+                    <button type="button" id="submitRange" ng-disabled="rangeValue==='---'" class="btn btn-primary" ng-click="submitDifficultyAndFamiliarity()">Submit</button>
                     <button type="button" id="startGame" class="btn btn-default" data-dismiss="modal" ng-click="timer()" ng-disabled="!rangePress">Start Game</button>
 
                 </div>

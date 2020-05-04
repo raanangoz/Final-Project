@@ -4,8 +4,16 @@ angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
         $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
+
         //range in the modal
         $scope.rangeValue = "---";
+
+
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
         // document.getElementById("submitRange").disabled = "true";
         // var rangeModal = document.getElementById("myRange");
@@ -242,12 +250,28 @@ angular.module("sudokuApp")
             $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
             $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
 
+            var PuzzleIDRandom;
+            //random 1/2 for choosing the instance of the board
+            if(sessionStorage.getItem("PuzzleIDRandom") == null){
+                console.log("hereSessionPuzzle");
+                PuzzleIDRandom = Math.floor(Math.random() * 2);
+                sessionStorage.setItem("PuzzleIDRandom", ""+PuzzleIDRandom);
+
+            }else{
+                if(sessionStorage.getItem("PuzzleIDRandom") =="0"){
+                    PuzzleIDRandom = 1;
+
+                }else{
+                    PuzzleIDRandom = 0;
+                }
+            }
+
             console.log("hereInitttttttttttttttttttttttttt");
             //requests
             $http ({
 
                 method: 'GET',
-                url:'http://localhost:3000/Sudoku/getBoard/medium'})//TODO we send dif 1.
+                url:'http://localhost:3000/Sudoku/getBoard/'+PuzzleIDRandom})//TODO we send dif 1.
                 .then(function(response) {
                     PuzzleID = response.data[0].PuzzleID;
                     const boardString = response.data[0].board;
@@ -415,18 +439,18 @@ angular.module("sudokuApp")
 
             var filledWhole = true;
             // check if filled the whole boxes
-            for (var i = 0; i < $scope.initialBoard.length ; i++) {
-                for (var j = 0; j < $scope.initialBoard.length ; j++) {
-
-                    if($scope.initialBoard[i][j] === '0' && filledWhole){
-                        if($scope.sudokuBoard[i][j] === ''){
-                            $window.alert("You have to finish the puzzle first");
-                            filledWhole = false;
-                         }
-                    }
-                }
-
-            }
+            // for (var i = 0; i < $scope.initialBoard.length ; i++) {
+            //     for (var j = 0; j < $scope.initialBoard.length ; j++) {
+            //
+            //         if($scope.initialBoard[i][j] === '0' && filledWhole){
+            //             if($scope.sudokuBoard[i][j] === ''){
+            //                 $window.alert("You have to finish the puzzle first");
+            //                 filledWhole = false;
+            //              }
+            //         }
+            //     }
+            //
+            // }
 
             if(filledWhole){
                 $('#myModal2').modal();
@@ -463,7 +487,6 @@ angular.module("sudokuApp")
             }
 
             console.log("newBoxes= "+$rootScope.boxes);
-
 
             let totalTime = calculateTotalTime();
             solutionAndTimeToDB(totalTime);
@@ -553,6 +576,8 @@ angular.module("sudokuApp")
             console.log("gameIDNew= "+$rootScope.GameID);
             console.log("gameIDNew= "+$rootScope.GameID);
             console.log("fam iss" +(sessionStorage.getItem("familiarity")));
+            console.log("fam iss" +(JSON.parse(sessionStorage.getItem("familiarity"))));
+
             //documentation
             $http({
 

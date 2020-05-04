@@ -1,6 +1,11 @@
 angular.module("sudokuApp")
     .controller("ExperimentOverController", function ($scope, $http, $location, $rootScope) {
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
         //lottery a letter for adding the code
 
             $scope.code= 0;

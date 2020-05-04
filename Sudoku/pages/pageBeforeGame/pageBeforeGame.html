@@ -1,3 +1,6 @@
+<BODY onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""></BODY>
+
 <link rel="stylesheet" type="text/css" href="pages/pageBeforeGame/pageBeforeGame.css" />
 
 <div class="home-page-container" ng-controller="pageBeforeGameController" >
@@ -36,7 +39,25 @@
             Good Luck!<br/>
 
         </p>
+
+        <p class="explain" ng-if="ks"> Your task is to solve a Knapsack problem.<br/>
+        The Problem represented by group of Gold bullion with value
+            and weight and a bag with limited weight capacity. <br/>
+        Your objective is to correctly choose the item of the gold bullion
+            so you would maximize the value without overweight the capacity.<br/><br/>
+        The task will begin with a first impression phase, in which you will have a few <br/>
+        seconds of a first glance on the items of the gold bullion,
+            followed by a question appearing on the screen. <br/><br>
+        Each problem has only one correct solution.<br/>
+        After answering the first impression question, <br/>
+        you will be able to start solving the task, by clicking on “Start Game”.<br/>
+        You will have 4 minutes to solve the problem. <br/>
+        If you have finished choosing the items before the time limits expire,  <Br/>
+        you can press the 'Finish Game’, and continue to the next page.<br/>
         <br>
+        Good Luck!<br/>
+        <br>
+        </p>
 
         <div class="buttonStart">
             <button class="buttonS" ng-click="start()">Start</button>
