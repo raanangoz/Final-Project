@@ -182,6 +182,7 @@ angular.module("sudokuApp")
                     $window.alert("Please answer all questions");
                 }
             }
+
             //TODO added this because adding knapsack was a mess
             if(answered== true) {
 
@@ -261,10 +262,22 @@ angular.module("sudokuApp")
                             // }
 
                             console.dir("counterArray= "+countersArray);
+                            var allZero=true;
+                            for (var i = 0; i <countersArray.length  ; i++) {
+                                if(countersArray[i] !== 0){
+                                    allZero = false;
+                                }
+
+                            }
+                            if(allZero){
+                                $location.url('/ExperimentOver');
+                            }
                             while(countersArray[$rootScope.KSpresentation] === 0){
                                 console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
                                 $rootScope.KSpresentation = Math.floor(Math.random() * 3);
                             }
+
+
                             counterPresentation = countersArray[$rootScope.KSpresentation];
 
                             reduceCounter();
