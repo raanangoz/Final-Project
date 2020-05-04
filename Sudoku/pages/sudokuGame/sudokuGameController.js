@@ -414,7 +414,6 @@ angular.module("sudokuApp")
         $scope.finishGameYesOrNo = function(){
 
             var filledWhole = true;
-
             // check if filled the whole boxes
             for (var i = 0; i < $scope.initialBoard.length ; i++) {
                 for (var j = 0; j < $scope.initialBoard.length ; j++) {
@@ -554,7 +553,6 @@ angular.module("sudokuApp")
             console.log("gameIDNew= "+$rootScope.GameID);
             console.log("gameIDNew= "+$rootScope.GameID);
             console.log("fam iss" +(sessionStorage.getItem("familiarity")));
-            console.log("fam iss" +(JSON.parse(sessionStorage.getItem("familiarity"))));
             //documentation
             $http({
 
@@ -565,7 +563,7 @@ angular.module("sudokuApp")
                     "gameID": "" + $rootScope.GameID,
                     "userID": ""+ sessionStorage.userID,
                     "difBefore": ""+ answer,
-                    "familiarity": JSON.parse(sessionStorage.getItem("familiarity"))
+                    "familiarity": sessionStorage.getItem("familiarity")
 
                 }
             })

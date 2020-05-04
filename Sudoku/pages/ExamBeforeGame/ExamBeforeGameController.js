@@ -164,7 +164,8 @@ angular.module("sudokuApp")
             else{
                 window.alert("You did not answer all the questions correctly. \n" +
                     "You are redirected to the tutorial.")
-                $location.url('/Tutorial');
+                $location.url('/tutorial');
+                //todo tutorial url!!
             }
 
         }

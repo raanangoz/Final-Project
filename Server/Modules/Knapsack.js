@@ -117,3 +117,30 @@ Knapsack.get('/getUserID', function (req, res) {//TODO DUPLICATED CODE
         })
 
 })
+Knapsack.post('/submitFinishQuestion', function (req, res) {
+
+    var userID = req.body.userID;
+    var gameID = req.body.gameID;
+    var confident = req.body.confident;
+    var difficulty = req.body.difficultyRank;
+    var estimatePeopleDif = req.body.estimatePeopleDif;
+    var heaviestItem = req.body.heaviestItem;
+    var op1= req.body.op1;
+    var op2= req.body.op2;
+    var op3= req.body.op3;
+    var op4= req.body.op4;
+    var postQuery = "update KSToUser set difficultForOthers= '"+estimatePeopleDif+"', heaviestItem= '"+heaviestItem+"', confidentInAnswer= '"+confident+"', difficultForMe= '"+difficulty+"',op1='"+op1+"',op2='"+op2+"',op3='"+op3+"',op4='"+op4+"' where UserID= '"+userID+"' and GameID= '"+gameID+"'";
+    // where gameID='"+GameID+"'";
+
+    console.log(postQuery);
+    DButilsAzure.execQuery(postQuery)
+    // var query = "select orderPOI from userData where userName='"+username+"'";
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.send(err)
+        })
+})

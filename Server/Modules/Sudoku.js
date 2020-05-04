@@ -330,8 +330,21 @@ function allFilledCells (original, solution){
 
 }
 
-// function numberOfCellsFilledCorrectly (solutionBoardOfUser,filledCells) {
-//     //sql to get solution
-//     //compare solution on ( filled cells ) with original on filled cells indexes
-//
-// }
+Sudoku.post('/updateRecommendations', function (req, res) {
+    var userID = 3;
+    var exam = ""+ req.body.exam;
+    var tutorial =""+ req.body.tutorial;
+    var games = ""+req.body.games;
+    var other = ""+req.body.other;
+    var sql = "insert into Recommendations values ('"+userID+"','"+exam+"','"+tutorial+"','"+games+"','"+other+"')";
+    console.log(sql);
+    DButilsAzure.execQuery(sql)
+        .then(function (result) {
+            res.send(result)
+
+        })
+        .catch(function (err) {
+            console.log("failed");
+            res.send(err)
+        })
+})

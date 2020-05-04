@@ -3,30 +3,33 @@ angular.module("sudokuApp")
 
 
             $scope.go = function () {
+
                 let exam = $scope.exam;
                 let tutorial = $scope.tutorial;
                 let other = $scope.other;
                 let games = $scope.games;
 
-                if ($scope.exam == undefined)
-                    exam = null;
+                if ($scope.exam == undefined) {
+                    console.log("exam undef");
+                    exam = "NULL";
+                }
                 if ($scope.tutorial == undefined)
-                    tutorial = null;
+                    tutorial = "NULL";
                 if ($scope.other == undefined)
-                    other = null;
+                    other = "NULL";
                 if ($scope.games == undefined)
-                    games = null;
+                    games = "NULL";
 
                 $http({
 
                     method: 'POST',
-                    url: 'http://localhost:3000/updateRecommendations',
+                    url: 'http://localhost:3000/Sudoku/updateRecommendations',
                     data: {
                         "userID": ""+ sessionStorage.userID,
-                        "exam":exam,
-                        "tutorial":tutorial,
-                        "games":games,
-                        "other":other
+                        "exam":""+exam,
+                        "tutorial":""+tutorial,
+                        "games":""+games,
+                        "other":""+other
 
                     }
                 })
