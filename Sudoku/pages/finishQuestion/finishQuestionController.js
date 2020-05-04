@@ -2,6 +2,13 @@
 angular.module("sudokuApp")
     .controller("finishQuestionController", function ($scope, $http, $location,$rootScope, $window) {
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
+
+
         $rootScope.gameInstancesChosen=(JSON.parse(sessionStorage.getItem("gameInstancesChosen")));
         console.log("works?)");
         $rootScope.gameInstance = JSON.parse(sessionStorage.getItem("gameInstance"));
@@ -34,6 +41,23 @@ angular.module("sudokuApp")
 
             }
             console.log("arrrrray= "+$scope.arrayOfOptionNumbers);
+
+            //update was
+            if($rootScope.gameInstance === 0 || $rootScope.gameInstance === 1 ){
+
+                console.log("hereFinishSudoku123");
+                sessionStorage.setItem("wasSudoko","true");
+
+
+            }
+            //update was
+            if($rootScope.gameInstance === 2 || $rootScope.gameInstance === 3) {
+
+                sessionStorage.setItem("wasKS","true");
+
+
+            }
+
 
         }
 
@@ -153,6 +177,7 @@ angular.module("sudokuApp")
                             //     console.log("cell1:"+countersArray[i]);
                             //
                             // }
+
                             console.dir("counterArray= "+countersArray);
                             while(countersArray[$rootScope.KSpresentation] === 0){
                                 console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
@@ -205,10 +230,15 @@ angular.module("sudokuApp")
                         }
 
 
+                    }else{
+                        movePage();
                     }
+
 
                     function movePage(){
 
+
+                        sessionStorage.setItem("KSProblem",Math.floor(Math.random() * 4) + 2);
                         sessionStorage.setItem("KSpresentation", ""+$rootScope.KSpresentation);
                         console.log("KSpresentationStart= "+sessionStorage.getItem("KSpresentation"));
 
@@ -222,7 +252,7 @@ angular.module("sudokuApp")
                             console.log("wasKSfinish= "+sessionStorage.getItem("wasKS"));
 
                             if((sessionStorage.getItem("gameInstance")==2 || sessionStorage.getItem("gameInstance")==3)
-                                && sessionStorage.getItem("wasKS") >= 1){
+                                && sessionStorage.getItem("wasKS") ==='true'){
                                 $location.url('/pageBeforeGame');
 
                             }else{

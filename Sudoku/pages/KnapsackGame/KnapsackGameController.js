@@ -1,9 +1,14 @@
 
 
 angular.module("sudokuApp")
-    .controller("KnapsackGameController", function ($scope, $http, $location,$rootScope, $interval) {
+    .controller("KnapsackGameController", function ($scope, $http, $location,$rootScope, $interval, $window) {
 
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
         var userID = $rootScope.userId;
         var PuzzleID;
@@ -44,7 +49,7 @@ angular.module("sudokuApp")
         $rootScope.leftBool = false;
         $rootScope.topBool = false;
 
-        $rootScope.instance = Math.floor(Math.random() * 4) + 2;
+        $rootScope.instance = sessionStorage.getItem("KSProblem");
 
         $scope.pres2ByWeight = [6.9,12 ,11 ,6.5 ,8.5 ,10.5 ,7.5 ,7.8 ,9.7 ,9 ]
         $scope.pres3ByWeight = [11.5,7 ,10 ,6.5 ,6.7 ,12.2 ,9 ,9.4 ,11 ,10.7 ]
@@ -334,9 +339,15 @@ angular.module("sudokuApp")
         $scope.finishGame = function(){
 
             $interval.cancel(interval);
+
+            var newProb = generateRandomNumber(2,5);
+            while (newProb === sessionStorage.getItem("KSProblem")){
+                newProb = generateRandomNumber(2,5);
+            }
+            sessionStorage.setItem("KSProblem",newProb);
             endDate = new Date();
             let diff = Math.abs($scope.beginDate-endDate); //game time in ms
-            let userAns = ""
+            let userAns = "";
             let solValue = 0;
             let solWeight = 0;
             console.log(GameID+"!@!");
@@ -385,8 +396,7 @@ angular.module("sudokuApp")
             // document.getElementById("finish").hidden= true;
 
             //pass to the finish questionarrie
-
-            clearInterval(interval);
+            // clearInterval(interval);
             $location.url('/finishQuestion');
             let weightSol = ""
             //for (let i = 0; i<)

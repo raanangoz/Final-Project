@@ -1,6 +1,13 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
+
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
+
         let familiarityAgainNextSudoku;
         let familiarityAgainPrevSudoku;
 
@@ -8,6 +15,7 @@ angular.module("sudokuApp")
         sessionStorage.setItem("familiarity","0");
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
+        console.log("wasSudokuuuuu= "+$rootScope.wasSudoko);
 
         $scope.init = function () {
 
@@ -20,8 +28,8 @@ angular.module("sudokuApp")
                 console.log("its 0");
                 $scope.numbers = true;
                 $scope.colors= false;
-                $rootScope.wasSudoko++;
-                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
+                // $rootScope.wasSudoko++;
+                // sessionStorage.setItem("wasSudoko","true");
                 console.log(sessionStorage.getItem("wasSudoko"));
             }
 
@@ -30,8 +38,8 @@ angular.module("sudokuApp")
                 console.log("its 1");
                 $scope.numbers = false;
                 $scope.colors= true;
-                $rootScope.wasSudoko++;
-                sessionStorage.setItem("wasSudoko",$rootScope.wasSudoko);
+                // $rootScope.wasSudoko++;
+                // sessionStorage.setItem("wasSudoko","true");
                 console.log(sessionStorage.getItem("wasSudoko"));
             }
 
@@ -39,13 +47,15 @@ angular.module("sudokuApp")
                 $scope.numbers = false;
                 $scope.colors= false;
                 $scope.ks= true;
-                $rootScope.wasKS++;
-                sessionStorage.setItem("wasKS",$rootScope.wasKS);
+                // $rootScope.wasKS++;
+                sessionStorage.setItem("wasKS","true");
 
             }
 
 
         }
+
+
 
 
         document.getElementById("prev").style.visibility = "hidden";
@@ -105,15 +115,15 @@ angular.module("sudokuApp")
                 document.getElementById("prev").style.visibility = "hidden";
             }
 
-            if(slideIndex === x.length-2 && $rootScope.wasSudoko > 1){
-                console.log("hereIFNowwww");
+            if(slideIndex === x.length-2 && sessionStorage.getItem("wasSudoko") === 'true'){
+                console.log("hereIFNowwwwwwww");
                 document.getElementById("next").innerHTML = "Continue";
             }
 
             //last slide and already made a test
-            if(slideIndex === x.length && $rootScope.wasSudoko > 1){
+            if(slideIndex === x.length && sessionStorage.getItem("wasSudoko") === 'true'){
                 console.log("hereIfNotExam");
-                console.log("wasSudoku= "+$rootScope.wasSudoko);
+                console.log("wasSudoku= "+sessionStorage.getItem("wasSudoko") === 'true');
                 $location.url('/pageBeforeGame');
 
 
@@ -121,7 +131,7 @@ angular.module("sudokuApp")
 
             if( z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
 
-                if($rootScope.wasSudoko > 1){
+                if(sessionStorage.getItem("wasSudoko") === 'true'){
                     prev();
 
                 }
@@ -131,7 +141,7 @@ angular.module("sudokuApp")
                 if(slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
                     console.log("hereIFFFF");
                     //if it's the second instance of the sudoku
-                    if($rootScope.wasSudoko > 1){
+                    if(sessionStorage.getItem("wasSudoko") === 'true'){
                         next();
 
 
@@ -162,7 +172,6 @@ angular.module("sudokuApp")
                 //
                 // }
             }
-
 
 
             $rootScope.familiarity = value;

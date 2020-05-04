@@ -1,10 +1,16 @@
 angular.module("sudokuApp")
     .controller("pageBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
         $rootScope.gameInstance = JSON.parse(sessionStorage.getItem("gameInstance"));
         console.log("gameinstance isssssss");
         console.log($rootScope.gameInstance);
+
         //if numbers
         if($rootScope.gameInstance == 0){
             $scope.numbers = true;

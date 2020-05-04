@@ -2,6 +2,11 @@ angular.module("sudokuApp")
     .controller("ExamBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
         $rootScope.gameInstance = sessionStorage.getItem("gameInstance");
         console.log("gameInstanceExam= "+$rootScope.gameInstance);

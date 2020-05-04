@@ -9,6 +9,11 @@ angular.module("sudokuApp")
         $scope.rangeValue = "---";
 
 
+        $(document).ready(function() {
+            function disablePrev() { window.history.forward() }
+            window.onload = disablePrev();
+            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
 
         // document.getElementById("submitRange").disabled = "true";
         // var rangeModal = document.getElementById("myRange");
@@ -483,7 +488,6 @@ angular.module("sudokuApp")
             }
 
             console.log("newBoxes= "+$rootScope.boxes);
-
 
             let totalTime = calculateTotalTime();
             solutionAndTimeToDB(totalTime);
