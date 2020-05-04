@@ -95,21 +95,21 @@ angular.module("sudokuApp")
         $scope.submitEstimates = function () {
             if($scope.sudokuQuestion == true) {
 
-            // $scope.$watch('rankCorrectness', function(value) {
-            //     correctnessRank = value;
-            // })
+                // $scope.$watch('rankCorrectness', function(value) {
+                //     correctnessRank = value;
+                // })
 
-            correctnessRank = $scope.rank2;
-            difficultyRank = rankDifficulty.value;
+                correctnessRank = $scope.rank2;
+                difficultyRank = rankDifficulty.value;
 
-            console.log("correct= "+correctnessRank);
-            console.log("diffi= "+difficultyRank);
+                console.log("correct= "+correctnessRank);
+                console.log("diffi= "+difficultyRank);
 
-            //if the user filled the two fields
-            if(correctnessRank <=$rootScope.boxes && correctnessRank >=0 && difficultyRank <=10 && difficultyRank >=1){
+                //if the user filled the two fields
+                if(correctnessRank <=$rootScope.boxes && correctnessRank >=0 && difficultyRank <=10 && difficultyRank >=1){
 
-                //enable the next button
-                document.getElementById("nextTask").disabled = false;
+                    //enable the next button
+                    document.getElementById("nextTask").disabled = false;
 
 
                     $http({
@@ -355,13 +355,13 @@ angular.module("sudokuApp")
                 }
             }
 
-                $window.alert("Please answer both of the questions");
-            }
-
-
-
-
+            $window.alert("Please answer both of the questions");
         }
+
+
+
+
+
 
         $scope.nextTask = function () {
 
