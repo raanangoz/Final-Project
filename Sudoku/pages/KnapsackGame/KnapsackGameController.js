@@ -17,7 +17,7 @@ angular.module("sudokuApp")
         });
 
         $rootScope.userID = sessionStorage.getItem("userID");
-        var PuzzleID;
+        
         var GameID;
         var items;// array, for each item : weight,value,inbag
         var bagsize;
@@ -56,7 +56,8 @@ angular.module("sudokuApp")
         // $rootScope.topBool = false;
 
         $rootScope.instance = sessionStorage.getItem("KSProblem");
-
+        var PuzzleID = $rootScope.instance;
+        
         $scope.pres2ByWeight = [6.9,12 ,11 ,6.5 ,8.5 ,10.5 ,7.5 ,7.8 ,9.7 ,9 ]
         $scope.pres3ByWeight = [11.5,7 ,10 ,6.5 ,6.7 ,12.2 ,9 ,9.4 ,11 ,10.7 ]
         $scope.pres4ByWeight = [8,9.5 ,6.5 ,11 ,6.5 , 7.5,6.5 ,11 ,12.5 ,9.5 ]
@@ -121,7 +122,7 @@ angular.module("sudokuApp")
                 method: 'POST',
                 url: 'http://localhost:3000/Knapsack/insertMove',
                 data: {
-                    "GameID": "" + GameID,
+                    "GameID": "" +sessionStorage.getItem("GameID"),
                     "itemWeight": + itemWeight,
                     "var itemValue": + itemValue,
                     "time": "" + stringminute + ":" + stringsecond + ""
@@ -266,7 +267,7 @@ angular.module("sudokuApp")
                                 url:'http://localhost:3000/Knapsack/getGameID'
                             })
                                 .then(function(response) {
-                                    GameID = response.data.length;
+                                    // GameID = response.data.length;
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
                                     $rootScope.GameID = GameID;
@@ -380,7 +381,7 @@ angular.module("sudokuApp")
                     //TODO "itemWeight": "" + GameID,
                     "totalTime": "" + diff,
                     "Solution": "" + userAns,
-                    "GameID": "" + GameID,
+                    "GameID": "" + sessionStorage.getItem("GameID"),
                     "PuzzleID": "" + PuzzleID,
                     "solutionWeight": "" + solWeight,
                     "solutionValue": "" + solValue,
@@ -429,7 +430,7 @@ angular.module("sudokuApp")
                     method: 'POST',
                     url: 'http://localhost:3000/Knapsack/insertMove',
                     data: {
-                        "GameID": "" + GameID,
+                        "GameID": "" + sessionStorage.getItem("GameID"),
                         "itemWeight": "" + itemWeight,
                         "itemValue": "" + itemValue,
                         "userID":""+ Uid,

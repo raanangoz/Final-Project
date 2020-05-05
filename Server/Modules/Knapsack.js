@@ -131,6 +131,9 @@ Knapsack.get('/getUserID', function (req, res) {//TODO DUPLICATED CODE
 
 Knapsack.post('/finishGame', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
 
+    console.log("finishing game");
+    console.log(req.body);
+
     var GameIDU = req.body.GameID;
     console.log(GameIDU);
     //TODO item ID?
@@ -145,6 +148,7 @@ Knapsack.post('/finishGame', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
     var query = "update KSToUser set  Solution= '"+SolutionU+"', totalTime= '"+totalTimeU+"', solutionWeight= '"+solWU+"', solutionValue= '"+solVU+"' where GameID= '"+GameIDU+"' and PuzzleID= '"+PuzzleIDU+"'";
     //"update SudokuToUser set  CorrectnessEstimate= '"+correctness+"', DifficultyEstimate= '"+difficulty+"' where UserID= '"+userID+"' and GameID= '"+gameID+"'";
     //var time = req.body.time;//TODO CLIENT SEND 4 DIGITS OF TIME LEFT/ TIME PASSED?
+    console.log(query);
     DButilsAzure.execQuery(query)
         .then(function (getResult) {
             console.log("successssssssssssssssssssssssssssssssssssss");

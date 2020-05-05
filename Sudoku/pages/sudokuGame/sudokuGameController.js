@@ -189,6 +189,8 @@ angular.module("sudokuApp")
         //stop after 15 minutes
         $scope.timer = function (){
 
+
+
             $scope.gameStarted = true;
             //document.getElementById("finish").disabled = "false";
             console.log("hereTimer");
