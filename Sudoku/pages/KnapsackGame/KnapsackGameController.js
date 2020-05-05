@@ -455,9 +455,9 @@ angular.module("sudokuApp")
         }
 
 
-        function updateBag(changedWeight, changedValue, itemInBag){//TODO osher finish coinClicked for insertion\extraction item.
+        function updateBag(changedWeight, changedValue, itemInBag){
             // positive values for insertion.
-            //TODO handle if failed or not on parent function
+            
             if(itemInBag) {
                 changedWeight *= -1;
                 changedValue *= -1;
