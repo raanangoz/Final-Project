@@ -14,6 +14,7 @@ Knapsack.use(cors());
  * get instance of a problem by difficulty
  */
 Knapsack.get('/getBoard/:dif', function (req, res) {
+    console.log(req);
     var dif = req.params.dif;
     //var dif = Math.floor(Math.random() * 4) + 2;
     //console.log("diffffffffffffff:"+dif)

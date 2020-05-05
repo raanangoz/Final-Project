@@ -23,6 +23,7 @@ angular.module("sudokuApp")
         $rootScope.gameInstance = JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.boxes = JSON.parse(sessionStorage.getItem("boxes"));
         $rootScope.GameID = JSON.parse(sessionStorage.getItem("GameID"));
+        var optSolution;
         var correctnessRank;
         var difficultyRank;
         var confident;
@@ -34,6 +35,7 @@ angular.module("sudokuApp")
         var op3;
         var op4;
         var sumTo100;
+        var puzzle = sessionStorage.getItem("plaster");
         $scope.arrayOfOptionNumbers = [];
         if($rootScope.gameInstance==1 || $rootScope.gameInstance==0) {
             $scope.sudokuQuestion = true;
@@ -72,6 +74,7 @@ angular.module("sudokuApp")
                 for (let i = 1; i <= 100; i++) {
                     $scope.correctnessPercents[i] = i;
                 }
+                heaviestOfOpt();
 
             }
             //update was
@@ -90,13 +93,6 @@ angular.module("sudokuApp")
 
             }
 
-
-        }
-
-
-        if($rootScope.gameInstance== 0 || $rootScope.gameInstance== 1 ){
-
-            //TODO 'none' the KS
 
         }
 
@@ -150,7 +146,7 @@ angular.module("sudokuApp")
                 fat = fatItem.value;
 
                 if (confident <= 10 && confident >= 1 && difficultyRank <= 10 && difficultyRank >= 1 &&
-                    people>=1 && people <=10 && fat>=1 ) {//TODO add the last question maybe
+                    people>=1 && people <=10 && fat>=1 ) {
                     if (sumTo100 == 100) {
                         document.getElementById("nextTask").disabled = false;
 
@@ -172,7 +168,6 @@ angular.module("sudokuApp")
                                 "op4": "" + op4
 
                                 // "estimateOthersCorrect": ""+correctnessPercents
-                                //TODO last question add
                             }
                         })
                             .then(function (response) {
@@ -191,7 +186,6 @@ angular.module("sudokuApp")
                 }
             }
 
-            //TODO added this because adding knapsack was a mess
             if(answered== true) {
 
                 var completed = true;
@@ -209,7 +203,6 @@ angular.module("sudokuApp")
                 if (!completed){
 
                     //change to *4 after the KS page
-                    //TODO hen change to *4 after the KS page
                     $rootScope.gameInstance = Math.floor(Math.random() * 4);
 
                     while ($rootScope.gameInstancesChosen[ $rootScope.gameInstance] == true){
@@ -390,12 +383,6 @@ angular.module("sudokuApp")
 
 
 
-        $scope.nextTask = function () {
-
-
-//todo ask hen
-
-        }
         $scope.updateTotal = function(){
 
             op1 = document.getElementById("op1").value;
@@ -649,4 +636,40 @@ angular.module("sudokuApp")
             return myObj;
         }
 
+        function heaviestOfOpt(){
+            console.log("puzzle is" + puzzle);
+            if(puzzle == 2){
+                $scope.heavy1 = 360;
+                $scope.heavy2 = 435;//correct
+                $scope.heavy3 = 220;
+                $scope.heavy4 = 180;
+            }
+            if(puzzle == 3){
+                $scope.heavy1 = 26;
+                $scope.heavy2 = 52;
+                $scope.heavy3 = 22;
+                $scope.heavy4 = 85;
+            }
+            if(puzzle == 4){
+                $scope.heavy1 = 12;
+                $scope.heavy2 = 8;
+                $scope.heavy3 = 6;
+                $scope.heavy4 = 10;
+            }
+            if(puzzle == 5){
+                $scope.heavy1 = 55;
+                $scope.heavy2 = 41;
+                $scope.heavy3 = 50;
+                $scope.heavy4 = 34;
+            }
+
+
+
+
+            //  puzzle   correct    random values
+            //  2        435     , 360, 220, 180
+            //  3        52       ,26,22, 85
+            //  4         8       12  , 10, 6
+            //  5         41,     50 , 55 , 34
+        }
     })

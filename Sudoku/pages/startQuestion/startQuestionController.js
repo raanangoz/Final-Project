@@ -43,7 +43,7 @@ angular.module("sudokuApp")
         $rootScope.gameInstance = 1;
         //KS presentation
         $rootScope.KSpresentation = 0;
-        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1(everyone), 3-KS2 TODO change to false
+        // 0-sudokuNumbers, 1-sudokuColors, 2-KS1(everyone), 3-KS2
         $rootScope.gameInstancesChosen = [false, false, false, false];
         //boolean for the familiarity question
         $rootScope.wasSudoko="false";
@@ -53,7 +53,7 @@ angular.module("sudokuApp")
             $rootScope.gameInstance = 1;
             sessionStorage.setItem("gameInstance","1");
             // let gameInstancesChosen= {false,false,true,true};
-            // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2 TODO change to false
+            // 0-sudokuNumbers, 1-sudokuColors, 2-KS1, 3-KS2
             $rootScope.gameInstancesChosen = [false, false, false, false];
             sessionStorage.setItem("gameInstancesChosen",JSON.stringify($rootScope.gameInstancesChosen));
             //boolean for the familiarity question

@@ -57,7 +57,6 @@ angular.module("sudokuApp")
 
         function getSudokuQuestion(){
 
-            //TODO lottery number between 1-10
 
             //KS
             if ($rootScope.gameInstance === '2' || $rootScope.gameInstance === '3'){
@@ -67,7 +66,7 @@ angular.module("sudokuApp")
                     url: 'http://localhost:3000/Sudoku/getKnapsackQuestions/'
 
 
-                    //TODO raanan 10 QUESTION, 5 RANDOM
+
                 }).then(function (response) {
 
 
@@ -112,7 +111,7 @@ angular.module("sudokuApp")
                     url: 'http://localhost:3000/Sudoku/getSudokuNumQuestion/'
 
 
-                    //TODO raanan 10 QUESTION, 5 RANDOM
+
                 }).then(function (response) {
 
                 for (var i = 0; i < numberOfQuestionsInDB; i++) {
@@ -181,8 +180,6 @@ angular.module("sudokuApp")
                 $location.url('/Tutorial');
             }
 
-
-            $location.url('/pageBeforeGame');
         }
 
     })

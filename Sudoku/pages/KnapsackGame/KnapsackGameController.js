@@ -56,6 +56,7 @@ angular.module("sudokuApp")
         // $rootScope.topBool = false;
 
         $rootScope.instance = sessionStorage.getItem("KSProblem");
+        sessionStorage.setItem("plaster",$rootScope.instance);
         var PuzzleID = $rootScope.instance;
         
         $scope.pres2ByWeight = [6.9,12 ,11 ,6.5 ,8.5 ,10.5 ,7.5 ,7.8 ,9.7 ,9 ]
@@ -379,7 +380,6 @@ angular.module("sudokuApp")
                 method: 'POST',
                 url: 'http://localhost:3000/Knapsack/finishGame',
                 data: {
-                    //TODO "itemWeight": "" + GameID,
                     "totalTime": "" + diff,
                     "Solution": "" + userAns,
                     "GameID": "" + sessionStorage.getItem("GameID"),
