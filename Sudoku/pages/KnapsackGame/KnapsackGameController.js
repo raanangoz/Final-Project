@@ -361,6 +361,7 @@ angular.module("sudokuApp")
             console.log(GameID+"!@!");
             console.log(PuzzleID+"~!~");
             //console.log(userID);
+            sessionStorage.setItem("items",JSON.stringify(items));
             for (let i=0;i<items.length; i++){
 
                 if (items[i][2]){

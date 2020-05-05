@@ -448,18 +448,18 @@ angular.module("sudokuApp")
 
             var filledWhole = true;
             // check if filled the whole boxes
-            // for (var i = 0; i < $scope.initialBoard.length ; i++) {
-            //     for (var j = 0; j < $scope.initialBoard.length ; j++) {
-            //
-            //         if($scope.initialBoard[i][j] === '0' && filledWhole){
-            //             if($scope.sudokuBoard[i][j] === ''){
-            //                 $window.alert("You have to finish the puzzle first");
-            //                 filledWhole = false;
-            //              }
-            //         }
-            //     }
-            //
-            // }
+            for (var i = 0; i < $scope.initialBoard.length ; i++) {
+                for (var j = 0; j < $scope.initialBoard.length ; j++) {
+
+                    if($scope.initialBoard[i][j] === '0' && filledWhole){
+                        if($scope.sudokuBoard[i][j] === ''){
+                            $window.alert("You have to finish the puzzle first");
+                            filledWhole = false;
+                        }
+                    }
+                }
+
+            }
 
             if(filledWhole){
                 $('#myModal2').modal();

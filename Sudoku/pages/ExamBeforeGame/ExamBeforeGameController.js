@@ -131,7 +131,7 @@ angular.module("sudokuApp")
                 $scope.question1 = questionsFromServer[1];
                 $scope.question2 = questionsFromServer[2];
                 $scope.question3 = questionsFromServer[3];
-                $scope.question4 = questionsFromServer[4];
+                // $scope.question4 = questionsFromServer[4];
 
 
 
@@ -148,38 +148,38 @@ angular.module("sudokuApp")
 
         $scope.submit = function () {
 
-            // let answers = [];
-            //
-            // //// let answer = document.querySelector('input[name!="null"]');
-            // //// console.log(document.querySelector('input[name="op"]:checked').value);
-            // let answer0 = $scope.a;
-            // console.log(answer0);
-            // let answer1 = $scope.b;
-            // console.log(answer1);
-            // let answer2 = $scope.c;
-            // console.log(answer2);
-            // let answer3 = $scope.d;
-            // console.log(answer3);
-            // //// let answer4 = $scope.e;
-            // //// console.log(answer4);
-            //
-            // if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
-            //     window.alert("You have to answer every question before press 'Submit'");
-            //
-            // }
-            //
-            // else if(answer0==questionsFromServer[0].correctAnswer&&
-            //     answer1==questionsFromServer[1].correctAnswer&&
-            //     answer2==questionsFromServer[2].correctAnswer&&
-            //     answer3==questionsFromServer[3].correctAnswer){
-            // $location.url('/pageBeforeGame');
-            // }
-            //
-            // else{
-            //     window.alert("You did not answer all the questions correctly. \n" +
-            //         "You are redirected to the tutorial.")
-            //     $location.url('/Tutorial');
-            // }
+            let answers = [];
+
+            //// let answer = document.querySelector('input[name!="null"]');
+            //// console.log(document.querySelector('input[name="op"]:checked').value);
+            let answer0 = $scope.a;
+            console.log(answer0);
+            let answer1 = $scope.b;
+            console.log(answer1);
+            let answer2 = $scope.c;
+            console.log(answer2);
+            let answer3 = $scope.d;
+            console.log(answer3);
+            //// let answer4 = $scope.e;
+            //// console.log(answer4);
+
+            if(answer0=== undefined || answer1===undefined || answer2=== undefined || answer3===undefined){
+                window.alert("You have to answer every question before press 'Submit'");
+
+            }
+
+            else if(answer0==questionsFromServer[0].correctAnswer&&
+                answer1==questionsFromServer[1].correctAnswer&&
+                answer2==questionsFromServer[2].correctAnswer&&
+                answer3==questionsFromServer[3].correctAnswer){
+            $location.url('/pageBeforeGame');
+            }
+
+            else{
+                window.alert("You did not answer all the questions correctly. \n" +
+                    "You are redirected to the tutorial.")
+                $location.url('/Tutorial');
+            }
 
 
             $location.url('/pageBeforeGame');

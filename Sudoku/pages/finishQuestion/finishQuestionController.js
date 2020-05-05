@@ -101,7 +101,7 @@ angular.module("sudokuApp")
         }
 
         $scope.submitEstimates = function () {
-            if($scope.sudokuQuestion == true) { 
+            if($scope.sudokuQuestion == true) {
 
                 // $scope.$watch('rankCorrectness', function(value) {
                 //     correctnessRank = value;
@@ -411,22 +411,242 @@ angular.module("sudokuApp")
         $scope.openModal = function(){
 
             $('#myModalF').modal();
+            $scope.presen = sessionStorage.getItem("KSpresentation");
+            $scope.itemsForPres = JSON.parse(sessionStorage.getItem("items"));
 
+            console.log("presKS= "+$scope.presen);
+            console.log($scope.itemsForPres);
+            $scope.top = [10,10,10,10,150,150,150,150,290,290,290,290]
+            $scope.left = [3,20,37,54,3,20,37,54,3,20,37,54]
+            $scope.countTopPres = 0
+            $scope.countLeftPres =0;
+            $scope.count= 0;
 
+            $rootScope.instance = sessionStorage.getItem("KSProblem");
+            $scope.pres2ByWeight = [6.9,12 ,11 ,6.5 ,8.5 ,10.5 ,7.5 ,7.8 ,9.7 ,9 ]
+            $scope.pres3ByWeight = [11.5,7 ,10 ,6.5 ,6.7 ,12.2 ,9 ,9.4 ,11 ,10.7 ]
+            $scope.pres4ByWeight = [8,9.5 ,6.5 ,11 ,6.5 , 7.5,6.5 ,11 ,12.5 ,9.5 ]
+            $scope.pres5ByWeight = [7.4,11.8 ,10 ,7.2 ,7 , 12.5,9.8 ,9.5 ,11.8 ,6.5 ]
 
+            $scope.pres2ByValue = [7.1,10.0 ,12.5 ,6.9 ,8.1 ,9.8 ,6.5 ,8 ,10.5 ,9 ]
+            $scope.pres3ByValue = [11.5 ,7.4 ,8.9 ,6.5 ,6.9 ,12.5 ,7.6 ,8 ,8.5 ,10.2 ]
+            $scope.pres4ByValue = [8 ,10 ,7 ,6.5 ,9 ,10.8 ,7.5 ,10 ,12.5 ,9 ]
+            $scope.pres5ByValue = [6.9 ,9.2 ,12.5 ,8.4 ,8.1 ,11 ,8.5 ,9 ,7.2 ,6.5]
 
 
         }
 
+        var sizes = [Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7),Math.floor(Math.random()* (5)+7)]
 
-        // $scope.$watch('totalValue',function(value){
-        // var element = document.getElementById("op1");
-        //
-        // document.getElementById("listenerSum").innerHTML = "Paragraph changed!";
-        // })
+        $scope.drawCoins = function (isChosen, weight,value) {
+            // console.log("isChosen-"+isChosen)
+            // console.log("weight-"+weight)
+            // console.log("value-"+value)
+            //console.log($scope.items);
+            console.log("#@$@#")
+            if (!isChosen) {
+                if (weight==50 && value ==37)
+                    return "https://i.imgur.com/HBJTrNN.png"
+                if (weight==820 && value ==72)
+                    return "https://i.imgur.com/n9kOTTT.png"
+                if (weight==700 && value ==106)
+                    return "https://i.imgur.com/pSMkyK4.png"
+                if (weight==46 && value ==32)
+                    return "https://i.imgur.com/Mekpbve.png"
+                if (weight==220 && value ==45)
+                    return "https://i.imgur.com/xjYeWBL.png"
+                if (weight==530 && value ==71)
+                    return "https://i.imgur.com/EqsNIWJ.png"
+                if (weight==107 && value ==23)
+                    return "https://i.imgur.com/7vmAb8X.png"
+                if (weight==180 && value ==44)
+                    return "https://i.imgur.com/3ney67d.png"
+                if (weight==435 && value ==85)
+                    return "https://i.imgur.com/GNrHS1I.png"
+                if (weight==360 && value ==62)
+                    return "https://i.imgur.com/dVZeE7s.png"
 
-        // document.getElementById("op1").addEventListener("click", displayValue);
-        // function displayValue(){
-        //     document.getElementById("listenerSum").innerHTML = "12";
+                if (weight==22 && value ==26)
+                    return "https://i.imgur.com/PJwuAE1.png"
+                if (weight==21 && value ==18)
+                    return "https://i.imgur.com/VD6M72i.png"
+                if (weight==45 && value ==40)
+                    return "https://i.imgur.com/qBzZuLc.png"
+                if (weight==43 && value ==33)
+                    return "https://i.imgur.com/iwWA3Pd.png"
+                if (weight==26 && value ==32)
+                    return "https://i.imgur.com/nyWRSSd.png"
+                if (weight==52 && value ==59)
+                    return "https://i.imgur.com/yOaVqdR.png"
+                if (weight==48 && value ==47)
+                    return "https://i.imgur.com/ioH6Vof.png"
+                if (weight==55 && value ==45)
+                    return "https://i.imgur.com/w2eGbDq.png"
+                if (weight==95 && value ==85)
+                    return "https://i.imgur.com/xdGacQi.png"
+                if (weight==85 && value ==79)
+                    return "https://i.imgur.com/WOxDkOw.png"
+
+                if (weight==4 && value ==3)
+                    return "https://i.imgur.com/SrNc92i.png"
+                if (weight==10 && value ==2)
+                    return "https://i.imgur.com/Vg73rIi.png"
+                if (weight==4 && value ==4)
+                    return "https://i.imgur.com/Jt6WDoI.png"
+                if (weight==7 && value ==5)
+                    return "https://i.imgur.com/U3DHfzd.png"
+                if (weight==8 && value ==7)
+                    return "https://i.imgur.com/zSqrmLB.png"
+                if (weight==4 && value ==7)
+                    return "https://i.imgur.com/v1hQEPc.png"
+                if (weight==8 && value ==8)
+                    return "https://i.imgur.com/jX4QsHl.png"
+                if (weight==10 && value ==8)
+                    return "https://i.imgur.com/FOa3TgR.png"
+                if (weight==6 && value ==9)
+                    return "https://i.imgur.com/ePuV8Tu.png"
+                if (weight==12 && value ==11)
+                    return "https://i.imgur.com/8flbd6k.png"
+
+                if (weight==20 && value ==30)
+                    return "https://i.imgur.com/eYp1Stx.png"
+                if (weight==50 && value ==42)
+                    return "https://i.imgur.com/jObnw7e.png"
+                if (weight==27 && value ==38)
+                    return "https://i.imgur.com/MgR8Q8A.png"
+                if (weight==25 && value ==66)
+                    return "https://i.imgur.com/TjpPpg7.png"
+                if (weight==26 && value ==69)
+                    return "https://i.imgur.com/ytjxhRj.png"
+                if (weight==34 && value ==70)
+                    return "https://i.imgur.com/wMJpVd5.png"
+                if (weight==50 && value ==86)
+                    return "https://i.imgur.com/WJt5UzV.png"
+                if (weight==33 && value ==85)
+                    return "https://i.imgur.com/XviYYSg.png"
+                if (weight==55 && value ==97)
+                    return "https://i.imgur.com/Sx5L7ZU.png"
+                if (weight==41 && value ==112)
+                    return "https://i.imgur.com/3fbYPQQ.png"
+
+
+            }
+            else{
+                if (weight==50 && value ==37)
+                    return "https://i.imgur.com/FX0nbLq.png"
+                if (weight==820 && value ==72)
+                    return "https://i.imgur.com/Mwa4Seg.png"
+                if (weight==700 && value ==106)
+                    return "https://i.imgur.com/ZsumLFO.png"
+                if (weight==46 && value ==32)
+                    return "https://i.imgur.com/a08mzOe.png"
+                if (weight==220 && value ==45)
+                    return "https://i.imgur.com/rinRqzu.png"
+                if (weight==530 && value ==71)
+                    return "https://i.imgur.com/MGbaRNk.png"
+                if (weight==107 && value ==23)
+                    return "https://i.imgur.com/x4AwGTz.png"
+                if (weight==180 && value ==44)
+                    return "https://i.imgur.com/CBLRwne.png"
+                if (weight==435 && value ==85)
+                    return "https://i.imgur.com/0aQVg1e.png"
+                if (weight==360 && value ==62)
+                    return "https://i.imgur.com/O4z7GzW.png"
+
+                if (weight==22 && value ==26)
+                    return "https://i.imgur.com/N3yeSwb.png"
+                if (weight==21 && value ==18)
+                    return "https://i.imgur.com/Lr5LywE.png"
+                if (weight==45 && value ==40)
+                    return "https://i.imgur.com/0gbYM6i.png"
+                if (weight==43 && value ==33)
+                    return "https://i.imgur.com/d8UVZmC.png"
+                if (weight==26 && value ==32)
+                    return "https://i.imgur.com/YQdLza6.png"
+                if (weight==52 && value ==59)
+                    return "https://i.imgur.com/9ivTMzw.png"
+                if(weight==48 && value ==47)
+                    return "https://i.imgur.com/eLQw9XX.png"
+                if (weight==55 && value ==45)
+                    return "https://i.imgur.com/i8WWkCW.png"
+                if (weight==95 && value ==85)
+                    return "https://i.imgur.com/5RxTDzP.png"
+                if (weight==85 && value ==79)
+                    return "https://i.imgur.com/NlWp98C.png"
+
+                if (weight==4 && value ==3)
+                    return "https://i.imgur.com/TCZOyf5.png"
+                if (weight==10 && value ==2)
+                    return "https://i.imgur.com/je9SWnO.png"
+                if (weight==4 && value ==4)
+                    return "https://i.imgur.com/qxzCzTl.png"
+                if (weight==7 && value ==5)
+                    return "https://i.imgur.com/DPSbcPu.png"
+                if (weight==8 && value ==7)
+                    return "https://i.imgur.com/PBoAC1h.png"
+                if (weight==4 && value ==7)
+                    return "https://i.imgur.com/Xoej7Ch.png"
+                if (weight==8 && value ==8)
+                    return "https://i.imgur.com/9MZybHx.png"
+                if (weight==10 && value ==8)
+                    return "https://i.imgur.com/ubWZyzL.png"
+                if (weight==6 && value ==9)
+                    return "https://i.imgur.com/S8nXpJk.png"
+                if (weight==12 && value ==11)
+                    return "https://i.imgur.com/MsSTfhE.png"
+
+                if (weight==20 && value ==30)
+                    return "https://i.imgur.com/9YHfM7K.png"
+                if (weight==50 && value ==42)
+                    return "https://i.imgur.com/NEHspeN.png"
+                if (weight==27 && value ==38)
+                    return "https://i.imgur.com/TWOWq5k.png"
+                if (weight==25 && value ==66)
+                    return "https://i.imgur.com/vCn9hRf.png"
+                if (weight==26 && value ==69)
+                    return "https://i.imgur.com/XIHPpWG.png"
+                if (weight==34 && value ==70)
+                    return "https://i.imgur.com/ONP0C4z.png"
+                if (weight==50 && value ==86)
+                    return "https://i.imgur.com/irEHeMQ.png"
+                if (weight==33 && value ==85)
+                    return "https://i.imgur.com/gVdg92i.png"
+                if (weight==55 && value ==97)
+                    return "https://i.imgur.com/ET4ZbT2.png"
+                if (weight==41 && value ==112)
+                    return "https://i.imgur.com/xIHsaff.png"
+
+            }
+
+        }
+
+
+        $scope.setStylish = function (weight,value) {
+            if ($scope.countTopPres>=10){
+                $scope.countTopPres=0;
+            }
+            if ($scope.countLeftPres>=10){
+                $scope.countLeftPres=0;
+            }
+            //value presentation
+            console.log("countLeft: "+$scope.countLeftPres)
+            console.log("countTop: "+$scope.countTopPres)
+            console.log("top: "+$scope.top[$scope.countTopPres])
+            console.log("left: "+$scope.left[$scope.countLeftPres])
+            //console.log("byValue: "+$scope.byValue)
+            myObj = {
+                //"cursor": "pointer",
+                "width": "15%",
+                "position": "absolute",
+                "top": $scope.top[$scope.countTopPres]+"%",
+                "left": $scope.left[$scope.countLeftPres]+"%"
+                // "top": "10%",
+                // "left": "10%"
+
+            }
+            $scope.countLeftPres++;
+            $scope.countTopPres++;
+            return myObj;
+        }
 
     })

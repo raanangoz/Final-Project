@@ -154,7 +154,28 @@
                     <h4 class="modal-title" id="myModalLabelF"><b>Your solution:</b></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="itemsForPres" ng-repeat="item in itemsForPres track by $index">
+                    <!--<div class="items" ng-repeat="item in items">-->
 
+
+                        <!--<textarea ng-model="items[$index][0]; " class = "none"> {{ }}</textarea>-->
+                        <!--  <input type="button" ng-value="items[$index][0];" ng-click="coinClicked(items[$index])" >-->
+                        <!--  <img class="img-responsive smaller" ng-click="coinClicked(items[$index])" ng-src="{{coin}}" /></img>-->
+                        <img class="img-responsive smaller"
+                             ng-src="{{drawCoins(itemsForPres[$index][2],itemsForPres[$index][0],itemsForPres[$index][1])}}"
+                             ng-style = "{{setStylish(itemsForPres[$index][0],itemsForPres[$index][1])}}"/></img>
+
+                        <!--<img class="img-responsive smaller" ng-click="coinClicked(items[$index])"-->
+                             <!--ng-src="{{drawCoin(items[$index][2],items[$index][0],items[$index][1])}}"-->
+                             <!--ng-style = "{{setStyle(items[$index][0],items[$index][1])}}"/></img>-->
+
+                        <br>
+
+
+                        <br>
+
+                        <!--<a input type="button"><img id="followbutton1" ng-src="{{coin}}"  /></a>-->
+                    </div>
 
 
 
