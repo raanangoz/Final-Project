@@ -16,8 +16,8 @@ angular.module("sudokuApp")
         let familiarityAgainNextSudoku;
         let familiarityAgainPrevSudoku;
 
-        $rootScope.familiarity = 0;
-        sessionStorage.setItem("familiarity","0");
+        // $rootScope.familiarity = 0;
+        // sessionStorage.setItem("familiarity","0");
         console.log(sessionStorage.getItem("familiarity"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
@@ -135,7 +135,7 @@ angular.module("sudokuApp")
 
             }
 
-            if(  z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+            if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
 
                 if( sessionStorage.getItem("wasSudoko") === 'true'){
                     prev();
@@ -144,7 +144,7 @@ angular.module("sudokuApp")
 
             }else{
 
-                if( slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+                if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) &&  slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
                     console.log("hereIFFFF");
                     //if it's the second instance of the sudoku
                     if(sessionStorage.getItem("wasSudoko") === 'true'){
@@ -158,6 +158,13 @@ angular.module("sudokuApp")
                     }
 
                 }
+
+            }
+
+
+            //KS case
+            if(($rootScope.gameInstance == 2 || $rootScope.gameInstance ==3) &&  slideIndex === x.length-1){
+                document.getElementById("next").style.visibility = "hidden";
 
             }
 
@@ -180,8 +187,12 @@ angular.module("sudokuApp")
             }
 
 
-            $rootScope.familiarity = value;
-            sessionStorage.setItem("familiarity",JSON.stringify(value));
+            if(value!=null && value != undefined) {
+                $rootScope.familiarity = value;
+                sessionStorage.setItem("familiarity", value);
+            }
+            // $rootScope.familiarity = value;
+            // sessionStorage.setItem("familiarity",JSON.stringify(value));
 
 
         });
