@@ -294,8 +294,8 @@ angular.module("sudokuApp")
             console.log("userIDNew= "+$rootScope.userID);
             console.log("gameIDNew= "+$rootScope.GameID);
             console.log("gameIDNew= "+$rootScope.GameID);
-            console.log("fam iss" +(sessionStorage.getItem("familiarity")));
-            console.log("fam iss" +(JSON.parse(sessionStorage.getItem("familiarity"))));
+            console.log("fam iss" +(sessionStorage.getItem("familiarityKS")));
+            console.log("fam iss" +(JSON.parse(sessionStorage.getItem("familiarityKS"))));
             //documentation
             $http({
 
@@ -305,7 +305,7 @@ angular.module("sudokuApp")
                     "gameID": "" + $rootScope.GameID,
                     "userID": ""+ $rootScope.userID,
                     "difBefore": ""+ answer,
-                    "familiarity": JSON.parse(sessionStorage.getItem("familiarity"))
+                    "familiarity": JSON.parse(sessionStorage.getItem("familiarityKS"))
 
                 }
             })

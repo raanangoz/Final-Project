@@ -11,12 +11,6 @@ angular.module("sudokuApp")
         let familiarityAgainNextSudoku;
         let familiarityAgainPrevSudoku;
 
-        if(sessionStorage.getItem("familiarity")==undefined) {
-            console.log("its undef");
-            $rootScope.familiarity = 0;
-            sessionStorage.setItem("familiarity", "0");
-        }
-        console.log(sessionStorage.getItem("familiarity"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
         console.log("wasSudokuuuuu= "+$rootScope.wasSudoko);
@@ -133,16 +127,16 @@ angular.module("sudokuApp")
 
             }
 
-            if( z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+            if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
 
-                if(sessionStorage.getItem("wasSudoko") === 'true'){
+                if( sessionStorage.getItem("wasSudoko") === 'true'){
                     prev();
 
                 }
 
             }else{
 
-                if(slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+                if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) &&  slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
                     console.log("hereIFFFF");
                     //if it's the second instance of the sudoku
                     if(sessionStorage.getItem("wasSudoko") === 'true'){
@@ -160,14 +154,16 @@ angular.module("sudokuApp")
             }
 
 
+            //KS case
+            if(($rootScope.gameInstance == 2 || $rootScope.gameInstance ==3) &&  slideIndex === x.length-1){
+                document.getElementById("next").style.visibility = "hidden";
+
+            }
+
+
         }
 
 
-        // if(
-        //     (sessionStorage.getItem("dontChangeFamSudoku")==undefined&&($rootScope.gameInstance==0 ||$rootScope.gameInstance==1))
-        //     ||
-        //     (sessionStorage.getItem("dontChangeFamKS")==undefined&&($rootScope.gameInstance==2 ||$rootScope.gameInstance==3))
-        // )
         $scope.$watch('familiar', function(value) {
 
             console.log("familiarity= "+value);
@@ -183,27 +179,29 @@ angular.module("sudokuApp")
             }
 
             if(value!=null && value != undefined) {
-                $rootScope.familiarity = value;
-                sessionStorage.setItem("familiarity", value);
+                if($rootScope.gameInstance==0||$rootScope.gameInstance==1) {
+                    $rootScope.familiaritySudoku = value;
+                    sessionStorage.setItem("familiaritySudoku", value);
+                }
+                else{
+                    $rootScope.familiarityKS = value;
+                    sessionStorage.setItem("familiarityKS", value);
+                }
             }
+
 
         });
 
-        // function toThePageBeforeGame(){
-        //
-        //     $location.url('/pageBeforeGame');
-        //
-        //
-        // }
+// function toThePageBeforeGame(){
+//
+//     $location.url('/pageBeforeGame');
+//
+//
+// }
 
 
 
         $scope.startExam = function () {
-
-            // if($rootScope.gameInstance==0 || $rootScope.gameInstance==1)
-            //     sessionStorage.setItem("dontChangeFamSudoku","plaster");
-            // if($rootScope.gameInstance==2 || $rootScope.gameInstance==3)
-            //     sessionStorage.setItem("dontChangeFamKS","plaster");
 
             $location.url('/ExamBeforeGame');
 
