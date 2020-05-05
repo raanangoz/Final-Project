@@ -408,6 +408,17 @@ angular.module("sudokuApp")
         }
 
 
+        $scope.openModal = function(){
+
+            $('#myModalF').modal();
+
+
+
+
+
+        }
+
+
         // $scope.$watch('totalValue',function(value){
         // var element = document.getElementById("op1");
         //

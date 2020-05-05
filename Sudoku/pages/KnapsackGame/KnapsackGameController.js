@@ -635,7 +635,7 @@ angular.module("sudokuApp")
                 if (weight==26 && value ==69)
                     return "https://i.imgur.com/XIHPpWG.png"
                 if (weight==34 && value ==70)
-                    return "https://i.imgur.com/EqsNIWJ.png"
+                    return "https://i.imgur.com/ONP0C4z.png"
                 if (weight==50 && value ==86)
                     return "https://i.imgur.com/irEHeMQ.png"
                 if (weight==33 && value ==85)
