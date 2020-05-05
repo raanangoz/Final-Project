@@ -1,7 +1,14 @@
 
 angular.module("sudokuApp")
     .controller("finishQuestionController", function ($scope, $http, $location,$rootScope, $window) {
-        $scope.correctnessPercents = [];
+
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
+
+
 
         $(document).ready(function() {
             function disablePrev() { window.history.forward() }
@@ -9,6 +16,7 @@ angular.module("sudokuApp")
             window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
         });
 
+        $scope.correctnessPercents = [];
 
         $rootScope.gameInstancesChosen=(JSON.parse(sessionStorage.getItem("gameInstancesChosen")));
         console.log("works?)");

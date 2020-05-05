@@ -1,6 +1,11 @@
 angular.module("sudokuApp")
     .controller("TutorialController", function ($scope, $http, $location,$rootScope) {
 
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
 
         $(document).ready(function() {
             function disablePrev() { window.history.forward() }
@@ -116,13 +121,13 @@ angular.module("sudokuApp")
                 document.getElementById("prev").style.visibility = "hidden";
             }
 
-            if(slideIndex === x.length-2 && sessionStorage.getItem("wasSudoko") === 'true'){
+            if(($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && slideIndex === x.length-2 && sessionStorage.getItem("wasSudoko") === 'true'){
                 console.log("hereIFNowwwwwwww");
                 document.getElementById("next").innerHTML = "Continue";
             }
 
             //last slide and already made a test
-            if(slideIndex === x.length && sessionStorage.getItem("wasSudoko") === 'true'){
+            if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && slideIndex === x.length && sessionStorage.getItem("wasSudoko") === 'true'){
                 console.log("hereIfNotExam");
                 console.log("wasSudoku= "+sessionStorage.getItem("wasSudoko") === 'true');
                 $location.url('/pageBeforeGame');
@@ -130,16 +135,16 @@ angular.module("sudokuApp")
 
             }
 
-            if( z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+            if(  z === -1 && slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
 
-                if(sessionStorage.getItem("wasSudoko") === 'true'){
+                if( sessionStorage.getItem("wasSudoko") === 'true'){
                     prev();
 
                 }
 
             }else{
 
-                if(slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
+                if( slideIndex === x.length-1 && !familiarityAgainNextSudoku ){
                     console.log("hereIFFFF");
                     //if it's the second instance of the sudoku
                     if(sessionStorage.getItem("wasSudoko") === 'true'){
