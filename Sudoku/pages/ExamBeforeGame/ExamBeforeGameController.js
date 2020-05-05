@@ -2,6 +2,12 @@ angular.module("sudokuApp")
     .controller("ExamBeforeGameController", function ($scope, $http, $location, $window, $rootScope) {
 
 
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
+
         $(document).ready(function() {
             function disablePrev() { window.history.forward() }
             window.onload = disablePrev();

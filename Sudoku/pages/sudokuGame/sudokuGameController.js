@@ -2,6 +2,13 @@
 //numberOfCellsChanged
 angular.module("sudokuApp")
     .controller("sudokuGameController", function ($scope, $http, $location,$rootScope, $window, $timeout, $interval) {
+
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
+
         $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
 

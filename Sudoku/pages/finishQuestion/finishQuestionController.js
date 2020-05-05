@@ -1,7 +1,14 @@
 
 angular.module("sudokuApp")
     .controller("finishQuestionController", function ($scope, $http, $location,$rootScope, $window) {
-        $scope.correctnessPercents = [];
+
+        window.onbeforeunload = function(event) {
+            // do some stuff here, like reloading your current state
+            //this would work only if the user chooses not to leave the page
+            return 'why would you do that???';
+        }
+
+
 
         $(document).ready(function() {
             function disablePrev() { window.history.forward() }
@@ -9,6 +16,7 @@ angular.module("sudokuApp")
             window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
         });
 
+        $scope.correctnessPercents = [];
 
         $rootScope.gameInstancesChosen=(JSON.parse(sessionStorage.getItem("gameInstancesChosen")));
         console.log("works?)");
@@ -182,6 +190,7 @@ angular.module("sudokuApp")
                     $window.alert("Please answer all questions");
                 }
             }
+
             //TODO added this because adding knapsack was a mess
             if(answered== true) {
 
@@ -261,13 +270,31 @@ angular.module("sudokuApp")
                             // }
 
                             console.dir("counterArray= "+countersArray);
-                            while(countersArray[$rootScope.KSpresentation] === 0){
-                                console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
-                                $rootScope.KSpresentation = Math.floor(Math.random() * 3);
-                            }
-                            counterPresentation = countersArray[$rootScope.KSpresentation];
+                            var allZero=true;
 
-                            reduceCounter();
+                            for (var i = 0; i <countersArray.length  ; i++) {
+                                if(countersArray[i] != 0){
+                                    console.log("hereAllZero");
+                                    allZero = false;
+                                }
+
+                            }
+                            if(allZero){
+
+                                $location.url('/ExperimentOver');
+                            }else{
+
+                                while(countersArray[$rootScope.KSpresentation] === 0){
+                                    console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
+                                    $rootScope.KSpresentation = Math.floor(Math.random() * 3);
+                                }
+
+
+                                counterPresentation = countersArray[$rootScope.KSpresentation];
+
+                                reduceCounter();
+
+                            }
 
 
                         }
