@@ -199,15 +199,48 @@ angular.module("sudokuApp")
 
             //define the time + 15 minutes
             countDown.setMinutes ( countDown.getMinutes() + 15 );  //15
+            // let now = new Date().getTime();
+            let distance = 0;
 
             //init an interval of countdown
             interval= $interval(function() {
 
                 let now = new Date().getTime();
-                let distance = countDown - now;
+                // let distance= countDown - now;
+                // if(sessionStorage.getItem("distance") != null){
+                //     distance = sessionStorage.getItem("distance");
+                // }else{
+                //     distance= countDown - now;
+                // }
 
+                let distance = countDown - now;
+                console.log("distance= "+distance);
+                // if(sessionStorage.getItem("distance") == null){
+                //     distance = countDown - now;
+                // }else{
+                //     distance = sessionStorage.getItem("distance");
+                // }
+                // sessionStorage.setItem("distance", distance);
+
+                // if(sessionStorage.getItem("minute") != 1000){
+                //     minute = sessionStorage.getItem("minute");
+                // }else{
+                //     minute =  Math.floor((distance % (60 *60 *1000)) / (60*1000));
+                // }
+                //
+                // if(sessionStorage.getItem("second") != 1000 * 60){
+                //     minute = sessionStorage.getItem("minute");
+                // }else{
+                //     minute =  Math.floor((distance % (60 *1000)) / 1000);
+                // }
+
+                // minute = sessionStorage.getItem("minute");
                 minute = Math.floor((distance % (60 *60 *1000)) / (60*1000));
+                // sessionStorage.setItem("minute", minute);
+
+                // second = sessionStorage.getItem("second");
                 second = Math.floor((distance % (60 *1000)) / 1000);
+                // sessionStorage.setItem("second", second);
 
                 var length = $location.absUrl().length;
                 var gameLocation = $location.absUrl().substring(length-4,length);
@@ -253,6 +286,21 @@ angular.module("sudokuApp")
 
         //init board and game
         $scope.init = function(){
+
+            if(sessionStorage.getItem("second")== null){
+                second = 1000;
+
+            }else{
+                second = sessionStorage.getItem("second");
+            }
+            if(sessionStorage.getItem("minute")== null){
+
+                minute = 1000 * 60;
+
+            }else{
+                minute = sessionStorage.getItem("second");
+            }
+
 
             //document.getElementById("finish").disabled = "true";
             $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
