@@ -11,8 +11,11 @@ angular.module("sudokuApp")
         let familiarityAgainNextSudoku;
         let familiarityAgainPrevSudoku;
 
-        $rootScope.familiarity = 0;
-        sessionStorage.setItem("familiarity","0");
+        if(sessionStorage.getItem("familiarity")==undefined) {
+            console.log("its undef");
+            $rootScope.familiarity = 0;
+            sessionStorage.setItem("familiarity", "0");
+        }
         console.log(sessionStorage.getItem("familiarity"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
@@ -116,13 +119,13 @@ angular.module("sudokuApp")
                 document.getElementById("prev").style.visibility = "hidden";
             }
 
-            if(slideIndex === x.length-2 && sessionStorage.getItem("wasSudoko") === 'true'){
+            if(($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && slideIndex === x.length-2 && sessionStorage.getItem("wasSudoko") === 'true'){
                 console.log("hereIFNowwwwwwww");
                 document.getElementById("next").innerHTML = "Continue";
             }
 
             //last slide and already made a test
-            if(slideIndex === x.length && sessionStorage.getItem("wasSudoko") === 'true'){
+            if( ($rootScope.gameInstance == 1 || $rootScope.gameInstance ==0) && slideIndex === x.length && sessionStorage.getItem("wasSudoko") === 'true'){
                 console.log("hereIfNotExam");
                 console.log("wasSudoku= "+sessionStorage.getItem("wasSudoko") === 'true');
                 $location.url('/pageBeforeGame');
@@ -146,9 +149,9 @@ angular.module("sudokuApp")
                         next();
 
 
-                    //first instance of sudoku
+                        //first instance of sudoku
                     }else{
-                            document.getElementById("next").style.visibility = "hidden";
+                        document.getElementById("next").style.visibility = "hidden";
 
                     }
 
@@ -160,6 +163,11 @@ angular.module("sudokuApp")
         }
 
 
+        // if(
+        //     (sessionStorage.getItem("dontChangeFamSudoku")==undefined&&($rootScope.gameInstance==0 ||$rootScope.gameInstance==1))
+        //     ||
+        //     (sessionStorage.getItem("dontChangeFamKS")==undefined&&($rootScope.gameInstance==2 ||$rootScope.gameInstance==3))
+        // )
         $scope.$watch('familiar', function(value) {
 
             console.log("familiarity= "+value);
@@ -174,10 +182,10 @@ angular.module("sudokuApp")
                 // }
             }
 
-
-            $rootScope.familiarity = value;
-            sessionStorage.setItem("familiarity",JSON.stringify(value));
-
+            if(value!=null && value != undefined) {
+                $rootScope.familiarity = value;
+                sessionStorage.setItem("familiarity", value);
+            }
 
         });
 
@@ -191,6 +199,11 @@ angular.module("sudokuApp")
 
 
         $scope.startExam = function () {
+
+            // if($rootScope.gameInstance==0 || $rootScope.gameInstance==1)
+            //     sessionStorage.setItem("dontChangeFamSudoku","plaster");
+            // if($rootScope.gameInstance==2 || $rootScope.gameInstance==3)
+            //     sessionStorage.setItem("dontChangeFamKS","plaster");
 
             $location.url('/ExamBeforeGame');
 

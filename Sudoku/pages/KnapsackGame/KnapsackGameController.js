@@ -10,7 +10,7 @@ angular.module("sudokuApp")
             window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
         });
 
-        var userID = $rootScope.userId;
+        $rootScope.userID = sessionStorage.getItem("userID");
         var PuzzleID;
         var GameID;
         var items;// array, for each item : weight,value,inbag
@@ -264,6 +264,7 @@ angular.module("sudokuApp")
                                     //console.log("GameID=== "+response.data.length);
                                     GameID = Object.values(response.data[0])[0];
                                     $rootScope.GameID = GameID;
+                                    sessionStorage.setItem("GameID",GameID);
                                     $scope.bagSize=bagsize;
 
 
@@ -302,7 +303,7 @@ angular.module("sudokuApp")
                 url: 'http://localhost:3000/Knapsack/submitFamiliarityAndDifficultyEstimateBefore',
                 data: {
                     "gameID": "" + $rootScope.GameID,
-                    "userID": ""+ sessionStorage.userID,
+                    "userID": ""+ $rootScope.userID,
                     "difBefore": ""+ answer,
                     "familiarity": JSON.parse(sessionStorage.getItem("familiarity"))
 
