@@ -331,7 +331,7 @@ function allFilledCells (original, solution){
 }
 
 Sudoku.post('/updateRecommendations', function (req, res) {
-    var userID = 3;
+    var userID = ""+ req.body.userID;
     var exam = ""+ req.body.exam;
     var tutorial =""+ req.body.tutorial;
     var games = ""+req.body.games;

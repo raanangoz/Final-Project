@@ -148,8 +148,8 @@ Knapsack.post('/finishGame', function (req, res) {//TODO MAYBE DELETEMOVE ASWELL
     DButilsAzure.execQuery(query)
         .then(function (getResult) {
             console.log("successssssssssssssssssssssssssssssssssssss");
-            stepID = getResult.rowsAffected;
-            console.log(stepID);
+            // stepID = getResult.rowsAffected;
+            // console.log(stepID);
 
         })
         .catch(function (getResultErrr) {
