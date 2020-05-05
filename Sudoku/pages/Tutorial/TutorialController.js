@@ -16,9 +16,6 @@ angular.module("sudokuApp")
         let familiarityAgainNextSudoku;
         let familiarityAgainPrevSudoku;
 
-        // $rootScope.familiarity = 0;
-        // sessionStorage.setItem("familiarity","0");
-        console.log(sessionStorage.getItem("familiarity"));
         $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
         $rootScope.wasSudoko = JSON.parse(sessionStorage.getItem("wasSudoko"));
         console.log("wasSudokuuuuu= "+$rootScope.wasSudoko);
@@ -151,9 +148,9 @@ angular.module("sudokuApp")
                         next();
 
 
-                    //first instance of sudoku
+                        //first instance of sudoku
                     }else{
-                            document.getElementById("next").style.visibility = "hidden";
+                        document.getElementById("next").style.visibility = "hidden";
 
                     }
 
@@ -186,23 +183,26 @@ angular.module("sudokuApp")
                 // }
             }
 
-
             if(value!=null && value != undefined) {
-                $rootScope.familiarity = value;
-                sessionStorage.setItem("familiarity", value);
+                if($rootScope.gameInstance==0||$rootScope.gameInstance==1) {
+                    $rootScope.familiaritySudoku = value;
+                    sessionStorage.setItem("familiaritySudoku", value);
+                }
+                else{
+                    $rootScope.familiarityKS = value;
+                    sessionStorage.setItem("familiarityKS", value);
+                }
             }
-            // $rootScope.familiarity = value;
-            // sessionStorage.setItem("familiarity",JSON.stringify(value));
 
 
         });
 
-        // function toThePageBeforeGame(){
-        //
-        //     $location.url('/pageBeforeGame');
-        //
-        //
-        // }
+// function toThePageBeforeGame(){
+//
+//     $location.url('/pageBeforeGame');
+//
+//
+// }
 
 
 
