@@ -173,14 +173,33 @@ angular.module("sudokuApp")
                                                 //     console.log("cell1:"+countersArray[i]);
                                                 //
                                                 // }
-                                                console.dir("counterArray= "+countersArray);
-                                                while(countersArray[$rootScope.KSpresentation] === 0){
-                                                    console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
-                                                    $rootScope.KSpresentation = Math.floor(Math.random() * 3);
-                                                }
-                                                counterPresentation = countersArray[$rootScope.KSpresentation];
 
-                                                reduceCounter();
+                                                console.dir("counterArray= "+countersArray);
+                                                var allZero=true;
+
+                                                for (var i = 0; i <countersArray.length  ; i++) {
+                                                    if(countersArray[i] != 0){
+                                                        console.log("hereAllZero");
+                                                        allZero = false;
+                                                    }
+
+                                                }
+                                                if(allZero){
+
+                                                    $location.url('/ExperimentOver');
+                                                }else{
+
+                                                    while(countersArray[$rootScope.KSpresentation] === 0){
+                                                        console.log("herePres"+ countersArray[$rootScope.KSpresentation]);
+                                                        $rootScope.KSpresentation = Math.floor(Math.random() * 3);
+                                                    }
+
+
+                                                    counterPresentation = countersArray[$rootScope.KSpresentation];
+
+                                                    reduceCounter();
+
+                                                }
 
 
                                             }
