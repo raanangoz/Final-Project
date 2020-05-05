@@ -42,6 +42,7 @@ angular.module("sudokuApp")
         var PuzzleID;
         var interval;
         var GameID;
+        var PuzzleIDRandom;
 
         $scope.initialBoard = [];
 
@@ -257,7 +258,6 @@ angular.module("sudokuApp")
             $rootScope.gameInstance=JSON.parse(sessionStorage.getItem("gameInstance"));
             $rootScope.userID = JSON.parse(sessionStorage.getItem("userID"));
 
-            var PuzzleIDRandom;
             //random 1/2 for choosing the instance of the board
             if(sessionStorage.getItem("PuzzleIDRandom") == null){
                 console.log("hereSessionPuzzle");
@@ -391,7 +391,7 @@ angular.module("sudokuApp")
                         url:'http://localhost:3000/Sudoku/createNewGame',
                         data: {
                             "userID":""+sessionStorage.getItem("userID"),
-                            "puzzleID":'2',
+                            "puzzleID":""+PuzzleIDRandom,
                             "type":""+gameTypeToSQL
                         }})
                         .then(function(response) {
@@ -594,7 +594,7 @@ angular.module("sudokuApp")
                 url: 'http://localhost:3000/Sudoku/submitFamiliarityAndDifficultyEstimateBefore',
                 data: {
                     "gameID": "" + $rootScope.GameID,
-                    "userID": ""+ sessionStorage.userID,
+                    "userID": ""+ sessionStorage.getItem("userID"),
                     "difBefore": ""+ answer,
                     "familiarity": sessionStorage.getItem("familiaritySudoku")
 

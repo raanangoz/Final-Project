@@ -1,11 +1,12 @@
 angular.module("sudokuApp")
     .controller("ExperimentOverController", function ($scope, $http, $location, $rootScope) {
 
-        $(document).ready(function() {
-            function disablePrev() { window.history.forward() }
-            window.onload = disablePrev();
-            window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
-        });
+        // $(document).ready(function() {
+        //     function disablePrev() { window.history.forward() }
+        //     window.onload = disablePrev();
+        //     window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        // });
+
         //lottery a letter for adding the code
 
             $scope.code= 0;
@@ -16,7 +17,17 @@ angular.module("sudokuApp")
 
             $scope.init = function () {
 
-                    $scope.code = letter+sessionStorage.userID;
+
+                if(sessionStorage.getItem("compCode") == null){
+
+                    $scope.code = letter+sessionStorage.getItem("userID");
+                    sessionStorage.setItem("compCode", $scope.code);
+
+                }else{
+                    $scope.code = sessionStorage.getItem("compCode");
+
+                }
+
                     console.log("compCode= "+$scope.code);
 
                     //documentation
@@ -25,7 +36,7 @@ angular.module("sudokuApp")
                             method: 'POST',
                             url: 'http://localhost:3000/Sudoku/updateCompletionCode ',
                             data: {
-                                    "userID": ""+ sessionStorage.userID,
+                                    "userID": ""+ sessionStorage.getItem("userID"),
                                     "compCode": ""+ $scope.code
 
                             }

@@ -125,7 +125,7 @@ angular.module("sudokuApp")
                         method: 'POST',
                         url: 'http://localhost:3000/Sudoku/submitFinishQuestion',
                         data: {
-                            "userID": "" + sessionStorage.userID,
+                            "userID": "" + sessionStorage.getItem("userID"),
                             "gameID": "" + $rootScope.GameID,
                             "difficulty": "" + difficultyRank,
                             "correctness": "" + correctnessRank
@@ -160,7 +160,7 @@ angular.module("sudokuApp")
                             method: 'POST',
                             url: 'http://localhost:3000/Knapsack/submitFinishQuestion',
                             data: {
-                                "userID": "" + sessionStorage.userID,
+                                "userID": "" + sessionStorage.getItem("userID"),
                                 "gameID": "" + $rootScope.GameID,
                                 "confident": "" + confident,
                                 "difficultyRank": "" + difficultyRank,
@@ -405,6 +405,17 @@ angular.module("sudokuApp")
             $scope.totalV = Number(op1)+Number(op2)+Number(op3)+Number(op4);
             sumTo100 =  $scope.totalV;
             console.log(sumTo100);
+        }
+
+
+        $scope.openModal = function(){
+
+            $('#myModalF').modal();
+
+
+
+
+
         }
 
 

@@ -216,9 +216,9 @@ angular.module("sudokuApp")
                 url:'http://localhost:3000/Knapsack/getBoard/'+$rootScope.instance})
                 .then(function(response) {
 
-                    PuzzleID = response.data[0].PuzzleID;
-                    // $scope.sudokuBoard = board;
-                    console.log(PuzzleID);
+                    // PuzzleID = response.data[0].PuzzleID;
+                    // // $scope.sudokuBoard = board;
+                    // console.log(PuzzleID);
                     let stringweights = response.data[0].itemweights;
                     let stringvalues =  response.data[0].itemvalues;
                     bagsize = parseFloat(response.data[0].bagsize);
@@ -636,7 +636,7 @@ angular.module("sudokuApp")
                 if (weight==26 && value ==69)
                     return "https://i.imgur.com/XIHPpWG.png"
                 if (weight==34 && value ==70)
-                    return "https://i.imgur.com/EqsNIWJ.png"
+                    return "https://i.imgur.com/ONP0C4z.png"
                 if (weight==50 && value ==86)
                     return "https://i.imgur.com/irEHeMQ.png"
                 if (weight==33 && value ==85)
