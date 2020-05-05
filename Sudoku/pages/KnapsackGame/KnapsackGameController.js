@@ -52,8 +52,8 @@ angular.module("sudokuApp")
         $scope.countLeft =0;
         $scope.pres = sessionStorage.getItem("KSpresentation");
         console.log("presKS= "+$scope.pres);
-        $rootScope.leftBool = false;
-        $rootScope.topBool = false;
+        // $rootScope.leftBool = false;
+        // $rootScope.topBool = false;
 
         $rootScope.instance = sessionStorage.getItem("KSProblem");
 
@@ -308,7 +308,7 @@ angular.module("sudokuApp")
                 method: 'POST',
                 url: 'http://localhost:3000/Knapsack/submitFamiliarityAndDifficultyEstimateBefore',
                 data: {
-                    "gameID": "" + $rootScope.GameID,
+                    "gameID": "" + sessionStorage.getItem("GameID"),
                     "userID": ""+ $rootScope.userID,
                     "difBefore": ""+ answer,
                     "familiarity": JSON.parse(sessionStorage.getItem("familiarityKS"))
