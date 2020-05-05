@@ -82,13 +82,18 @@
                     </select>
                     <hr>
                     <h4 class="questions">In your opinion, what is the weight of the heaviest item, In the optimal solution? </h4>
-                    <select type="rank" id= "fatItem" name="fatItem" ng-model="fatItem" >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                    <div class="openModal">
+                        <button class="open" ng-click="openModal()" >Press to watch your solution</button>
+                    </div>
+                    <div class="fatI">
+                        <select type="rank" id= "fatItem" name="fatItem" ng-model="fatItem" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
 
-                    </select>
+                        </select>
+                    </div>
                     <h4 class="questions">How many responders do you estimate, will select each of the given options of the last question?</h4>
                     <h6> Please sum all options to 100% </h6>
                     option1
@@ -121,12 +126,10 @@
                         </option>
                     </select>
                     <br>
-                    <input id="listenerSum" ng-model = "listenerSum">
+<!--                    <input id="listenerSum" ng-model = "listenerSum">-->
                     total:{{totalV}}
-                    </input>
-                    <div class="openModal">
-                        <button class="open" ng-click="openModal()" >Press to watch your solution</button>
-                    </div>
+<!--                    </input>-->
+
 
 
                 </div>

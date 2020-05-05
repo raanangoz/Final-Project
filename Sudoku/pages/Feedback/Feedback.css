@@ -23,7 +23,7 @@
 
 .details{
 
-    height: 500px;
+    height: 400px;
     overflow: auto;
     /*font-size: 15px;*/
     padding-left: 10px;
@@ -65,6 +65,9 @@
 }
 
 .buttonSubmit{
+
+    padding-left: 50px;
+    padding-top: 30px;
 
 
 }

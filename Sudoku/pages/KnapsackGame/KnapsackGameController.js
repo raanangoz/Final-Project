@@ -216,9 +216,9 @@ angular.module("sudokuApp")
                 url:'http://localhost:3000/Knapsack/getBoard/'+$rootScope.instance})
                 .then(function(response) {
 
-                    PuzzleID = response.data[0].PuzzleID;
-                    // $scope.sudokuBoard = board;
-                    console.log(PuzzleID);
+                    // PuzzleID = response.data[0].PuzzleID;
+                    // // $scope.sudokuBoard = board;
+                    // console.log(PuzzleID);
                     let stringweights = response.data[0].itemweights;
                     let stringvalues =  response.data[0].itemvalues;
                     bagsize = parseFloat(response.data[0].bagsize);

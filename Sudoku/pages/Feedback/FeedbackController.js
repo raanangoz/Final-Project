@@ -25,7 +25,7 @@ angular.module("sudokuApp")
                     method: 'POST',
                     url: 'http://localhost:3000/Sudoku/updateRecommendations',
                     data: {
-                        "userID": ""+ sessionStorage.userID,
+                        "userID": ""+ sessionStorage.getItem("userID"),
                         "exam":""+exam,
                         "tutorial":""+tutorial,
                         "games":""+games,

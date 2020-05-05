@@ -5,6 +5,7 @@
     border: 5px solid black;
     margin-bottom: 5px;
     border-radius: 6px;
+    overflow: auto;
 }
 
 .home-page-container{
@@ -35,6 +36,7 @@
 .form-group{
 
     padding: 20px;
+
 }
 
 .buttonSubmit{
@@ -54,4 +56,16 @@
 
 
 
+}
+
+.fatI{
+
+    padding-top: 10px;
+}
+
+.submitB{
+
+    height: 200px;
+    width: 200px;
+;
 }
